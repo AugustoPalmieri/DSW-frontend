@@ -1,63 +1,63 @@
-/* Estilos para la barra de navegación */
+
 .navbar {
-    font-family: 'Roboto', sans-serif; /* Aplicar la fuente Roboto */
-    font-weight: bold; /* Poner en negrita el texto */
-    padding: 18px; /* Aumentar el padding para hacerla más espaciosa */
-    background-color: #637e85 !important; /* Color de fondo azul (puedes cambiarlo según prefieras) */
+    font-family: 'Roboto', sans-serif; 
+    font-weight: bold; 
+    padding: 18px; 
+    background-color: #637e85 !important; 
 }
 
-/* Estilo para el enlace de la marca (MENU PRINCIPAL) */
+
 .navbar-brand {
-    color: rgb(228, 226, 226); /* Color blanco para el texto */
-    font-size: 1.5rem; /* Aumentar el tamaño del texto */
-    text-transform: uppercase; /* Convertir el texto a mayúsculas */
+    color: rgb(228, 226, 226); 
+    font-size: 1.5rem;
+    text-transform: uppercase; 
     text-align: center;
     padding-left: 20px;
-    transition: color 0.3s ease; /* Efecto de transición al pasar el mouse */
+    transition: color 0.3s ease; 
 
 }
 .navbar-brand img {
-    height: 100px; /* Ajusta según el tamaño que desees */
-    width: auto; /* Mantiene la proporción original */
+    height: 100px; 
+    width: auto; 
   }
   
 
-/* Hover en el logo */
+
 .navbar-brand:hover {
-    color: #050505; /* Cambiar el color al pasar el mouse */
-    text-decoration: none; /* Quitar subrayado */
+    color: #050505; 
+    text-decoration: none; 
 }
 
-/* Estilo para el input de búsqueda */
+
 .form-control {
-    border-radius: 25px; /* Redondear los bordes del campo de búsqueda */
-    padding: 10px; /* Aumentar el padding dentro del campo */
-    transition: all 0.3s ease-in-out; /* Añadir una transición suave al interactuar */
+    border-radius: 25px; 
+    padding: 10px; 
+    transition: all 0.3s ease-in-out; 
 }
 
-/* Efecto hover para el campo de búsqueda */
+
 .form-control:focus {
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Añadir sombra cuando se hace foco */
-    border-color: #0056b3; /* Cambiar el borde en foco */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); 
+    border-color: #0056b3; 
 }
 
-/* Estilos para convertir "MENU PRINCIPAL" en botón */
+
 .btn-menu {
     display: inline-block;
-    padding: 10px 20px; /* Aumenta el padding para que parezca botón */
-    background-color: #29323f; /* Color de fondo */
-    color: white; /* Color del texto */
-    border-radius: 30px; /* Bordes redondeados */
-    text-decoration: none; /* Elimina el subrayado */
-    font-weight: bold; /* Negrita */
-    transition: background-color 0.3s ease; /* Transición suave en hover */
+    padding: 10px 20px; 
+    background-color: #29323f; 
+    color: white; 
+    border-radius: 30px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: background-color 0.3s ease; 
 }
 
 /* Hover en el botón */
 .btn-menu:hover {
-    background-color: #0056b3; /* Cambia el color en hover */
-    color: white; /* Mantiene el color de texto */
-    text-decoration: none; /* Mantiene sin subrayado */
+    background-color: #0056b3; 
+    color: white; 
+    text-decoration: none; 
 }
 
 

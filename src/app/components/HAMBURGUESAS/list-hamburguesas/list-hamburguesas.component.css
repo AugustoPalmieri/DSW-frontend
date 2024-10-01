@@ -1,65 +1,117 @@
-
-
 .container {
-    width: 80%;
-    margin: 0 auto; /* Esto centra el contenido */
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para la tabla */
-    border-radius: 30px; /* Bordes redondeados */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 0.5em;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #080808;
+  flex-wrap: wrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+th, td {
+  padding: 0.75em;
+  text-align: left;
+}
+
+th {
+  background-color: #202b35;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #020202;
+}
+
+tr:hover {
+  background-color: #ffffff;
+}
+
+td:last-child {
+  text-align: right;
+}
+
+td button {
+  margin-left: 0.5em;
+}
+
+.btn-info {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+.btn-danger {
+  background-color: #801916;
+  border-color: #801612;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .title h4 {
+    font-size: 1.2em;
   }
-  
-  /* Estilo del título */
-  .title {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #080808; 
+
+  .title button {
+    font-size: 0.9em;
+    padding: 0.5em;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
+
   th, td {
-    padding: 15px;
-    text-align: left;
+    padding: 0.5em;
   }
-  
-  th {
-    background-color: #202b35; 
-    color: white;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #020202; /* Color alterno para filas */
-  }
-  
-  tr:hover {
-    background-color: #ffffff; /* Color de fondo al pasar el mouse */
-  }
-  td:last-child {
-    text-align: right;
-  }
-  
+
   td button {
-    margin-left: 10px;
+    margin-left: 0.3em;
+    font-size: 0.8em;
   }
-  
-  /* Botones */
-  .btn-info {
-    background-color: #5bc0de;
-    border-color: #46b8da;
+
+  .title {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .btn-danger {
-    background-color: #801916;
-    border-color: #801612;
+}
+
+@media (max-width: 480px) {
+  .title h4 {
+    font-size: 1em;
   }
-  
-  .btn:hover {
-    opacity: 0.9;
+
+  .title button {
+    font-size: 0.8em;
+    padding: 0.5em;
+    margin-top: 0.5em;
   }
+
+  table {
+    font-size: 0.9em;
+  }
+
+  th, td {
+    padding: 0.4em;
+  }
+
+  td button {
+    margin-left: 0.2em;
+    font-size: 0.7em;
+  }
+}
   
  

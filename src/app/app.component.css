@@ -10,7 +10,7 @@
     Left:0;
     width:100%;
     min-height: 100vh;
-    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20240229/pngtree-various-dishes-of-burgers-with-meat-image_15633680.jpg");
+    background-image: "assets/images/FondoHamburgueseria.jpg";
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
