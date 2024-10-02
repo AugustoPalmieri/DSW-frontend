@@ -25,6 +25,7 @@ import { MainMenuAdminComponent } from './components/main-menu-admin/main-menu-a
 import { AddEditClientesComponent } from './components/CLIENTES/add-edit-clientes/add-edit-clientes.component';
 import { ListClientesComponent } from './components/CLIENTES/list-clientes/list-clientes.component';
 import { NavbarClienteComponent } from './components/navbar-cliente/navbar-cliente.component';
+import { ListPedidosComponent } from './components/PEDIDOS/list-pedidos/list-pedidos.component';
 
 
 
@@ -45,6 +46,7 @@ import { NavbarClienteComponent } from './components/navbar-cliente/navbar-clien
     AddEditClientesComponent,
     ListClientesComponent,
     NavbarClienteComponent,
+    ListPedidosComponent,
 
   ],
   imports: [

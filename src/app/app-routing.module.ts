@@ -12,6 +12,7 @@ import { LoginPComponent } from './components/login/layout/publico/login-p/login
 import { MainMenuAdminComponent } from './components/main-menu-admin/main-menu-admin.component';
 import { AddEditClientesComponent } from './components/CLIENTES/add-edit-clientes/add-edit-clientes.component';
 import { ListClientesComponent } from './components/CLIENTES/list-clientes/list-clientes.component';
+import { ListPedidosComponent } from './components/PEDIDOS/list-pedidos/list-pedidos.component';
 
 const routes: Routes = [
   { path: 'menu', component: SelectUserComponent },
@@ -30,6 +31,8 @@ const routes: Routes = [
    { path: 'listclientes', component: ListClientesComponent },
    { path: 'listclientes/add', component: AddEditClientesComponent },
    { path: 'listclientes/edit/:idCliente', component: AddEditClientesComponent },
+   //Pedidos
+   {path: 'listpedidos',component:ListPedidosComponent},
   // Ruta comodín
   { path: '**', redirectTo: 'menu', pathMatch: 'full' }
 ];
