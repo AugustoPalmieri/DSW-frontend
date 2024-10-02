@@ -1,0 +1,60 @@
+.navbar {
+    font-family: 'Roboto', sans-serif; 
+    font-weight: bold; 
+    padding: 18px; 
+    background-color: #637e85 !important; 
+}
+
+
+.navbar-brand {
+    color: rgb(228, 226, 226); 
+    font-size: 1.5rem;
+    text-transform: uppercase; 
+    text-align: center;
+    padding-left: 20px;
+    transition: color 0.3s ease; 
+
+}
+.navbar-brand img {
+    height: 100px; 
+    width: auto; 
+  }
+  
+
+
+.navbar-brand:hover {
+    color: #050505; 
+    text-decoration: none; 
+}
+
+
+.form-control {
+    border-radius: 25px; 
+    padding: 10px; 
+    transition: all 0.3s ease-in-out; 
+}
+
+
+.form-control:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); 
+    border-color: #0056b3; 
+}
+
+
+.btn-menu {
+    display: inline-block;
+    padding: 10px 20px; 
+    background-color: #29323f; 
+    color: white; 
+    border-radius: 30px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: background-color 0.3s ease; 
+}
+
+/* Hover en el botón */
+.btn-menu:hover {
+    background-color: #0056b3; 
+    color: white; 
+    text-decoration: none; 
+}

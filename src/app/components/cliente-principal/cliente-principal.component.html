@@ -1,1 +1,19 @@
-<p>cliente-principal works!</p>
+<app-navbar-cliente></app-navbar-cliente> <!-- Tu componente de Navbar -->
+
+<!-- Contenido principal con la imagen de fondo borrosa -->
+<div class="content">
+  <!-- Caja de texto en el centro del fondo borroso -->
+  <div class="text-box">
+    <h1>Explorá nuestro menú y encontrá tu favorita </h1>
+  </div>
+
+  <!-- Imagen de papas fritas en la parte derecha -->
+  <div class="image-container">
+    <img src="assets/images/hamb-cliente.png" alt="HAMBURGUESA" class="hamb-image">
+  </div>
+</div>
+
+<!-- Donde se cargarán las rutas de Angular -->
+<div class="router-outlet">
+  <router-outlet></router-outlet> <!-- Aquí se cargarán tus componentes -->
+</div>
