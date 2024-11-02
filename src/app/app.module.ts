@@ -26,6 +26,8 @@ import { AddEditClientesComponent } from './components/CLIENTES/add-edit-cliente
 import { ListClientesComponent } from './components/CLIENTES/list-clientes/list-clientes.component';
 import { NavbarClienteComponent } from './components/navbar-cliente/navbar-cliente.component';
 import { ListPedidosComponent } from './components/PEDIDOS/list-pedidos/list-pedidos.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 
 
@@ -47,6 +49,8 @@ import { ListPedidosComponent } from './components/PEDIDOS/list-pedidos/list-ped
     ListClientesComponent,
     NavbarClienteComponent,
     ListPedidosComponent,
+    ContactoComponent,
+    NosotrosComponent,
 
   ],
   imports: [

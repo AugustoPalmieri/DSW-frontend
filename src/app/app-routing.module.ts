@@ -13,12 +13,16 @@ import { MainMenuAdminComponent } from './components/main-menu-admin/main-menu-a
 import { AddEditClientesComponent } from './components/CLIENTES/add-edit-clientes/add-edit-clientes.component';
 import { ListClientesComponent } from './components/CLIENTES/list-clientes/list-clientes.component';
 import { ListPedidosComponent } from './components/PEDIDOS/list-pedidos/list-pedidos.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 const routes: Routes = [
   { path: 'menu', component: SelectUserComponent },
   {path:'cliente',component:ClientePrincipalComponent },
   {path:'admin-login',component:LoginPComponent},
   {path:'main-menu-admin',component:MainMenuAdminComponent},
+  { path: 'contacto', component: ContactoComponent },
+  { path: 'nosotros', component: NosotrosComponent},
   // Ingredientes
   { path: 'listingredients', component: ListProductsComponent },
   { path: 'listingredients/add', component: AddEditProductComponent },
@@ -34,7 +38,8 @@ const routes: Routes = [
    //Pedidos
    {path: 'listpedidos',component:ListPedidosComponent},
   // Ruta comodín
-  { path: '**', redirectTo: 'menu', pathMatch: 'full' }
+  { path: '**', redirectTo: 'menu', pathMatch: 'full' },
+
 ];
 
 @NgModule({
