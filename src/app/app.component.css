@@ -10,7 +10,7 @@
     Left:0;
     width:100%;
     min-height: 100vh;
-    background-image: "assets/images/FondoHamburgueseria.jpg";
+    background-image: "/assets/images/FondoHamburgueseria.jpg";
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;

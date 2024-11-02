@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,6 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Imagen de fondo borrosa */
 .content {
     background-size: cover;
     background-position: center;
@@ -18,19 +17,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10vw; /* Ajuste más reducido */
+    padding: 10vw; 
 }
 
 .text-box {
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
-    padding: 2vw; /* Reduzco el padding */
-    border-radius: 3vw; /* Reduzco el borde redondeado */
-    max-width: 70vw; /* Limito un poco más el ancho de la caja de texto */
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 2vw; 
+    border-radius: 3vw; 
+    max-width: 70vw; 
 }
 
 .text-box h1 {
     color: white;
-    font-size: 4vw; /* Reducimos el tamaño de la fuente */
+    font-size: 4vw; 
     font-weight: bold;
     text-align: left;
     margin: 0;
@@ -43,38 +42,38 @@ body {
 }
 
 .hamb-image {
-    width: 40vw; /* Imagen más pequeña */
+    width: 40vw; 
     height: auto;
 }
 
-/* Media Queries para pantallas pequeñas */
+
 @media (max-width: 768px) {
     .text-box {
-        padding: 3vw; /* Un padding ligeramente más grande para pantallas pequeñas */
+        padding: 3vw; 
         border-radius: 2vw;
     }
 
     .text-box h1 {
-        font-size: 5vw; /* Ajuste del tamaño del texto */
+        font-size: 5vw; 
     }
 
     .hamb-image {
-        width: 50vw; /* Ajustamos el tamaño de la imagen en pantallas más pequeñas */
+        width: 50vw; 
     }
 }
 
-/* Media Queries para pantallas muy pequeñas (como móviles) */
+
 @media (max-width: 480px) {
     .text-box {
-        padding: 2.5vw; /* Un poco menos de padding para móviles */
+        padding: 2.5vw; 
         border-radius: 2vw;
     }
 
     .text-box h1 {
-        font-size: 6vw; /* Tamaño más pequeño del texto para móviles */
+        font-size: 6vw; 
     }
 
     .hamb-image {
-        width: 60vw; /* Imagen más pequeña en móviles */
+        width: 60vw; 
     }
 }

@@ -7,7 +7,7 @@ import { Pedido } from '../interfaces/pedido';
 @Injectable({
   providedIn: 'root'
 })
-export class PedidoService {  //ClienteService
+export class PedidoService {  //PedidoService
   private myAppUrl: string;
   private myApiUrl: string;
 

@@ -43,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], // Llaves simples y coma
+  imports: [RouterModule.forRoot(routes)], 
   exports: [RouterModule]
 })
-export class AppRoutingModule {} // Nombre de clase corregido
+export class AppRoutingModule {} 

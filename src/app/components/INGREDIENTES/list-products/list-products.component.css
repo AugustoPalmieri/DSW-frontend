@@ -64,7 +64,7 @@ td button {
   opacity: 0.9;
 }
 
-/* Media Queries for Responsive Design */
+
 @media (max-width: 768px) {
   .title h4 {
     font-size: 1.2em;
