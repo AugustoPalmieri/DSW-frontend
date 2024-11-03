@@ -1,0 +1,8 @@
+.image-container {
+    position: relative;
+    text-align:center;
+}
+.admin-image {
+    width: 35vw; 
+    height: auto;
+}
