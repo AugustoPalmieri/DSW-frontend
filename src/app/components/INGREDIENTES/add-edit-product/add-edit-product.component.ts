@@ -55,6 +55,13 @@ export class AddEditProductComponent implements OnInit {
       }
     );
   }
+  checkStock() {
+    const stockValue = this.form.get('stock')?.value;
+    if (stockValue < 0) {
+      alert('El stock no puede ser un número negativo.');
+      this.form.get('stock')?.setValue('');
+    }
+  }
 
   addIngrediente(): void {
     if (this.form.invalid) return; // Asegúrate de que el formulario es válido

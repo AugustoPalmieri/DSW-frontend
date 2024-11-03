@@ -11,7 +11,7 @@
             El campo descripción es <strong>requerido</strong>
           </span>
         
-          <input formControlName="stock" type="number" class="form-control mt-2" placeholder="Ingrese stock">
+          <input formControlName="stock" type="number" class="form-control mt-2" placeholder="Ingrese stock"(change)="checkStock()">
           <span *ngIf="form.get('stock')?.hasError('required') && form.get('stock')?.touched">
             El campo stock es <strong>requerido</strong>
           </span>
