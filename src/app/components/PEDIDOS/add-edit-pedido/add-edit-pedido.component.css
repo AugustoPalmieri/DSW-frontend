@@ -1,0 +1,16 @@
+
+.image-container {
+    position: relative;
+    text-align:center;
+}
+.tuerca-image {
+    width: 35vw; 
+    height: auto;
+}
+.text-box {
+    width: 35vw;
+    position: relative;
+    text-align: left;
+    line-height: 1.2;
+    margin-top: -600px; /* Adjust the value as needed */
+  }
