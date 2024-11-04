@@ -1,7 +1,7 @@
 export interface Pedido {
-   modalidad:string,
-   montoTotal:number,
-   estado:string,
-   idCliente:number,
-   idPedido?:number
-}
+   idPedido: number;
+   idCliente: number;
+   modalidad: string;
+   montoTotal: number;
+   estado: string;
+   hamburguesas?: { idHamburguesa: number; nombre: string }[];}

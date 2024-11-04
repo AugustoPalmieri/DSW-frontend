@@ -19,7 +19,7 @@ export class ListProductsComponent implements OnInit {
     this.getListIngredientes();
   }
 
-  // Función para obtener la lista de ingredientes
+  
   getListIngredientes() {
     this.loading = true;
     this._productService.getListIngredientes().subscribe((data) => {
@@ -53,9 +53,9 @@ export class ListProductsComponent implements OnInit {
 
   }
 
-  // Función para agregar un nuevo ingrediente
+  
   addIngrediente() {
     console.log('Agregando nuevo ingrediente');
-    // Lógica para agregar un nuevo ingrediente (aquí puedes abrir un modal o formulario para agregar)
+    
   }
 }

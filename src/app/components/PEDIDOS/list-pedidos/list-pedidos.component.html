@@ -14,6 +14,7 @@
         <th scope="col">modalidad</th>
         <th scope="col">montoTotal</th>
         <th scope="col">estado</th>
+        <th scope="col">Hamburguesas</th> 
         <th></th>
       </tr>
     </thead>
@@ -21,15 +22,22 @@
       <tr *ngFor="let item of listPedido" class="table-dark">
         <td>{{ item.idPedido }}</td>
         <td>{{ item.idCliente }}</td>
-        <td>{{ item.modalidad}}</td>
-        <td>{{ item.montoTotal}}</td>
-        <td>{{ item.estado}}</td>
+        <td>{{ item.modalidad }}</td>
+        <td>{{ item.montoTotal }}</td>
+        <td>{{ item.estado }}</td>
         <td>
-          <button [routerLink]="['/listclientes/edit/', item.idCliente]" type="button" class="btn btn-info btn-sm">EDITAR</button>
+          <ul>
+            <li *ngFor="let hamburguesa of item.hamburguesas">
+              ID:{{ hamburguesa.idHamburguesa }} NOMBRE: {{ hamburguesa.nombre }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <button [routerLink]="['/listpedidos/edit/', item.idPedido]" type="button" class="btn btn-info btn-sm">EDITAR</button>
           <button (click)="deletePedido(item.idPedido!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <h5 *ngIf="listPedido.length == 0">No hay Clientes disponibles en este momento</h5>
+  <h5 *ngIf="listPedido.length == 0">No hay Pedidos disponibles en este momento</h5>
 </div>
