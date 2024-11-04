@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit,EventEmitter,Output } from '@angular/core';
 import { Hamburguesa } from 'src/app/interfaces/hamburguesa'; 
 import { ToastrService } from 'ngx-toastr';
 import { HamburguesaService } from 'src/app/services/hamburguesa.service'; 
@@ -10,9 +10,10 @@ import { HamburguesaService } from 'src/app/services/hamburguesa.service';
 })
 export class ListHamburguesasComponent implements OnInit { 
 
-  listHamburguesa: Hamburguesa[] = []; 
+  @Input () listHamburguesa: Hamburguesa[] = [];
+ 
   loading: boolean = false;
-
+  @Output() listHamburguesaChange = new EventEmitter<Hamburguesa[]>(); 
   constructor(private _HamburguesaService: HamburguesaService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
@@ -34,6 +35,10 @@ export class ListHamburguesasComponent implements OnInit {
         this.loading = false; 
       }
     );
+  }
+  onCantidadChange(hamburguesa: Hamburguesa, cantidad: number) {
+    hamburguesa.cantidad = cantidad;
+    this.listHamburguesaChange.emit(this.listHamburguesa);
   }
 
 

@@ -1,16 +1,108 @@
-
-.image-container {
-    position: relative;
-    text-align:center;
-}
-.tuerca-image {
-    width: 35vw; 
-    height: auto;
-}
-.text-box {
-    width: 35vw;
-    position: relative;
-    text-align: left;
-    line-height: 1.2;
-    margin-top: -600px; /* Adjust the value as needed */
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
   }
+  
+  /* Estilo del contenedor de la lista de hamburguesas */
+  .hamburguesa-list {
+    max-width: 600px;
+    margin: 20px auto; /* Centra el contenedor */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para cada item de hamburguesa */
+  .hamburguesa-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea el contenido verticalmente */
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0; /* Línea divisoria entre elementos */
+  }
+  
+  .hamburguesa-item:last-child {
+    border-bottom: none; /* Elimina la línea divisoria en el último elemento */
+  }
+  
+  /* Estilo del nombre y descripción de la hamburguesa */
+  .hamburguesa-nombre {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Estilo del input de cantidad */
+  .hamburguesa-cantidad {
+    width: 60px; /* Ancho fijo para el input */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Cambia el borde del input al enfocar */
+  .hamburguesa-cantidad:focus {
+    border-color: #007bff;
+    outline: none; /* Elimina el contorno predeterminado */
+  }
+  
+  /* Estilo del botón de realizar pedido */
+  .butonpedido {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff; /* Color de fondo azul */
+    color: #fff; /* Color del texto */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cambia el color del botón al pasar el ratón */
+  .butonpedido:hover:not([disabled]) {
+    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+  }
+  
+  /* Botón deshabilitado */
+  .butonpedido[disabled] {
+    background-color: #6c757d; /* Color gris para el botón deshabilitado */
+    cursor: not-allowed;
+  }
+  
+  /* Asegura que el botón sea más accesible */
+  .butonpedido:focus {
+    outline: none; /* Elimina el contorno predeterminado */
+  }
+  
+  /* Estilo del botón de volver atrás */
+  .back-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px; /* Espaciado superior para separar del botón anterior */
+    background-color: #ff0000; /* Color de fondo rojo */
+    color: #fff; /* Color del texto */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cambia el color del botón de volver atrás al pasar el ratón */
+  .back-button:hover {
+    background-color: #b30000; /* Color más oscuro al pasar el ratón */
+  }
+  
+  /* Asegura que el botón de volver atrás sea más accesible */
+  .back-button:focus {
+    outline: none; /* Elimina el contorno predeterminado */
+  }
+  

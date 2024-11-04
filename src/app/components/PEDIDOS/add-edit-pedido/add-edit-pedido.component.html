@@ -1,7 +1,12 @@
+
 <app-navbar></app-navbar>
-<div class="image-container">
-    <img src="assets/images/librate-02.png" alt="HAMBURGUESA" class="tuerca-image">
+<div class="hamburguesa-list">
+  <div *ngFor="let hamburguesa of hamburguesas" class="hamburguesa-item">
+    <span class="hamburguesa-nombre">{{ hamburguesa.nombre }}, {{ hamburguesa.descripcion }}</span>
+    <input type="number" class="hamburguesa-cantidad" [(ngModel)]="hamburguesa.cantidad" (ngModelChange)="onQuantityChange(hamburguesa, $event)" min="0">
   </div>
-  <div class="text-box">
-    <h1>En construcción </h1>
-  </div>
+</div>
+
+<button class="butonpedido" (click)="submitOrder()" [disabled]="!isOrderValid()">Realizar Pedido</button>
+<button class="back-button" [routerLink]="['/listpedidos']">Volver</button>
+
