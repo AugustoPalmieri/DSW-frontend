@@ -98,3 +98,8 @@ button.cancel:hover {
     font-size: 1em;
     margin-bottom: 10px;
 }
+.container {
+    /* ... other styles ... */
+    max-height: 700px; /* Adjust the height as needed */
+    overflow-y: auto;
+  }
