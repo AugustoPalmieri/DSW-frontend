@@ -4,4 +4,9 @@ export interface Pedido {
    modalidad: string;
    montoTotal: number;
    estado: string;
-   hamburguesas?: { idHamburguesa: number; nombre: string }[];}
+   hamburguesas?: { 
+      idHamburguesa: number; 
+      nombre: string; 
+      cantidad: number;  // Añadir la cantidad aquí
+   }[];
+}
