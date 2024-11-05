@@ -7,6 +7,6 @@ export interface Pedido {
    hamburguesas?: { 
       idHamburguesa: number; 
       nombre: string; 
-      cantidad: number;  // Añadir la cantidad aquí
+      cantidad: number;  
    }[];
 }
