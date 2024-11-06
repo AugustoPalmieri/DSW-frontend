@@ -20,8 +20,8 @@ export class PedidoService {
     return this.http.get<{ data: Pedido[] }>(`${this.myAppUrl}${this.myApiUrl}`);
   }
   createPedido(pedido: Pedido): Observable<any> {
-    return this.http.post(`${this.myApiUrl}`, pedido);
-  }
+  return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, pedido); 
+}
 
   deletePedido(idPedido: number): Observable<void> {
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${idPedido}`);

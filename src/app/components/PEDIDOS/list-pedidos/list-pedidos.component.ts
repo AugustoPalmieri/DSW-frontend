@@ -41,10 +41,20 @@ export class ListPedidosComponent implements OnInit {
 
   deletePedido(idPedido: number) {
     this.loading = true;
-    this._PedidoService.deletePedido(idPedido).subscribe(() => {
-      this.getListPedido();
-      this.toastr.warning('El pedido ha sido eliminado con éxito', 'Pedido Eliminado');
-      this.loading = false;
+    this._PedidoService.deletePedido(idPedido).subscribe({
+      next: () => {
+        this.getListPedido();
+        this.toastr.warning('El pedido ha sido eliminado con éxito', 'Pedido Eliminado');
+        this.loading = false;
+      },
+      error: (error) => {
+        if (error.error.message === 'No se puede eliminar un pedido en proceso') {
+          this.toastr.info('No se puede eliminar un pedido que no está en estado ENTREGADO', 'Aviso');
+        } else {
+          this.toastr.error('Error al eliminar el pedido', 'Error');
+        }
+        this.loading = false;
+      }
     });
   }
   actualizarEstado(idPedido: number, estado: string): void {

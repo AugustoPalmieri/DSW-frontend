@@ -22,7 +22,8 @@ export class AddEditPedidoComponent implements OnInit {
   hamburguesas: HamburguesaPedido[] = [];
   selectedHamburgers: HamburguesaPedido[] = [];
   montoTotal: number = 0;
-  idCliente: number = 1; // valor fijo, hay q hacerlo dinamico
+  idCliente: number = 1;
+  modalidad: string = 'TAKEAWAY' // valor fijo, hay q hacerlo dinamico
 
   constructor(
     private hamburguesaService: HamburguesaService,
@@ -75,7 +76,7 @@ export class AddEditPedidoComponent implements OnInit {
     }
 
     const pedido: Pedido = {
-      modalidad: 'presencial', // O 'online', según tu lógica
+      modalidad: this.modalidad, // O 'online', según tu lógica
       montoTotal: this.montoTotal,
       estado: 'EN PROCESO',
       idCliente: this.idCliente,

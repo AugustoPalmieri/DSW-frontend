@@ -1,22 +1,30 @@
 <app-navbar></app-navbar>
-<div class="hamburguesa-list">
-  <div *ngFor="let hamburguesa of hamburguesas">
-    <p>Nombre: {{ hamburguesa.nombre }} | Precio: {{ hamburguesa.precio | currency }} | {{hamburguesa.descripcion}}</p>
-
-
-    <input 
-      type="number" 
-      [(ngModel)]="hamburguesa.cantidad" 
-      (change)="onQuantityChange(hamburguesa, hamburguesa.cantidad)" 
-      [min]="0" 
-      required
-      [class.invalid]="hamburguesa.cantidad < 0"
-    />
+<div class="main-content">
+  <div class="modalidad-selection">
+    <label for="modalidad">Selecciona una modalidad:</label>
+    <select [(ngModel)]="modalidad" id="modalidad" required>
+      <option value="TAKEAWAY">TAKEAWAY</option>
+      <option value="DELIVERY">DELIVERY</option>
+    </select>
   </div>
-</div>
 
+  <div class="hamburguesa-list">
+    <div *ngFor="let hamburguesa of hamburguesas">
+      <p>Nombre: {{ hamburguesa.nombre }} | Descripcion: {{hamburguesa.descripcion}} | Precio: {{ hamburguesa.precio | currency }}</p>
 
-<div class="button-container">
-  <button class="butnpedido" (click)="submitOrder()" [disabled]="!isOrderValid()">Realizar Pedido</button>
-  <button class="back-button" [routerLink]="['/listpedidos']">Volver</button>
+      <input 
+        type="number" 
+        [(ngModel)]="hamburguesa.cantidad" 
+        (change)="onQuantityChange(hamburguesa, hamburguesa.cantidad)" 
+        [min]="0" 
+        required
+        [class.invalid]="hamburguesa.cantidad < 0"
+      />
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="butnpedido" (click)="submitOrder()" [disabled]="!isOrderValid()">Realizar Pedido</button>
+    <button class="back-button" [routerLink]="['/listpedidos']">Volver</button>
+  </div>
 </div>
