@@ -1,10 +1,10 @@
 export interface Pedido {
-   idPedido: number;
+   idPedido?: number; //puede ser ?
    idCliente: number;
    modalidad: string;
    montoTotal: number;
    estado: string;
-   hamburguesas?: { 
+   hamburguesas: {  //puede ser sin ?
       idHamburguesa: number; 
       nombre: string; 
       cantidad: number;  

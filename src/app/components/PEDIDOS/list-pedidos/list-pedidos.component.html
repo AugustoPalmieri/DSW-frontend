@@ -34,6 +34,7 @@
         </td>
         <td>
           <div class="button-container">
+            <button (click)="actualizarEstado(item.idPedido!,'ENTREGADO')" type="button" class="btn btn-tick btn-sm">ENTREGADO</button>
             <button [routerLink]="['/listpedidos/edit/', item.idPedido]" type="button" class="btn btn-info btn-sm">EDITAR</button>
             <button (click)="deletePedido(item.idPedido!)" type="button" class="btn btn-danger btn-sm">ELIMINAR</button>
           </div>

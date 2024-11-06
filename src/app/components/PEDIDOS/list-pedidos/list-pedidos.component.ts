@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Pedido } from 'src/app/interfaces/pedido';
 import { PedidoService } from 'src/app/services/pedido.service';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { tap, catchError, finalize } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-list-pedidos',
@@ -11,8 +15,9 @@ import { PedidoService } from 'src/app/services/pedido.service';
 export class ListPedidosComponent implements OnInit {
   listPedido: Pedido[] = []; 
   loading: boolean = false;
+  
 
-  constructor(private _PedidoService: PedidoService, private toastr: ToastrService) {}
+  constructor(private _PedidoService: PedidoService, private toastr: ToastrService, private router: Router) {}
 
   ngOnInit(): void {
     this.getListPedido();
@@ -23,6 +28,7 @@ export class ListPedidosComponent implements OnInit {
     this._PedidoService.getListPedido().subscribe(
       (data) => {
         this.listPedido = data.data || [];
+        this.listPedido.sort((a, b) => b.idPedido! - a.idPedido!); 
         this.loading = false;
       },
       (error: any) => {
@@ -41,4 +47,27 @@ export class ListPedidosComponent implements OnInit {
       this.loading = false;
     });
   }
+  actualizarEstado(idPedido: number, estado: string): void {
+    this._PedidoService.updateEstado(idPedido, estado).subscribe(
+      (response) => {
+        this.toastr.success('Estado del pedido actualizado', 'Éxito');
+        console.log('Estado actualizado:', response);
+  
+        // Buscar el pedido en la lista y actualizar su estado
+        const pedido = this.listPedido.find(p => p.idPedido === idPedido);
+        if (pedido) {
+          pedido.estado = estado;  // Actualizar el estado localmente
+        }
+  
+        // Aquí Angular detectará los cambios y solo actualizará la fila de este pedido.
+      },
+      (error) => {
+        this.toastr.error('Error al actualizar el estado', 'Error');
+        console.error('Error al actualizar el estado', error);
+      }
+    );
+  }
 }
+
+
+

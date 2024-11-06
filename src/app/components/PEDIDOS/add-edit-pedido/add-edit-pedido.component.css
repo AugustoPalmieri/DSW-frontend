@@ -1,108 +1,79 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Estilo del contenedor de la lista de hamburguesas */
-  .hamburguesa-list {
-    max-width: 600px;
-    margin: 20px auto; /* Centra el contenedor */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Estilo para cada item de hamburguesa */
-  .hamburguesa-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Alinea el contenido verticalmente */
-    padding: 10px;
-    border-bottom: 1px solid #e0e0e0; /* Línea divisoria entre elementos */
-  }
-  
-  .hamburguesa-item:last-child {
-    border-bottom: none; /* Elimina la línea divisoria en el último elemento */
-  }
-  
-  /* Estilo del nombre y descripción de la hamburguesa */
-  .hamburguesa-nombre {
-    font-weight: bold;
-    color: #333;
-  }
-  
-  /* Estilo del input de cantidad */
-  .hamburguesa-cantidad {
-    width: 60px; /* Ancho fijo para el input */
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-  }
-  
-  /* Cambia el borde del input al enfocar */
-  .hamburguesa-cantidad:focus {
-    border-color: #007bff;
-    outline: none; /* Elimina el contorno predeterminado */
-  }
-  
-  /* Estilo del botón de realizar pedido */
-  .butonpedido {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #007bff; /* Color de fondo azul */
-    color: #fff; /* Color del texto */
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Cambia el color del botón al pasar el ratón */
-  .butonpedido:hover:not([disabled]) {
-    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
-  }
-  
-  /* Botón deshabilitado */
-  .butonpedido[disabled] {
-    background-color: #6c757d; /* Color gris para el botón deshabilitado */
-    cursor: not-allowed;
-  }
-  
-  /* Asegura que el botón sea más accesible */
-  .butonpedido:focus {
-    outline: none; /* Elimina el contorno predeterminado */
-  }
-  
-  /* Estilo del botón de volver atrás */
-  .back-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px; /* Espaciado superior para separar del botón anterior */
-    background-color: #ff0000; /* Color de fondo rojo */
-    color: #fff; /* Color del texto */
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Cambia el color del botón de volver atrás al pasar el ratón */
-  .back-button:hover {
-    background-color: #b30000; /* Color más oscuro al pasar el ratón */
-  }
-  
-  /* Asegura que el botón de volver atrás sea más accesible */
-  .back-button:focus {
-    outline: none; /* Elimina el contorno predeterminado */
-  }
-  
+.hamburguesa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px;
+  padding: 10px;
+}
+
+
+.hamburguesa-list div {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.hamburguesa-list p {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.hamburguesa-list input {
+  padding: 8px;
+  font-size: 16px;
+  width: 60px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+.hamburguesa-list input:invalid {
+  border-color: red;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.butnpedido {
+  background-color: #0c5d92;
+  color: white;
+}
+
+.butnpedido:disabled {
+  background-color: #658fb8;
+  cursor: not-allowed;
+}
+
+.back-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: #d32f2f;
+}
+
+.hamburguesa-list {
+  /* ... other styles ... /
+  max-height: 700px; / Adjust the height as needed */
+  overflow-y: auto;
+}

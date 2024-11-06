@@ -1,12 +1,22 @@
-
 <app-navbar></app-navbar>
 <div class="hamburguesa-list">
-  <div *ngFor="let hamburguesa of hamburguesas" class="hamburguesa-item">
-    <span class="hamburguesa-nombre">{{ hamburguesa.nombre }}, {{ hamburguesa.descripcion }}</span>
-    <input type="number" class="hamburguesa-cantidad" [(ngModel)]="hamburguesa.cantidad" (ngModelChange)="onQuantityChange(hamburguesa, $event)" min="0">
+  <div *ngFor="let hamburguesa of hamburguesas">
+    <p>Nombre: {{ hamburguesa.nombre }} | Precio: {{ hamburguesa.precio | currency }} | {{hamburguesa.descripcion}}</p>
+
+
+    <input 
+      type="number" 
+      [(ngModel)]="hamburguesa.cantidad" 
+      (change)="onQuantityChange(hamburguesa, hamburguesa.cantidad)" 
+      [min]="0" 
+      required
+      [class.invalid]="hamburguesa.cantidad < 0"
+    />
   </div>
 </div>
 
-<button class="butonpedido" (click)="submitOrder()" [disabled]="!isOrderValid()">Realizar Pedido</button>
-<button class="back-button" [routerLink]="['/listpedidos']">Volver</button>
 
+<div class="button-container">
+  <button class="butnpedido" (click)="submitOrder()" [disabled]="!isOrderValid()">Realizar Pedido</button>
+  <button class="back-button" [routerLink]="['/listpedidos']">Volver</button>
+</div>
