@@ -44,14 +44,26 @@ export class ListProductsComponent implements OnInit {
   deleteIngrediente(codIngrediente: number) {
     console.log('Eliminando ingrediente:', codIngrediente);
     this.loading = true;
-    this._productService.deleteIngrediente(codIngrediente).subscribe(() =>{
-      this.loading= false;
-      this.getListIngredientes();
-      this.toastr.warning('El ingrediente ha sido eliminado con éxito','Ingrediente Eliminado')
+    this._productService.deleteIngrediente(codIngrediente).subscribe(
+      () => {
+        this.loading = false;
+        this.getListIngredientes();
+        this.toastr.warning('El ingrediente ha sido eliminado con éxito', 'Ingrediente Eliminado');
+      },
+      (error) => {
+        this.loading = false;
+        
+        if (error.error && error.error.hamburguesas) {
+          const hamburguesas = error.error.hamburguesas.join(', ');
+          this.toastr.error(`DEBE ELIMINAR PRIMERO LA(S) HAMBURGUESA(S) QUE UTILIZA(N) EL INGREDIENTE: ${hamburguesas}`, 'Error');
+        } else {
+          this.toastr.error('Error al eliminar el ingrediente', 'Error');
+        }
+      }
+    );
+}
 
-    })
 
-  }
 
   
   addIngrediente() {
