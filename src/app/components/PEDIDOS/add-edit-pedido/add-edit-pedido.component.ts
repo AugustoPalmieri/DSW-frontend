@@ -76,7 +76,7 @@ export class AddEditPedidoComponent implements OnInit {
     }
 
     const pedido: Pedido = {
-      modalidad: this.modalidad, // O 'online', según tu lógica
+      modalidad: this.modalidad, 
       montoTotal: this.montoTotal,
       estado: 'EN PROCESO',
       idCliente: this.idCliente,
