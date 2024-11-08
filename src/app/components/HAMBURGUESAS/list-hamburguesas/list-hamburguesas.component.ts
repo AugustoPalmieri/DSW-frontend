@@ -50,14 +50,23 @@ editHamburguesa(hamburguesa: Hamburguesa) {
 deleteHamburguesas(idHamburguesa: number) {
   console.log('Eliminando Hamburguesa:', idHamburguesa);
   this.loading = true;
-  this._HamburguesaService.deleteHamburguesa(idHamburguesa).subscribe(() =>{
-    this.loading= false;
-    this.getListHamburguesa();
-    this.toastr.warning('La hamburguesa ha sido eliminado con éxito','Hamburguesa Eliminada')
-
-  })
-
+  this._HamburguesaService.deleteHamburguesa(idHamburguesa).subscribe({
+      next: () => {
+          this.loading = false;
+          this.getListHamburguesa();
+          this.toastr.warning('La hamburguesa ha sido eliminada con éxito', 'Hamburguesa Eliminada');
+      },
+      error: (error) => {
+          this.loading = false;
+          if (error.error.message === 'NO SE PUEDE ELIMINAR LA HAMBURGUESA PORQUE ESTÁ EN UN PEDIDO "EN PROCESO"') {
+              this.toastr.error(error.error.message, 'Error');
+          } else {
+              this.toastr.error('Ocurrió un error al eliminar la hamburguesa', 'Error');
+          }
+      }
+  });
 }
+
 
 
 addHamburguesa() {
