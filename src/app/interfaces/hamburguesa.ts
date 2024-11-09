@@ -3,5 +3,6 @@ export interface Hamburguesa {
     nombre: string;
     descripcion: string;
     cantidad?:number;
+    precio?:number;
     
 }

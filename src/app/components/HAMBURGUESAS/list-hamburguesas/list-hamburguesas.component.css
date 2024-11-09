@@ -113,5 +113,10 @@ td button {
     font-size: 0.7em;
   }
 }
+.container {
+  
+  max-height: 700px; 
+  overflow-y: auto;
+}   
   
  

@@ -15,6 +15,15 @@
           <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">
             El campo descripcion es <strong>requerido</strong>
           </span>
+          
+          <input
+            formControlName="precio"
+            type="number"
+            class="form-control mt-2"
+            placeholder="Ingrese precio"
+            (input)="validatePrecio()"
+          >
+          <span *ngIf="precioError" class="error">{{ precioError }}</span>
 
           <div class="row mt-2 text-center">
             <div class="col-lg-6">

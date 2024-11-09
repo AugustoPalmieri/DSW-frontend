@@ -23,19 +23,21 @@ export class ListHamburguesasComponent implements OnInit {
   
   getListHamburguesa() {
     this.loading = true;
-    this._HamburguesaService.getListHamburguesa().subscribe( (data) => { 
+    this._HamburguesaService.getListHamburguesa().subscribe(
+      (data) => {
         console.log('Datos recibidos desde la API:', data);
-        this.listHamburguesa = data.data || []; 
+        this.listHamburguesa = data.data || [];
         console.log('Lista de hamburguesas actualizada:', this.listHamburguesa);
         this.loading = false;
       },
-      (error:any) => {
+      (error: any) => {
         console.error('Error al obtener las hamburguesas', error);
-        this.toastr.error('Error al obtener las hamburguesas', 'Error'); 
-        this.loading = false; 
+        this.toastr.error('Error al obtener las hamburguesas', 'Error');
+        this.loading = false;
       }
     );
   }
+  
   onCantidadChange(hamburguesa: Hamburguesa, cantidad: number) {
     hamburguesa.cantidad = cantidad;
     this.listHamburguesaChange.emit(this.listHamburguesa);

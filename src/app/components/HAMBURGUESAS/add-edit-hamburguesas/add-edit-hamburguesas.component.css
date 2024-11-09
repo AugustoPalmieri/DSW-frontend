@@ -99,7 +99,22 @@ button.cancel:hover {
     margin-bottom: 10px;
 }
 .container {
-    /* ... other styles ... */
-    max-height: 700px; /* Adjust the height as needed */
+    
+    max-height: 700px; 
     overflow-y: auto;
   }
+  input[type="number"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]::placeholder {
+    color: #888;
+}
