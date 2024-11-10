@@ -1,0 +1,16 @@
+<app-navbar-cliente></app-navbar-cliente>
+<div class="cliente-selection-container">
+  <h3>Seleccionar Cliente</h3>
+  <ul class="cliente-list">
+    <li
+      *ngFor="let cliente of clientes"
+      [class.selected]="cliente.idCliente === clientesSeleccionados"
+      (click)="seleccionarCliente(cliente.idCliente!)"
+    >
+      {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.email }}
+    </li>
+  </ul>
+</div>
+
+
+

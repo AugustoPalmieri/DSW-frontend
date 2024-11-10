@@ -1,12 +1,28 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+}
+
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
 .main-content {
-  flex: 1;
+  flex: 1; 
   margin-left: 220px; 
   padding: 20px;
+  box-sizing: border-box;
   overflow-y: auto; 
   height: 100vh; 
-  box-sizing: border-box;
-  max-height: 700px;
 }
+
 
 .hamburguesa-list {
   display: flex;
@@ -14,8 +30,9 @@
   gap: 20px;
   margin: 20px;
   padding: 10px;
+  max-height: 700px; 
+  overflow-y: auto; 
 }
-
 
 
 .hamburguesa-list div {
@@ -25,7 +42,6 @@
   background-color: #f9f9f9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 .hamburguesa-list p {
   font-size: 16px;
@@ -47,6 +63,7 @@
   border-color: red;
 }
 
+
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -55,7 +72,6 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 
 .butnpedido {
   background-color: #0c5d92;
@@ -83,10 +99,7 @@ button {
   background-color: #d32f2f;
 }
 
-.hamburguesa-list {
-  max-height: 700px; 
-  overflow-y: auto;
-}
+
 .modalidad-selection {
   margin: 20px 30px;
   padding: 10px;
@@ -95,36 +108,4 @@ button {
   background-color: #f9f9f9;
   width: 300px;
   font-family: Arial, sans-serif;
-}
-
-.modalidad-selection label {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.modalidad-selection select {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-.modalidad-selection select:focus {
-  border-color: #4CAF50; 
-  outline: none;
-}
-
-.modalidad-selection select option {
-  padding: 10px;
-}
-
-.modalidad-selection select:disabled {
-  background-color: #e0e0e0;
-  cursor: not-allowed;
 }

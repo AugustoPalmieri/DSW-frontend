@@ -1,4 +1,5 @@
-<app-navbar></app-navbar>
+<app-seleccionar-cliente (clienteSeleccionado)="setCliente($event)"></app-seleccionar-cliente>
+
 <div class="main-content">
   <div class="modalidad-selection">
     <label for="modalidad">Selecciona una modalidad:</label>
@@ -28,3 +29,4 @@
     <button class="back-button" [routerLink]="['/listpedidos']">Volver</button>
   </div>
 </div>
+  

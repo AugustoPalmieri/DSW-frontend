@@ -51,7 +51,7 @@ export class ListPedidosComponent implements OnInit {
         if (error.error.message === 'No se puede eliminar un pedido en proceso') {
           this.toastr.info('No se puede eliminar un pedido que no está en estado ENTREGADO', 'Aviso');
         } else {
-          this.toastr.error('Error al eliminar el pedido', 'Error');
+          this.toastr.error('No es posible eliminar un pedido "EN PROCESO"', 'Error');
         }
         this.loading = false;
       }
@@ -63,13 +63,13 @@ export class ListPedidosComponent implements OnInit {
         this.toastr.success('Estado del pedido actualizado', 'Éxito');
         console.log('Estado actualizado:', response);
   
-        // Buscar el pedido en la lista y actualizar su estado
+        
         const pedido = this.listPedido.find(p => p.idPedido === idPedido);
         if (pedido) {
-          pedido.estado = estado;  // Actualizar el estado localmente
+          pedido.estado = estado;  
         }
   
-        // Aquí Angular detectará los cambios y solo actualizará la fila de este pedido.
+        
       },
       (error) => {
         this.toastr.error('Error al actualizar el estado', 'Error');

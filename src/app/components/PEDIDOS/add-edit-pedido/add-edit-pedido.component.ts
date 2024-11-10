@@ -8,7 +8,7 @@ import { Pedido } from 'src/app/interfaces/pedido';
 interface HamburguesaPedido {
   idHamburguesa: number;
   nombre: string;
-  descripcion:string;
+  descripcion: string;
   cantidad: number;
   precio: number;
 }
@@ -22,8 +22,8 @@ export class AddEditPedidoComponent implements OnInit {
   hamburguesas: HamburguesaPedido[] = [];
   selectedHamburgers: HamburguesaPedido[] = [];
   montoTotal: number = 0;
-  idCliente: number = 1;
-  modalidad: string = 'TAKEAWAY' // valor fijo, hay q hacerlo dinamico
+  idCliente: number | null = null; 
+  modalidad: string = 'TAKEAWAY';
 
   constructor(
     private hamburguesaService: HamburguesaService,
@@ -41,7 +41,7 @@ export class AddEditPedidoComponent implements OnInit {
         this.precioService.getPrecioActual(h.idHamburguesa ?? 0).subscribe(precio => {
           this.hamburguesas.push({
             idHamburguesa: h.idHamburguesa ?? 0,
-            descripcion:h.descripcion,
+            descripcion: h.descripcion,
             nombre: h.nombre,
             cantidad: 0,
             precio: precio ?? 0
@@ -55,6 +55,7 @@ export class AddEditPedidoComponent implements OnInit {
       console.error('Error al cargar las hamburguesas:', error);
     });
   }
+
   onQuantityChange(hamburguesa: HamburguesaPedido, cantidad: number) {
     hamburguesa.cantidad = cantidad;
     this.updateSelectedHamburgers();
@@ -68,15 +69,33 @@ export class AddEditPedidoComponent implements OnInit {
   calculateMontoTotal() {
     this.montoTotal = this.selectedHamburgers.reduce((total, h) => total + h.precio * h.cantidad, 0);
   }
+  
+  
+  
+  setCliente(idCliente: number): void {
+    if (idCliente) {
+      console.log(`ID de cliente recibido: ${idCliente}`);
+      this.idCliente = idCliente;
+    } else {
+      console.log('Ningún cliente seleccionado.');
+    }
+  }
+  
+  
 
   submitOrder() {
     if (!this.isOrderValid()) {
       alert('Debe seleccionar al menos una hamburguesa con cantidad mayor a 0.');
       return;
     }
+  
+    if (this.idCliente === null) {
+      alert('Debe seleccionar un cliente antes de crear el pedido.');
+      return;
+    }
 
     const pedido: Pedido = {
-      modalidad: this.modalidad, 
+      modalidad: this.modalidad,
       montoTotal: this.montoTotal,
       estado: 'EN PROCESO',
       idCliente: this.idCliente,
