@@ -1,9 +1,16 @@
+// add-edit-pedido.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Hamburguesa } from 'src/app/interfaces/hamburguesa';
 import { HamburguesaService } from 'src/app/services/hamburguesa.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { PrecioService } from 'src/app/services/precio.service';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { Cliente } from 'src/app/interfaces/cliente';
 import { Pedido } from 'src/app/interfaces/pedido';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 interface HamburguesaPedido {
   idHamburguesa: number;
@@ -22,13 +29,20 @@ export class AddEditPedidoComponent implements OnInit {
   hamburguesas: HamburguesaPedido[] = [];
   selectedHamburgers: HamburguesaPedido[] = [];
   montoTotal: number = 0;
-  idCliente: number | null = null; 
+  idCliente: number | null = null;
   modalidad: string = 'TAKEAWAY';
+  emailCliente: string = '';
+  clienteEncontrado: boolean = false;
+  buscado: boolean = false;
 
   constructor(
     private hamburguesaService: HamburguesaService,
     private precioService: PrecioService,
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private clienteService: ClienteService,
+    private router: Router,
+    private toastr: ToastrService,
+    private aRouter: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -69,9 +83,26 @@ export class AddEditPedidoComponent implements OnInit {
   calculateMontoTotal() {
     this.montoTotal = this.selectedHamburgers.reduce((total, h) => total + h.precio * h.cantidad, 0);
   }
-  
-  
-  
+
+  buscarClientePorEmail() {
+    if (this.emailCliente) {
+      this.buscado = true;
+      this.clienteService.findByEmail(this.emailCliente).subscribe(
+        cliente => {
+          this.idCliente = cliente.idCliente ?? null;
+          console.log(`ID de cliente encontrado: ${this.idCliente}`);
+          this.clienteEncontrado = true;
+        },
+        error => {
+          console.error('Error al buscar cliente por email:', error);
+          alert('No se encontró un cliente con ese email');
+        }
+      );
+    } else {
+      alert('Ingrese un email válido');
+    }
+  }
+
   setCliente(idCliente: number): void {
     if (idCliente) {
       console.log(`ID de cliente recibido: ${idCliente}`);
@@ -80,15 +111,13 @@ export class AddEditPedidoComponent implements OnInit {
       console.log('Ningún cliente seleccionado.');
     }
   }
-  
-  
 
   submitOrder() {
     if (!this.isOrderValid()) {
       alert('Debe seleccionar al menos una hamburguesa con cantidad mayor a 0.');
       return;
     }
-  
+
     if (this.idCliente === null) {
       alert('Debe seleccionar un cliente antes de crear el pedido.');
       return;
@@ -126,5 +155,7 @@ export class AddEditPedidoComponent implements OnInit {
     this.hamburguesas.forEach(h => h.cantidad = 0);
     this.selectedHamburgers = [];
     this.montoTotal = 0;
+    this.emailCliente = '';
+    this.idCliente = null;
   }
 }

@@ -34,4 +34,7 @@ export class ClienteService {  //ClienteService
   updateCliente(idCliente: number, cliente: Cliente): Observable<void>{
     return this.http.put<void>(this.myAppUrl + this.myApiUrl +idCliente, cliente)
   }
+  findByEmail(email: string): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.myAppUrl}${this.myApiUrl}email/${email}`);
+  }
 }

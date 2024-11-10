@@ -2,96 +2,115 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
- 
+  font-family: 'Arial', sans-serif;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+ 
 }
 
 .main-content {
   flex: 1;
   margin-left: 220px;
-  padding: 150px;
+  padding: 30px;
   box-sizing: border-box;
-  overflow-y: auto; /* Permite el scroll vertical */
-  max-height: calc(100vh - 40px); /* Ajusta la altura para que ocupe toda la pantalla menos el margen */
+  overflow-y: auto;
+  max-height: calc(100vh - 40px);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .modalidad-selection {
-  margin: 20px 30px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
-  width: 300px;
-  font-family: Arial, sans-serif;
+  width: 100%;
+  max-width: 350px;
 }
 
 .hamburguesa-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin: 20px;
-  padding: 10px;
-  overflow-y: auto; /* Permite el scroll vertical */
-  max-height: calc(100vh - 180px); /* Ajusta la altura para que ocupe toda la pantalla menos el margen y otros elementos */
+  margin-top: 30px;
 }
 
 .hamburguesa-list div {
-  padding: 15px;
-  border: 1px solid #ccc;
+  padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hamburguesa-list p {
-  font-size: 16px;
+.hamburguesa-list h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
   color: #333;
+}
+
+.hamburguesa-list p {
+  font-size: 14px;
+  color: #666;
   margin: 5px 0;
 }
 
 .hamburguesa-list input {
-  padding: 8px;
-  font-size: 16px;
-  width: 60px;
+  padding: 10px;
+  font-size: 14px;
+  width: 70px;
   margin-top: 10px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.hamburguesa-list input:focus {
+  border-color: #0c5d92; /* Resalta el borde al enfocarse */
 }
 
 .hamburguesa-list input:invalid {
   border-color: red;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  flex-shrink: 0; /* Evita que el contenedor de botones se reduzca */
+.total {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 200px;
 }
 
 .butnpedido {
   background-color: #0c5d92;
   color: white;
+  font-weight: 600;
+}
+
+.butnpedido:hover {
+  background-color: #095b7e;
 }
 
 .butnpedido:disabled {
-  background-color: #658fb8;
+  background-color: #b0c4de;
   cursor: not-allowed;
 }
 
@@ -104,8 +123,154 @@ button {
   background-color: #d32f2f;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+  flex-shrink: 0;
+}
+
 @media (min-width: 768px) {
   .main-content {
-    max-height: calc(80vh - 40px); /* Ajusta la altura para pantallas más grandes */
+    max-height: calc(80vh - 40px);
   }
+  
+}
+.btn-pedido {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #0c5d92;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+  align-items: center;
+}
+
+.btn-pedido:hover {
+  background-color: #095d82;
+  transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
+}
+
+.btn-pedido:active {
+  background-color: #084f6e;
+  transform: translateY(2px); /* Efecto de presionar el botón */
+}
+
+.btn-pedido:disabled {
+  background-color: #658fb8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.total {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mail {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mail label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.mail input[type="email"] {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 8px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+.mail input[type="email"]:focus {
+  border-color: #0c5d92; /* Color de enfoque */
+  outline: none;
+}
+
+.mail button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #0c5d92;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.mail button:hover {
+  background-color: #095d82;
+}
+
+.mail button:disabled {
+  background-color: #658fb8;
+  cursor: not-allowed;
+}
+/* Estilo para el campo de email cuando el cliente es encontrado */
+.input-success {
+  border: 2px solid #28a745; /* Verde */
+  background-color: #e9f7ee; /* Verde suave de fondo */
+}
+
+/* Estilo para el campo de email cuando el cliente no es encontrado */
+.input-error {
+  border: 2px solid #dc3545; /* Rojo */
+  background-color: #f8d7da; /* Fondo rojo suave */
+}
+
+/* Feedback para cliente encontrado exitosamente */
+.feedback-success {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Feedback para cliente no encontrado */
+.feedback-error {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  font-weight: bold;
 }

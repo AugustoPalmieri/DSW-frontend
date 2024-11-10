@@ -1,6 +1,29 @@
-<app-seleccionar-cliente (clienteSeleccionado)="setCliente($event)"></app-seleccionar-cliente>
+<app-navbar></app-navbar>
 
 <div class="main-content">
+  <div class="mail">
+    <label for="emailCliente">Email del Cliente:</label>
+    <input 
+      type="email" 
+      id="emailCliente" 
+      [(ngModel)]="emailCliente" 
+      [ngClass]="{
+        'input-success': buscado && clienteEncontrado, 
+        'input-error': buscado && !clienteEncontrado
+      }" 
+      required
+    >
+    <button (click)="buscarClientePorEmail()">Buscar Cliente</button>
+    <button [routerLink]="['/listclientes/add']">Registrar Cliente</button>
+
+    <div *ngIf="buscado && clienteEncontrado" class="feedback-success">
+      <p>Cliente encontrado exitosamente!</p>
+    </div>
+    <div *ngIf="buscado && !clienteEncontrado" class="feedback-error">
+      <p>No se encontró un cliente con ese email.</p>
+    </div>
+  </div>
+
   <div class="modalidad-selection">
     <label for="modalidad">Selecciona una modalidad:</label>
     <select [(ngModel)]="modalidad" id="modalidad" required>
@@ -10,22 +33,18 @@
   </div>
 
   <div class="hamburguesa-list">
-    <div *ngFor="let hamburguesa of hamburguesas">
-      <p>Nombre: {{ hamburguesa.nombre }} | Descripcion: {{hamburguesa.descripcion}} | Precio: {{ hamburguesa.precio | currency }}</p>
-
-      <input 
-        type="number" 
-        [(ngModel)]="hamburguesa.cantidad" 
-        (change)="onQuantityChange(hamburguesa, hamburguesa.cantidad)" 
-        [min]="0" 
-        required
-        [class.invalid]="hamburguesa.cantidad < 0"
-      />
+    <div *ngFor="let h of hamburguesas">
+      <h4>{{ h.nombre }}</h4>
+      <p>{{ h.descripcion }}</p>
+      <p>Precio: {{ h.precio | currency }}</p>
+      <label for="cantidad-{{ h.idHamburguesa }}">Cantidad:</label>
+      <input type="number" id="cantidad-{{ h.idHamburguesa }}" [(ngModel)]="h.cantidad" (ngModelChange)="onQuantityChange(h, $event)" min="0">
     </div>
   </div>
 
-  <div class="button-container">
-    <button class="butnpedido" (click)="submitOrder()" [disabled]="!isOrderValid()">Realizar Pedido</button>
-    <button class="back-button" [routerLink]="['/listpedidos']">Volver</button>
+  <div class="total">
+    <h3>Total: {{ montoTotal | currency }}</h3>
   </div>
+
+  <button (click)="submitOrder()"  type="button" class="btn-pedido">Crear Pedido</button>
 </div>
