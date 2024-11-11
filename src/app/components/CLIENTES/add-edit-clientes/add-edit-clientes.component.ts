@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/interfaces/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class AddEditClientesComponent implements OnInit {
     private _productService: ClienteService,
     private router: Router,
     private toastr: ToastrService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private location: Location
   ) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
@@ -95,7 +97,7 @@ export class AddEditClientesComponent implements OnInit {
         () => {
           this.toastr.success(`El cliente ${cliente.nombre} ${cliente.apellido} fue registrado con éxito`, 'Cliente Registrado');
           this.loading = false;
-          this.router.navigate(['/listclientes']);
+          
         },
         (error) => {
           this.loading = false;
@@ -103,5 +105,8 @@ export class AddEditClientesComponent implements OnInit {
         }
       );
     }
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

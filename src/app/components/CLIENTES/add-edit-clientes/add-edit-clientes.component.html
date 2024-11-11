@@ -30,10 +30,10 @@
 
           <div class="row mt-2 text-center">
             <div class="col-lg-6">
-              <button routerLink="/listclientes" type="button" class="btn btn-primary">VOLVER</button>
+              <button  type="button" class="btn btn-primary"(click)="goBack()">VOLVER</button>
             </div>
             <div class="col-lg-6">
-              <button [disabled]="form.invalid" type="submit" class="btn btn-info">ACEPTAR</button>
+              <button [disabled]="form.invalid" type="submit" class="btn btn-info" (click)="goBack()">ACEPTAR</button>
             </div>
           </div>
         </form>
