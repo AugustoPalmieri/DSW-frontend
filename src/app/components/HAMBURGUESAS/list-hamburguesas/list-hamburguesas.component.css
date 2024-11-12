@@ -118,5 +118,10 @@ td button {
   max-height: 700px; 
   overflow-y: auto;
 }   
+@media (min-width: 768px) {
+  .container {
+    max-height: calc(80vh - 40px);
+  }
+}
   
  
