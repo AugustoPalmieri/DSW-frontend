@@ -8,6 +8,7 @@ import { Cliente } from 'src/app/interfaces/cliente';
 import { Pedido } from 'src/app/interfaces/pedido';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 interface HamburguesaPedido {
   idHamburguesa: number;
@@ -41,7 +42,9 @@ export class AddEditPedidoComponent implements OnInit {
     private clienteService: ClienteService,
     private router: Router,
     private toastr: ToastrService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private location: Location
+
   ) {}
 
   ngOnInit() {
@@ -185,5 +188,8 @@ export class AddEditPedidoComponent implements OnInit {
 
   isOrderValid(): boolean {
     return this.selectedHamburgers.length > 0;
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

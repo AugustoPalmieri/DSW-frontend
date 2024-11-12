@@ -103,6 +103,8 @@ button {
   background-color: #0c5d92;
   color: white;
   font-weight: 600;
+  margin-top: 20px;
+
 }
 
 .butnpedido:hover {
@@ -115,12 +117,29 @@ button {
 }
 
 .back-button {
-  background-color: #f44336;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ff0000;
   color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+  align-items: right;
+  margin-right: auto;
+  display: flex;
 }
 
+
+
+
 .back-button:hover {
-  background-color: #d32f2f;
+  background-color: #a51a1a;
 }
 
 .button-container {
@@ -152,7 +171,12 @@ button {
   width: 100%;
   max-width: 300px;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
 }
+  
+
 
 .btn-pedido:hover {
   background-color: #095d82;
@@ -274,3 +298,4 @@ button {
   border-radius: 5px;
   font-weight: bold;
 }
+
