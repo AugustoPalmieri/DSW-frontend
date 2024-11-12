@@ -46,5 +46,7 @@
     <h3>Total: {{ montoTotal | currency }}</h3>
   </div>
 
-  <button (click)="submitOrder()"  type="button" class="btn-pedido">Crear Pedido</button>
+  <button (click)="submitOrder()" type="button" class="btn-pedido">
+    {{ isEditing ? 'Editar Pedido' : 'Crear Pedido' }}
+  </button>
 </div>

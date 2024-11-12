@@ -1,4 +1,3 @@
-// add-edit-pedido.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Hamburguesa } from 'src/app/interfaces/hamburguesa';
 import { HamburguesaService } from 'src/app/services/hamburguesa.service';
@@ -9,8 +8,6 @@ import { Cliente } from 'src/app/interfaces/cliente';
 import { Pedido } from 'src/app/interfaces/pedido';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
-
 
 interface HamburguesaPedido {
   idHamburguesa: number;
@@ -30,10 +27,12 @@ export class AddEditPedidoComponent implements OnInit {
   selectedHamburgers: HamburguesaPedido[] = [];
   montoTotal: number = 0;
   idCliente: number | null = null;
+  pedidoId: string | null = null;
   modalidad: string = 'TAKEAWAY';
   emailCliente: string = '';
   clienteEncontrado: boolean = false;
   buscado: boolean = false;
+  isEditing: boolean = false;
 
   constructor(
     private hamburguesaService: HamburguesaService,
@@ -46,12 +45,20 @@ export class AddEditPedidoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
+    this.pedidoId = this.aRouter.snapshot.paramMap.get('idPedido');
+    
+    this.isEditing = this.pedidoId !== null;
+    console.log('Modo edición:', this.isEditing, 'ID del pedido:', this.pedidoId);
+
     this.loadHamburguesas();
-    const idPedido = this.aRouter.snapshot.params['idPedido'];
-    if (idPedido) {
-      this.loadPedido(idPedido);
+
+    
+    if (this.isEditing && this.pedidoId) {
+      this.loadPedido(parseInt(this.pedidoId, 10));
     }
   }
+
   loadPedido(idPedido: number) {
     this.pedidoService.getPedido(idPedido).subscribe(
       (pedido) => {
@@ -65,7 +72,7 @@ export class AddEditPedidoComponent implements OnInit {
           cantidad: h.cantidad,
           precio: 0
         }));
-  
+
         this.calculateMontoTotal();
         this.clienteEncontrado = true;
       },
@@ -75,7 +82,6 @@ export class AddEditPedidoComponent implements OnInit {
       }
     );
   }
-    
 
   loadHamburguesas() {
     this.hamburguesaService.getListHamburguesa().subscribe(response => {
@@ -92,7 +98,6 @@ export class AddEditPedidoComponent implements OnInit {
           console.error(`Error al obtener el precio de la hamburguesa ${h.idHamburguesa}:`, error);
         });
       });
-      console.log("Hamburguesas cargadas:", this.hamburguesas);  
     }, error => {
       console.error('Error al cargar las hamburguesas:', error);
     });
@@ -118,7 +123,6 @@ export class AddEditPedidoComponent implements OnInit {
       this.clienteService.findByEmail(this.emailCliente).subscribe(
         cliente => {
           this.idCliente = cliente.idCliente ?? null;
-          console.log(`ID de cliente encontrado: ${this.idCliente}`);
           this.clienteEncontrado = true;
         },
         error => {
@@ -131,26 +135,17 @@ export class AddEditPedidoComponent implements OnInit {
     }
   }
 
-  setCliente(idCliente: number): void {
-    if (idCliente) {
-      console.log(`ID de cliente recibido: ${idCliente}`);
-      this.idCliente = idCliente;
-    } else {
-      console.log('Ningún cliente seleccionado.');
-    }
-  }
-
   submitOrder() {
     if (!this.isOrderValid()) {
       alert('Debe seleccionar al menos una hamburguesa con cantidad mayor a 0.');
       return;
     }
-  
+
     if (this.idCliente === null) {
       alert('Debe seleccionar un cliente antes de crear o editar el pedido.');
       return;
     }
-  
+
     const pedido: Pedido = {
       modalidad: this.modalidad,
       montoTotal: this.montoTotal,
@@ -162,10 +157,9 @@ export class AddEditPedidoComponent implements OnInit {
         cantidad: h.cantidad
       }))
     };
-  
-    const idPedido = this.aRouter.snapshot.params['idPedido'];
-    if (idPedido) {
-      this.pedidoService.updatePedido(idPedido, pedido).subscribe(
+
+    if (this.isEditing && this.pedidoId) {
+      this.pedidoService.updatePedido(parseInt(this.pedidoId, 10), pedido).subscribe(
         () => {
           this.toastr.success('Pedido actualizado exitosamente', 'Éxito');
           this.router.navigate(['/listpedidos']);
@@ -188,17 +182,8 @@ export class AddEditPedidoComponent implements OnInit {
       );
     }
   }
-  
 
   isOrderValid(): boolean {
     return this.selectedHamburgers.length > 0;
-  }
-
-  resetForm() {
-    this.hamburguesas.forEach(h => h.cantidad = 0);
-    this.selectedHamburgers = [];
-    this.montoTotal = 0;
-    this.emailCliente = '';
-    this.idCliente = null;
   }
 }

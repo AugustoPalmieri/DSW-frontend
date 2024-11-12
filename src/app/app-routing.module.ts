@@ -41,9 +41,6 @@ const routes: Routes = [
    {path: 'listpedidos/add',component:AddEditPedidoComponent},
    { path: 'listpedidos/edit/:idPedido', component: AddEditPedidoComponent },
 
-
- 
-
   // Ruta comodín
   { path: '**', redirectTo: 'menu', pathMatch: 'full' },
 
