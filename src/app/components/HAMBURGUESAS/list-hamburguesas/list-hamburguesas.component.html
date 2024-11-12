@@ -9,6 +9,7 @@
   <table *ngIf="listHamburguesa.length > 0" class="table table-hover">
     <thead>
       <tr>
+        <th scope="col">ID</th>
         <th scope="col">Nombre</th>
         <th scope="col">descripcion</th>
         <th scope="col"></th>
@@ -16,6 +17,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of listHamburguesa" class="table-dark">
+        <td>{{ item.idHamburguesa }}</td>
         <td>{{ item.nombre }}</td>
         <td>{{ item.descripcion }}</td>
         <td>

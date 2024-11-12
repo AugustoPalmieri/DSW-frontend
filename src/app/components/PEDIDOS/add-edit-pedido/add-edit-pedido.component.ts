@@ -47,7 +47,35 @@ export class AddEditPedidoComponent implements OnInit {
 
   ngOnInit() {
     this.loadHamburguesas();
+    const idPedido = this.aRouter.snapshot.params['idPedido'];
+    if (idPedido) {
+      this.loadPedido(idPedido);
+    }
   }
+  loadPedido(idPedido: number) {
+    this.pedidoService.getPedido(idPedido).subscribe(
+      (pedido) => {
+        this.modalidad = pedido.modalidad;
+        this.montoTotal = pedido.montoTotal;
+        this.idCliente = pedido.idCliente;
+        this.selectedHamburgers = pedido.hamburguesas.map(h => ({
+          idHamburguesa: h.idHamburguesa,
+          nombre: h.nombre,
+          descripcion: '',
+          cantidad: h.cantidad,
+          precio: 0
+        }));
+  
+        this.calculateMontoTotal();
+        this.clienteEncontrado = true;
+      },
+      (error) => {
+        console.error('Error al cargar el pedido:', error);
+        this.toastr.error('Error al cargar el pedido', 'Error');
+      }
+    );
+  }
+    
 
   loadHamburguesas() {
     this.hamburguesaService.getListHamburguesa().subscribe(response => {
@@ -117,12 +145,12 @@ export class AddEditPedidoComponent implements OnInit {
       alert('Debe seleccionar al menos una hamburguesa con cantidad mayor a 0.');
       return;
     }
-
+  
     if (this.idCliente === null) {
-      alert('Debe seleccionar un cliente antes de crear el pedido.');
+      alert('Debe seleccionar un cliente antes de crear o editar el pedido.');
       return;
     }
-
+  
     const pedido: Pedido = {
       modalidad: this.modalidad,
       montoTotal: this.montoTotal,
@@ -134,18 +162,33 @@ export class AddEditPedidoComponent implements OnInit {
         cantidad: h.cantidad
       }))
     };
-
-    this.pedidoService.createPedido(pedido).subscribe(
-      response => {
-        alert('Pedido creado exitosamente');
-        this.resetForm();
-      },
-      error => {
-        console.error('Error al crear el pedido:', error);
-        alert('Hubo un problema al crear el pedido');
-      }
-    );
+  
+    const idPedido = this.aRouter.snapshot.params['idPedido'];
+    if (idPedido) {
+      this.pedidoService.updatePedido(idPedido, pedido).subscribe(
+        () => {
+          this.toastr.success('Pedido actualizado exitosamente', 'Éxito');
+          this.router.navigate(['/listpedidos']);
+        },
+        (error) => {
+          console.error('Error al actualizar el pedido:', error);
+          this.toastr.error('Hubo un problema al actualizar el pedido', 'Error');
+        }
+      );
+    } else {
+      this.pedidoService.createPedido(pedido).subscribe(
+        () => {
+          this.toastr.success('Pedido creado exitosamente', 'Éxito');
+          this.router.navigate(['/listpedidos']);
+        },
+        (error) => {
+          console.error('Error al crear el pedido:', error);
+          this.toastr.error('Hubo un problema al crear el pedido', 'Error');
+        }
+      );
+    }
   }
+  
 
   isOrderValid(): boolean {
     return this.selectedHamburgers.length > 0;

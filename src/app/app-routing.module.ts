@@ -39,6 +39,8 @@ const routes: Routes = [
    //Pedidos
    {path: 'listpedidos',component:ListPedidosComponent},
    {path: 'listpedidos/add',component:AddEditPedidoComponent},
+   { path: 'listpedidos/edit/:idPedido', component: AddEditPedidoComponent },
+
 
  
 
