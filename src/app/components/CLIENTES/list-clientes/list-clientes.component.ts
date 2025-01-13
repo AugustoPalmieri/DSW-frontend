@@ -41,6 +41,12 @@ editCliente(cliente: Cliente) {
   console.log('Editando Cliente:', cliente);
 
 }
+confirmDeleteCliente(idCliente: number): void {
+  const confirmed = window.confirm('¿Estás seguro de que deseas eliminar este cliente?');
+  if (confirmed) {
+    this.deleteClientes(idCliente);
+  }
+}
 
 deleteClientes(idCliente: number) {
   console.log('Eliminando Cliente:', idCliente);

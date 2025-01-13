@@ -22,7 +22,7 @@
         <td>{{ item.descripcion }}</td>
         <td>
           <button [routerLink]="['/listhamburguesas/edit/', item.idHamburguesa]" type="button" class="btn btn-info btn-sm">EDITAR</button>
-          <button (click)="deleteHamburguesas(item.idHamburguesa!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>        </td>
+          <button (click)="confirmDeleteHamburguesa(item.idHamburguesa!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
       </tr>
     </tbody>
   </table>

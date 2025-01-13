@@ -20,7 +20,7 @@
         <td>{{ item.stock }}</td>
         <td>
           <button [routerLink]="['/listingredients/edit/', item.codIngrediente]" type="button" class="btn btn-info btn-sm">EDITAR</button>
-          <button (click)="deleteIngrediente(item.codIngrediente!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
+          <button (click)="confirmDeleteIngrediente(item.codIngrediente!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
         </td>
       </tr>
     </tbody>

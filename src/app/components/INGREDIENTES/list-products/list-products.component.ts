@@ -19,7 +19,6 @@ export class ListProductsComponent implements OnInit {
     this.getListIngredientes();
   }
 
-  
   getListIngredientes() {
     this.loading = true;
     this._productService.getListIngredientes().subscribe((data) => {
@@ -31,14 +30,18 @@ export class ListProductsComponent implements OnInit {
       (error) => {
         console.error('Error al obtener los ingredientes', error);
       }
-    )
+    );
   }
-  
-
 
   editIngrediente(ingrediente: Ingrediente) {
     console.log('Editando ingrediente:', ingrediente);
+  }
 
+  confirmDeleteIngrediente(codIngrediente: number): void {
+    const confirmed = window.confirm('¿Estás seguro de que deseas eliminar este ingrediente?');
+    if (confirmed) {
+      this.deleteIngrediente(codIngrediente);
+    }
   }
 
   deleteIngrediente(codIngrediente: number) {
@@ -52,7 +55,6 @@ export class ListProductsComponent implements OnInit {
       },
       (error) => {
         this.loading = false;
-        
         if (error.error && error.error.hamburguesas) {
           const hamburguesas = error.error.hamburguesas.join(', ');
           this.toastr.error(`DEBE ELIMINAR PRIMERO LA(S) HAMBURGUESA(S) QUE UTILIZA(N) EL INGREDIENTE: ${hamburguesas}`, 'Error');
@@ -61,13 +63,9 @@ export class ListProductsComponent implements OnInit {
         }
       }
     );
-}
+  }
 
-
-
-  
   addIngrediente() {
     console.log('Agregando nuevo ingrediente');
-    
   }
 }

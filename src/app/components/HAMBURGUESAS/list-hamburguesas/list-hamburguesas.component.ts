@@ -48,6 +48,12 @@ editHamburguesa(hamburguesa: Hamburguesa) {
   console.log('Editando Hamburguesa:', hamburguesa);
 
 }
+confirmDeleteHamburguesa(idHamburguesa: number): void {
+  const confirmed = window.confirm('¿Estás seguro de que deseas eliminar esta hamburguesa?');
+  if (confirmed) {
+    this.deleteHamburguesas(idHamburguesa);
+  }
+}
 
 deleteHamburguesas(idHamburguesa: number) {
   console.log('Eliminando Hamburguesa:', idHamburguesa);

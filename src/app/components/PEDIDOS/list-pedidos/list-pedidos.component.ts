@@ -38,7 +38,12 @@ export class ListPedidosComponent implements OnInit {
       }
     );
   }
-
+  confirmDeletePedido(idPedido: number): void {
+    const confirmed = window.confirm('¿Estás seguro de que deseas eliminar este pedido?');
+    if (confirmed) {
+      this.deletePedido(idPedido);
+    }
+  }
   deletePedido(idPedido: number) {
     this.loading = true;
     this._PedidoService.deletePedido(idPedido).subscribe({
