@@ -16,6 +16,8 @@ export class AddEditHamburguesaComponent implements OnInit {
   idHamburguesa: number = 0;
   operacion: string = 'Agregar ';
   precioError: string = ''; 
+  imagen: File | null = null;
+  imagenPreview: string | null = null;  // Variable para la vista previa
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +30,7 @@ export class AddEditHamburguesaComponent implements OnInit {
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       precio: [null, [Validators.required, Validators.min(0)]],
+      imagen: [null, Validators.required],
     });
   }
 
@@ -47,7 +50,8 @@ export class AddEditHamburguesaComponent implements OnInit {
         this.form.setValue({
           nombre: data.nombre,
           descripcion: data.descripcion,
-          precio: data.precio || null
+          precio: data.precio || null,
+          imagen: data.imagen || null 
         });
       },
       (error) => {
@@ -57,30 +61,54 @@ export class AddEditHamburguesaComponent implements OnInit {
     );
   }
 
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.imagen = file;
+
+      // Vista previa de la imagen seleccionada
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenPreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+
+      this.form.patchValue({ imagen: this.imagen });
+    } else {
+      // Si no se selecciona una imagen, restablece el valor
+      this.imagen = null;
+      this.imagenPreview = null;
+      this.form.patchValue({ imagen: null });
+    }
+    }
+
   validatePrecio(): void {
     const precioValue = this.form.get('precio')?.value;
     if (precioValue < 0) {
       this.precioError = 'El precio no puede ser negativo';
-      console.warn(this.precioError);
     } else {
       this.precioError = '';
     }
   }
 
   addHamburguesa(): void {
-    if (this.form.invalid) return;
+    if (this.form.invalid || !this.imagen) {
+      if (!this.imagen) {
+        this.toastr.error('Debe cargar una imagen para la hamburguesa', 'Error');
+      }
+      return;
+    }
   
     const hamburguesa: Hamburguesa = {
       nombre: this.form.value.nombre,
       descripcion: this.form.value.descripcion,
       precio: this.form.value.precio,
+      imagen: this.imagen,
     };
   
     if (this.idHamburguesa) {
-      
       this.updateHamburguesa(hamburguesa);
     } else {
-      
       this.saveHamburguesa(hamburguesa);
     }
   }
@@ -99,7 +127,7 @@ export class AddEditHamburguesaComponent implements OnInit {
       }
     );
   }
-  
+
   updateHamburguesa(hamburguesa: Hamburguesa): void {
     this.loading = true;
     this._productService.updateHamburguesa(this.idHamburguesa, hamburguesa).subscribe(

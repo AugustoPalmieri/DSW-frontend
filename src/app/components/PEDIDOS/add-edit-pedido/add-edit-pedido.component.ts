@@ -16,6 +16,8 @@ interface HamburguesaPedido {
   descripcion: string;
   cantidad: number;
   precio: number;
+  imagen?:File|null;
+
 }
 
 @Component({
@@ -95,7 +97,8 @@ export class AddEditPedidoComponent implements OnInit {
             descripcion: h.descripcion,
             nombre: h.nombre,
             cantidad: 0,
-            precio: precio ?? 0
+            precio: precio ?? 0,
+            imagen:h.imagen
           });
         }, error => {
           console.error(`Error al obtener el precio de la hamburguesa ${h.idHamburguesa}:`, error);

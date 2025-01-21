@@ -24,7 +24,17 @@
             (input)="validatePrecio()"
           >
           <span *ngIf="precioError" class="error">{{ precioError }}</span>
+          <div class="form-group mt-2">
 
+            <label for="imagen">Imagen de la Hamburguesa</label>
+            <input formControlName="imagen" type="file" class="form-control" (change)="onFileSelected($event)">
+            <span *ngIf="form.get('imagen')?.hasError('required') && form.get('imagen')?.touched">
+              El campo imagen es <strong>requerido</strong>
+            </span>
+            <div *ngIf="imagenPreview" class="mt-2">
+              <img [src]="imagenPreview" alt="Vista previa" class="img-fluid" style="max-width: 200px;">
+            </div>
+          </div>
           <div class="row mt-2 text-center">
             <div class="col-lg-6">
               <button routerLink="/listhamburguesas" type="button" class="btn btn-primary">VOLVER</button>

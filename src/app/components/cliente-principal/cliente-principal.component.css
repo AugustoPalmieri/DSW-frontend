@@ -47,20 +47,6 @@ body {
 }
 
 
-@media (max-width: 768px) {
-    .text-box {
-        padding: 3vw; 
-        border-radius: 2vw;
-    }
-
-    .text-box h1 {
-        font-size: 5vw; 
-    }
-
-    .hamb-image {
-        width: 50vw; 
-    }
-}
 
 
 @media (max-width: 480px) {
@@ -77,3 +63,4 @@ body {
         width: 60vw; 
     }
 }
+

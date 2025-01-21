@@ -103,12 +103,6 @@ td ul li {
 }
 
 
-.btn:hover {
-  opacity: 0.95;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-
 @media (max-width: 768px) {
   .title h4 {
     font-size: 1.2em;
