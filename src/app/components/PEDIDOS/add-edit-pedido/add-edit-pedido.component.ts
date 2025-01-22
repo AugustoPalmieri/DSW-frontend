@@ -146,12 +146,21 @@ export class AddEditPedidoComponent implements OnInit {
       alert('Debe seleccionar al menos una hamburguesa con cantidad mayor a 0.');
       return;
     }
-
+  
     if (this.idCliente === null) {
       alert('Debe seleccionar un cliente antes de crear o editar el pedido.');
       return;
     }
-
+  
+    // Agregar confirmación
+    const confirmMessage = this.isEditing
+      ? '¿Está seguro de que desea actualizar este pedido?'
+      : '¿Está seguro de que desea crear este pedido?';
+  
+    if (!confirm(confirmMessage)) {
+      return; // Detener la acción si el usuario cancela
+    }
+  
     const pedido: Pedido = {
       modalidad: this.modalidad,
       montoTotal: this.montoTotal,
@@ -163,7 +172,7 @@ export class AddEditPedidoComponent implements OnInit {
         cantidad: h.cantidad
       }))
     };
-
+  
     if (this.isEditing && this.pedidoId) {
       this.pedidoService.updatePedido(parseInt(this.pedidoId, 10), pedido).subscribe(
         () => {
