@@ -120,14 +120,14 @@ input[type="number"]::placeholder {
 }
 
 .card-body {
-    max-height: 500; /* Evita que el contenido se salga del contenedor */
-    overflow-x: auto; /* Permite scroll si el contenido es muy grande */
+    max-height: 500; 
+    overflow-x: auto; 
   }
   img.img-fluid {
-    max-width: 100%; /* Asegura que la imagen no sea más ancha que el contenedor */
-    max-height: 150px; /* Limita la altura para evitar que ocupe demasiado espacio */
-    object-fit: contain; /* Mantén las proporciones de la imagen */
-    margin-bottom: 20px; /* Espacio entre la imagen y los botones */
+    max-width: 100%; 
+    max-height: 150px; 
+    object-fit: contain; 
+    margin-bottom: 20px; 
   }
   @media (min-width: 768px) {
     .card {

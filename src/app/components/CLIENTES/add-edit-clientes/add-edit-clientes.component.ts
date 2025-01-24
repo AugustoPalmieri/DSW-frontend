@@ -6,7 +6,6 @@ import { Cliente } from 'src/app/interfaces/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-add-edit-clientes',
   templateUrl: './add-edit-clientes.component.html',
@@ -30,19 +29,28 @@ export class AddEditClientesComponent implements OnInit {
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       telefono: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       direccion: ['', Validators.required],
+      password: ['', Validators.required],  // Campo para la contraseña
+      confirmPassword: ['', Validators.required]  // Campo para confirmar la contraseña
+    }, {
+      validator: this.passwordMatchValidator  // Validación personalizada para que las contraseñas coincidan
     });
   }
 
   ngOnInit(): void {
-    // Extraer el parámetro de la ruta
     this.idCliente = Number(this.aRouter.snapshot.paramMap.get('idCliente'));
-
     if (this.idCliente) {
       this.operacion = 'Editar ';
       this.getCliente(this.idCliente);
     }
+  }
+
+  // Validación personalizada para verificar que las contraseñas coincidan
+  passwordMatchValidator(form: FormGroup): { mismatch: boolean } | null {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 
   getCliente(idCliente: number): void {
@@ -55,7 +63,9 @@ export class AddEditClientesComponent implements OnInit {
           apellido: data.apellido,
           telefono: data.telefono,
           email: data.email,
-          direccion: data.direccion
+          direccion: data.direccion,
+          password: '',  // Dejar los campos de contraseña vacíos en edición
+          confirmPassword: ''
         });
       },
       (error) => {
@@ -66,16 +76,20 @@ export class AddEditClientesComponent implements OnInit {
   }
 
   addCliente(): void {
-    if (this.form.invalid) return; 
+    if (this.form.invalid) return;
 
     const cliente: Cliente = {
       nombre: this.form.value.nombre,
       apellido: this.form.value.apellido,
       telefono: this.form.value.telefono,
       email: this.form.value.email,
-      direccion: this.form.value.direccion
-
+      direccion: this.form.value.direccion,
+      password:this.form.value.password,
     };
+
+    if (this.form.value.password) {  // Si se está creando un nuevo cliente, agregar la contraseña
+      cliente.password = this.form.value.password;
+    }
 
     if (this.idCliente) {
       cliente.idCliente = this.idCliente;
@@ -97,7 +111,6 @@ export class AddEditClientesComponent implements OnInit {
         () => {
           this.toastr.success(`El cliente ${cliente.nombre} ${cliente.apellido} fue registrado con éxito`, 'Cliente Registrado');
           this.loading = false;
-          
         },
         (error) => {
           this.loading = false;
@@ -106,6 +119,7 @@ export class AddEditClientesComponent implements OnInit {
       );
     }
   }
+
   goBack(): void {
     this.location.back();
   }

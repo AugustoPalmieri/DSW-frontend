@@ -41,8 +41,9 @@
             [disabled]="item.estado === 'ENTREGADO'"
             [ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-tick': item.estado !== 'ENTREGADO' }">
             ENTREGADO
-          </button>
-            <button [routerLink]="['/listpedidos/edit/', item.idPedido]" type="button" class="btn btn-info btn-sm">EDITAR</button>
+            </button>
+            <button
+            [routerLink]="['/listpedidos/edit/', item.idPedido]" type="button"class="btn btn-info btn-sm"[disabled]="item.estado === 'ENTREGADO'"[ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-info': item.estado !== 'ENTREGADO' }">EDITAR</button>
             <button (click)="confirmDeletePedido(item.idPedido!)" type="button" class="btn btn-danger btn-sm">ELIMINAR</button>
           </div>
         </td>

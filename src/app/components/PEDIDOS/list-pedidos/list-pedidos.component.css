@@ -122,3 +122,8 @@ td ul li {
     max-height: calc(80vh - 40px);
   }
 }
+.btn-secondary {
+  background-color: grey;
+  border-color: grey;
+  cursor: not-allowed;
+}

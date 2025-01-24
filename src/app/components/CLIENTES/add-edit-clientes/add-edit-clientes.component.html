@@ -27,7 +27,18 @@
           <span *ngIf="form.get('direccion')?.hasError('required') && form.get('direccion')?.touched">
             El campo direccion es <strong>requerido</strong>
           </span>
+          <input formControlName="password" type="password" class="form-control mt-2" placeholder="Ingrese contraseña">
+          <span *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+          El campo contraseña es <strong>requerido</strong>
+          </span>
 
+          <input formControlName="confirmPassword" type="password" class="form-control mt-2" placeholder="Confirmar contraseña">
+          <span *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
+          El campo confirmar contraseña es <strong>requerido</strong>
+          </span>
+          <span *ngIf="form.get('confirmPassword')?.hasError('mismatch') && form.get('confirmPassword')?.touched">
+          Las contraseñas no coinciden
+          </span>
           <div class="row mt-2 text-center">
             <div class="col-lg-6">
               <button  type="button" class="btn btn-primary"(click)="goBack()">VOLVER</button>
