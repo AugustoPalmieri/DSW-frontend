@@ -33,6 +33,8 @@ export class AddEditPedidoComponent implements OnInit {
   pedidoId: string | null = null;
   modalidad: string = 'TAKEAWAY';
   emailCliente: string = '';
+  passwordCliente: string = ''; 
+  token: string | null = null; 
   clienteEncontrado: boolean = false;
   buscado: boolean = false;
   isEditing: boolean = false;
@@ -63,6 +65,11 @@ export class AddEditPedidoComponent implements OnInit {
       this.loadPedido(parseInt(this.pedidoId, 10));
     }
   }
+  showRegisterForm: boolean = false;
+
+toggleRegisterForm(): void {
+  this.showRegisterForm = !this.showRegisterForm;
+}
 
   loadPedido(idPedido: number) {
     this.pedidoService.getPedido(idPedido).subscribe(
@@ -122,81 +129,100 @@ export class AddEditPedidoComponent implements OnInit {
   calculateMontoTotal() {
     this.montoTotal = this.selectedHamburgers.reduce((total, h) => total + h.precio * h.cantidad, 0);
   }
-
-  buscarClientePorEmail() {
-    if (this.emailCliente) {
-      this.buscado = true;
-      this.clienteService.findByEmail(this.emailCliente).subscribe(
-        cliente => {
-          this.idCliente = cliente.idCliente ?? null;
-          this.clienteEncontrado = true;
-        },
-        error => {
-          console.error('Error al buscar cliente por email:', error);
-          alert('No se encontró un cliente con ese email');
-        }
-      );
-    } else {
-      alert('Ingrese un email válido');
+  
+  loginCliente() {
+    if (!this.emailCliente.trim() || !this.passwordCliente.trim()) {
+        this.toastr.error('Debe ingresar un email y contraseña válidos', 'Error');
+        return;
     }
-  }
+
+    this.clienteService.login(this.emailCliente, this.passwordCliente).subscribe(
+        (response) => {
+            console.log('Respuesta del servidor:', response);
+
+            if (response && response.token && response.cliente?.idCliente) {
+                this.token = response.token; // Guardar el token
+                this.idCliente = response.cliente.idCliente; // Guardar el idCliente
+                this.clienteEncontrado = true;
+                this.toastr.success('Cliente autenticado exitosamente', 'Éxito');
+            } else {
+                this.clienteEncontrado = false;
+                this.toastr.error('Respuesta inesperada del servidor', 'Error');
+            }
+        },
+        (error) => {
+            console.error('Error al iniciar sesión:', error);
+            this.clienteEncontrado = false;
+            this.toastr.error('Credenciales inválidas', 'Error');
+        }
+    );
+}
+
+
+
+
 
   submitOrder() {
+    if (!this.clienteEncontrado || !this.idCliente) {
+        this.toastr.error('Debe iniciar sesión antes de crear o editar el pedido.', 'Error');
+        return;
+    }
+
     if (!this.isOrderValid()) {
-      alert('Debe seleccionar al menos una hamburguesa con cantidad mayor a 0.');
-      return;
+        this.toastr.error('Debe seleccionar al menos una hamburguesa con cantidad mayor a 0.', 'Error');
+        return;
     }
-  
-    if (this.idCliente === null) {
-      alert('Debe seleccionar un cliente antes de crear o editar el pedido.');
-      return;
+
+    if (!this.modalidad.trim()) {
+        this.toastr.error('Debe seleccionar una modalidad válida.', 'Error');
+        return;
     }
-  
-    // Agregar confirmación
-    const confirmMessage = this.isEditing
-      ? '¿Está seguro de que desea actualizar este pedido?'
-      : '¿Está seguro de que desea crear este pedido?';
-  
-    if (!confirm(confirmMessage)) {
-      return; // Detener la acción si el usuario cancela
-    }
-  
+
     const pedido: Pedido = {
-      modalidad: this.modalidad,
-      montoTotal: this.montoTotal,
-      estado: 'EN PROCESO',
-      idCliente: this.idCliente,
-      hamburguesas: this.selectedHamburgers.map(h => ({
-        idHamburguesa: h.idHamburguesa,
-        nombre: h.nombre,
-        cantidad: h.cantidad
-      }))
+        modalidad: this.modalidad,
+        montoTotal: this.montoTotal,
+        estado: 'EN PROCESO',
+        idCliente: this.idCliente,
+        hamburguesas: this.selectedHamburgers.map(h => ({
+            idHamburguesa: h.idHamburguesa,
+            nombre: h.nombre,
+            cantidad: h.cantidad
+        }))
     };
-  
+
     if (this.isEditing && this.pedidoId) {
-      this.pedidoService.updatePedido(parseInt(this.pedidoId, 10), pedido).subscribe(
-        () => {
+        this.actualizarPedido(pedido);
+    } else {
+        this.crearPedido(pedido);
+    }
+}
+
+private actualizarPedido(pedido: Pedido) {
+  this.pedidoService.updatePedido(parseInt(this.pedidoId!, 10), pedido).subscribe(
+      () => {
           this.toastr.success('Pedido actualizado exitosamente', 'Éxito');
           this.router.navigate(['/listpedidos']);
-        },
-        (error) => {
+      },
+      (error) => {
           console.error('Error al actualizar el pedido:', error);
           this.toastr.error('Hubo un problema al actualizar el pedido', 'Error');
-        }
-      );
-    } else {
-      this.pedidoService.createPedido(pedido).subscribe(
-        () => {
+      }
+  );
+}
+
+private crearPedido(pedido: Pedido) {
+  this.pedidoService.createPedido(pedido).subscribe(
+      () => {
           this.toastr.success('Pedido creado exitosamente', 'Éxito');
           this.router.navigate(['/listpedidos']);
-        },
-        (error) => {
+      },
+      (error) => {
           console.error('Error al crear el pedido:', error);
           this.toastr.error('Hubo un problema al crear el pedido', 'Error');
-        }
-      );
-    }
-  }
+      }
+  );
+}
+
 
   isOrderValid(): boolean {
     return this.selectedHamburgers.length > 0;
@@ -204,4 +230,6 @@ export class AddEditPedidoComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+
 }

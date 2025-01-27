@@ -37,4 +37,9 @@ export class ClienteService {  //ClienteService
   findByEmail(email: string): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.myAppUrl}${this.myApiUrl}email/${email}`);
   }
+  login(email: string, password: string): Observable<any> {
+    const body = { email, password };
+    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}login`, body);
+  }
+  
 }

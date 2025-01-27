@@ -207,88 +207,60 @@ button {
   margin-left: auto;
   margin-right: auto;
 }
-.mail {
-  margin-top: 20px;
-  padding: 20px;
+
+.login-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
   background-color: #ffffff;
   border-radius: 12px;
   border: 1px solid #ddd;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-.mail label {
-  font-size: 16px;
-  font-weight: 500;
+.login-form h2 {
+  font-size: 24px;
+  font-weight: bold;
   color: #333;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.mail input[type="email"] {
+.input-field {
+  width: 100%;
   padding: 12px;
+  margin: 8px 0;
   font-size: 16px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  margin-top: 8px;
+  box-sizing: border-box;
   transition: border-color 0.3s ease;
-  width: 100%;
 }
 
-.mail input[type="email"]:focus {
-  border-color: #0c5d92; /* Color de enfoque */
+.input-field:focus {
+  border-color: #0c5d92; /* Resalta el borde al enfocarse */
   outline: none;
 }
 
-.mail button {
-  padding: 12px 20px;
+
+
+.btn-pedido {
+  width: 100%;
+  padding: 12px;
   font-size: 16px;
+  border-radius: 8px;
+  border: none;
   background-color: #0c5d92;
   color: white;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
-  width: 100%;
+  margin-top: 20px;
 }
 
-.mail button:hover {
-  background-color: #095d82;
+.btn-pedido:hover {
+  background-color: #095b7e;
 }
 
-.mail button:disabled {
-  background-color: #658fb8;
-  cursor: not-allowed;
-}
-/* Estilo para el campo de email cuando el cliente es encontrado */
-.input-success {
-  border: 2px solid #28a745; /* Verde */
-  background-color: #e9f7ee; /* Verde suave de fondo */
-}
-
-/* Estilo para el campo de email cuando el cliente no es encontrado */
-.input-error {
-  border: 2px solid #dc3545; /* Rojo */
-  background-color: #f8d7da; /* Fondo rojo suave */
-}
-
-/* Feedback para cliente encontrado exitosamente */
-.feedback-success {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-/* Feedback para cliente no encontrado */
 .feedback-error {
   margin-top: 10px;
   padding: 10px;
@@ -297,5 +269,15 @@ button {
   border: 1px solid #f5c6cb;
   border-radius: 5px;
   font-weight: bold;
+  text-align: center;
 }
-
+.feedback-success{
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #54fc07;
+  color: #085a20;
+  border: 1px solid #2bff00;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center; 
+}

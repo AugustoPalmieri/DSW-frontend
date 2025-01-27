@@ -1,29 +1,43 @@
 <app-navbar-cliente></app-navbar-cliente> 
 
 <div class="main-content">
-  <div class="mail">
-    <label for="emailCliente">Email del Cliente:</label>
+  <<div class="login-form">
+    <h2>Iniciar Sesión</h2>
+    
+    <!-- Input de Email -->
     <input 
       type="email" 
       id="emailCliente" 
       [(ngModel)]="emailCliente" 
-      [ngClass]="{
-        'input-success': buscado && clienteEncontrado, 
-        'input-error': buscado && !clienteEncontrado
-      }" 
+      placeholder="Ingrese su email" 
       required
+      class="input-field" 
+      [class.invalid]="!emailCliente.trim()"
     >
-    <button (click)="buscarClientePorEmail()">Buscar Cliente</button>
-    <button [routerLink]="['/listclientes/add']">Registrar Cliente</button>
-
-    <div *ngIf="buscado && clienteEncontrado" class="feedback-success">
-      <p>Cliente encontrado exitosamente!</p>
-    </div>
-    <div *ngIf="buscado && !clienteEncontrado" class="feedback-error">
-      <p>No se encontró un cliente con ese email Registrate!.</p>
-    </div>
+  
+    <!-- Input de Contraseña -->
+    <input 
+      type="password" 
+      id="passwordCliente" 
+      [(ngModel)]="passwordCliente" 
+      placeholder="Ingrese su contraseña" 
+      required
+      class="input-field"
+      [class.invalid]="!passwordCliente.trim()"
+    >
+  
+    <!-- Botón de Login -->
+    <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
+  
   </div>
+  <div *ngIf="clienteEncontrado" class="feedback-success">
+    <p>Cliente autenticado exitosamente.</p>
+</div>
+<div *ngIf="!clienteEncontrado && emailCliente && passwordCliente" class="feedback-error">
+    <p>Credenciales inválidas. Por favor, inténtelo nuevamente.</p>
+</div>
 
+  
   <div class="modalidad-selection">
     <label for="modalidad">Selecciona una modalidad:</label>
     <select [(ngModel)]="modalidad" id="modalidad" required>
