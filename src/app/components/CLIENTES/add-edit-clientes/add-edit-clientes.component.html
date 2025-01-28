@@ -1,4 +1,10 @@
-<app-navbar></app-navbar>
+<ng-container *ngIf="mostrarNavbarCliente; else adminNavbar">
+  <app-navbar-cliente></app-navbar-cliente>
+</ng-container>
+<ng-template #adminNavbar>
+  <app-navbar></app-navbar>
+</ng-template>
+
 <app-progress-bar *ngIf="loading"></app-progress-bar>
 <div *ngIf="!loading" class="row mt-1">
   <div class="col-lg-4 offset-lg-4">

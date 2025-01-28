@@ -1,3 +1,4 @@
+/* Estilos generales para el body */
 body {
     position: relative;
     display: flex;
@@ -8,8 +9,8 @@ body {
     background-color: #17607c;
 }
 
+/* Estilos para el contenedor con fondo */
 .background-container {
-    
     background-image: url('/assets/images/FondoLogin.jpg');
     background-repeat: no-repeat; 
     background-size: cover; 
@@ -21,6 +22,7 @@ body {
     height: 100%;
     filter: blur(0px);
 }
+
 .background-container::before {
     content: '';
     position: absolute;
@@ -32,6 +34,7 @@ body {
     z-index: -1;
 }
 
+/* Estilos para el contenedor de login */
 .login-container {
     background-color: #ffffff;
     padding: 20px;
@@ -62,6 +65,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Estilos generales para los botones dentro del login */
 .login-container button {
     width: 100%;
     padding: 10px;
@@ -76,6 +80,25 @@ body {
     background-color: #45a049;
 }
 
+/* Estilo específico para el botón "Volver" */
+a .back-button {
+    background-color: red !important;  /* Red con !important para asegurar la prioridad */
+    color: white;
+    width: 100%;
+    padding: 10px ;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+
+}
+
+a .back-button:hover {
+    background-color: darkred !important;  /* Red oscuro en hover */
+}
+
+/* Estilo para los mensajes de error */
 .error-message {
     color: red;
     font-size: 12px;

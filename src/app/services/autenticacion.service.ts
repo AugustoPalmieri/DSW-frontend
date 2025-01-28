@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AutenticacionService {
+  private apiUrl = 'http://localhost:3000/api/admin'; // Cambia si usas otra URL base
 
-  private ingresar: boolean =false;
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  enviarCodigo(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/enviar-codigo`, { email });
+  }
 
-  public ingresarAdminisitrativo(obj:any):boolean{
-   this.ingresar = obj.usuario=='admin' && obj.password=='123' ;
-    return this.ingresar;
-      
-    
-}
-
-  public habilitarlogueo(){
-    return this.ingresar;
+  verificarCodigo(data: { email: string; codigo: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/verificar-codigo`, data);
   }
 }

@@ -28,7 +28,11 @@
   
     <!-- Botón de Login -->
     <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
-  
+    <div class="register-redirect">
+      <p>¿No tienes una cuenta? 
+        <a [routerLink]="['/listclientes/add']" class="register-link">Regístrate aquí</a>.
+      </p>
+    </div>
   </div>
   <div *ngIf="clienteEncontrado" class="feedback-success">
     <p>Cliente autenticado exitosamente.</p>

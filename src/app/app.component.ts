@@ -9,11 +9,6 @@ import { AutenticacionService } from './services/autenticacion.service';
 export class AppComponent {
   title = 'SISTEMA-HAMBURGUESERIA';
 
-  constructor (private loginPrd:AutenticacionService){
 
-  }
-  public entrarAdmin():boolean{
-    return this.loginPrd.habilitarlogueo();
-  }
-  
+
 }

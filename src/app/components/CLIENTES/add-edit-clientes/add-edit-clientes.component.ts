@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/interfaces/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Location } from '@angular/common';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-add-edit-clientes',
@@ -16,6 +17,7 @@ export class AddEditClientesComponent implements OnInit {
   loading: boolean = false;
   idCliente: number = 0;
   operacion: string = 'Agregar ';
+  mostrarNavbarCliente: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +25,8 @@ export class AddEditClientesComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private aRouter: ActivatedRoute,
-    private location: Location
+    private navigationService: NavigationService,
+    private location: Location,
   ) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
@@ -31,10 +34,10 @@ export class AddEditClientesComponent implements OnInit {
       telefono: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       direccion: ['', Validators.required],
-      password: ['', Validators.required],  // Campo para la contraseña
-      confirmPassword: ['', Validators.required]  // Campo para confirmar la contraseña
+      password: ['', Validators.required], 
+      confirmPassword: ['', Validators.required] 
     }, {
-      validator: this.passwordMatchValidator  // Validación personalizada para que las contraseñas coincidan
+      validator: this.passwordMatchValidator
     });
   }
 
@@ -44,9 +47,18 @@ export class AddEditClientesComponent implements OnInit {
       this.operacion = 'Editar ';
       this.getCliente(this.idCliente);
     }
+
+    // Verificar si la página anterior fue '/listpedidos/add'
+    const previousUrl = this.navigationService.getPreviousUrl();
+    if (previousUrl === '/listclientes') {
+      this.mostrarNavbarCliente = false; // Mostrar navbar de administrador
+    } else {
+      this.mostrarNavbarCliente = true; // Mostrar navbar de cliente
+    }
   }
 
-  // Validación personalizada para verificar que las contraseñas coincidan
+
+
   passwordMatchValidator(form: FormGroup): { mismatch: boolean } | null {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
@@ -64,7 +76,7 @@ export class AddEditClientesComponent implements OnInit {
           telefono: data.telefono,
           email: data.email,
           direccion: data.direccion,
-          password: '',  // Dejar los campos de contraseña vacíos en edición
+          password: '', 
           confirmPassword: ''
         });
       },
@@ -84,12 +96,8 @@ export class AddEditClientesComponent implements OnInit {
       telefono: this.form.value.telefono,
       email: this.form.value.email,
       direccion: this.form.value.direccion,
-      password:this.form.value.password,
+      password: this.form.value.password,
     };
-
-    if (this.form.value.password) {  // Si se está creando un nuevo cliente, agregar la contraseña
-      cliente.password = this.form.value.password;
-    }
 
     if (this.idCliente) {
       cliente.idCliente = this.idCliente;
