@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ContactoService } from 'src/app/services/contacto.service'; // Importa el servicio
+import { ContactoService } from 'src/app/services/contacto.service'; 
 
 @Component({
   selector: 'app-contacto',

@@ -1,0 +1,51 @@
+.confirmation-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .confirmation-card {
+    text-align: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .confirmation-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .confirmation-card .icon-container {
+    margin: 1.5rem 0;
+  }
+  
+  .confirmation-card .success-icon {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .confirmation-card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-pedido {
+    background-color: #ffa000;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .btn-pedido:hover {
+    background-color: #ff8f00;
+  }
+  

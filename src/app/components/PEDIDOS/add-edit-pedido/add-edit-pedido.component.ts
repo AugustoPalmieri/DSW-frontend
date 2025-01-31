@@ -212,9 +212,18 @@ private actualizarPedido(pedido: Pedido) {
 
 private crearPedido(pedido: Pedido) {
   this.pedidoService.createPedido(pedido).subscribe(
-      () => {
-          this.toastr.success('Pedido creado exitosamente', 'Éxito');
-          this.router.navigate(['/listpedidos']);
+      (response: any) => {
+          console.log('Respuesta completa del servidor:', response); // Depuración
+          if (response && response.data && response.data.idPedido) { // Acceder a response.data.idPedido
+              const pedidoId = response.data.idPedido;
+              console.log('ID del pedido obtenido:', pedidoId); // Depuración
+              localStorage.setItem('pedidoId', pedidoId.toString());
+              this.toastr.success('Pedido creado exitosamente', 'Éxito');
+              this.router.navigate(['/confirmacionpedido']);
+          } else {
+              console.error('No se encontró el ID del pedido en la respuesta:', response); // Depuración
+              this.toastr.error('No se pudo obtener el ID del pedido del servidor', 'Error');
+          }
       },
       (error) => {
           console.error('Error al crear el pedido:', error);

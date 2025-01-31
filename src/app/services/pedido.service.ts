@@ -39,7 +39,7 @@ export class PedidoService {
     return this.http.put<Pedido>(`${this.myAppUrl}${this.myApiUrl}${idPedido}`, pedido);
   }
   updateEstado(idPedido: number, estado: string): Observable<any> {
-    const estadoData = { estado };  // Enviamos solo el estado en el cuerpo de la solicitud
+    const estadoData = { estado }; 
     return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}${idPedido}/estado`, estadoData);
 
   }

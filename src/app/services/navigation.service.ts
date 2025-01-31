@@ -10,7 +10,7 @@ export class NavigationService {
   private currentUrl: string = '';
 
   constructor(private router: Router) {
-    this.currentUrl = this.router.url; // URL inicial
+    this.currentUrl = this.router.url; 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -26,4 +26,5 @@ export class NavigationService {
   getCurrentUrl(): string {
     return this.currentUrl;
   }
+  
 }

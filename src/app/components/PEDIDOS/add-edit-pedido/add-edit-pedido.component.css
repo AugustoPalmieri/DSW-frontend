@@ -73,7 +73,7 @@ html, body {
 }
 
 .hamburguesa-list input:focus {
-  border-color: #0c5d92; /* Resalta el borde al enfocarse */
+  border-color: #0c5d92; 
 }
 
 .hamburguesa-list input:invalid {

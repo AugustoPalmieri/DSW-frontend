@@ -1,10 +1,10 @@
 <app-navbar-cliente></app-navbar-cliente> 
 
 <div class="main-content">
-  <<div class="login-form">
+  <div class="login-form">
     <h2>Iniciar Sesión</h2>
     
-    <!-- Input de Email -->
+    
     <input 
       type="email" 
       id="emailCliente" 
@@ -15,7 +15,7 @@
       [class.invalid]="!emailCliente.trim()"
     >
   
-    <!-- Input de Contraseña -->
+    
     <input 
       type="password" 
       id="passwordCliente" 
@@ -26,7 +26,7 @@
       [class.invalid]="!passwordCliente.trim()"
     >
   
-    <!-- Botón de Login -->
+  
     <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
     <div class="register-redirect">
       <p>¿No tienes una cuenta? 

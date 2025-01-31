@@ -30,6 +30,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { AddEditPedidoComponent } from './components/PEDIDOS/add-edit-pedido/add-edit-pedido.component';
 import { SeleccionarClienteComponent } from './components/seleccionar-cliente/seleccionar-cliente.component';
+import { ConfirmacionPedidoComponent } from './components/confirmacionpedido/confirmacionpedido.component';
 
 
 
@@ -56,6 +57,7 @@ import { SeleccionarClienteComponent } from './components/seleccionar-cliente/se
     NosotrosComponent,
     AddEditPedidoComponent,
     SeleccionarClienteComponent,
+    ConfirmacionPedidoComponent,
 
   ],
   imports: [

@@ -16,6 +16,7 @@ import { ListPedidosComponent } from './components/PEDIDOS/list-pedidos/list-ped
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { AddEditPedidoComponent } from './components/PEDIDOS/add-edit-pedido/add-edit-pedido.component';
+import { ConfirmacionPedidoComponent } from './components/confirmacionpedido/confirmacionpedido.component';
 
 const routes: Routes = [
   { path: 'menu', component: SelectUserComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
    {path: 'listpedidos',component:ListPedidosComponent},
    {path: 'listpedidos/add',component:AddEditPedidoComponent},
    { path: 'listpedidos/edit/:idPedido', component: AddEditPedidoComponent },
+    {path:'confirmacionpedido',component: ConfirmacionPedidoComponent},
 
   // Ruta comodín
   { path: '**', redirectTo: 'menu', pathMatch: 'full' },
