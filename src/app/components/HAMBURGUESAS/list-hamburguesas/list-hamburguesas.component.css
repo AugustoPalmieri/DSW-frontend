@@ -6,6 +6,8 @@
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 0.5em;
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+  max-height: 700px; /* Altura máxima para pantallas grandes */
+  overflow-y: auto; /* Scroll vertical si el contenido es muy largo */
 }
 
 .title {
@@ -34,11 +36,11 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #020202;
+  background-color: #f2f2f2; /* Cambié el color para mejor contraste */
 }
 
 tr:hover {
-  background-color: #ffffff;
+  background-color: #ddd; /* Cambié el color para mejor contraste */
 }
 
 td:last-child {
@@ -63,8 +65,13 @@ td button {
   opacity: 0.9;
 }
 
-
+/* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
+  .container {
+    max-height: calc(80vh - 40px); /* Ajustar altura para pantallas medianas */
+    padding: 0.5em; /* Reducir el padding */
+  }
+
   .title h4 {
     font-size: 1.2em;
   }
@@ -74,54 +81,73 @@ td button {
     padding: 0.5em;
   }
 
-  th, td {
-    padding: 0.5em;
+  /* Convertir la tabla en bloques en móviles */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  /* Ocultar el encabezado de la tabla en móviles */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+    margin-bottom: 0.5em;
+  }
+
+  td {
+    border: none;
+    position: relative;
+    padding-left: 0; /* Eliminar el padding-left */
+    text-align: left; /* Alinear el texto a la izquierda */
+  }
+
+  /* Añadir etiquetas a las celdas */
+  td:before {
+    position: static; /* Cambiar a posición estática */
+    display: block; /* Mostrar las etiquetas en una línea separada */
+    font-weight: bold;
+    margin-bottom: 0.25em; /* Espacio entre la etiqueta y el contenido */
+    content: attr(data-label); /* Usar el atributo data-label para las etiquetas */
   }
 
   td button {
-    margin-left: 0.3em;
-    font-size: 0.8em;
-  }
-
-  .title {
-    flex-direction: column;
-    align-items: flex-start;
+    margin-left: 0;
+    margin-top: 0.5em;
+    display: block;
+    width: auto; /* Ancho automático para los botones */
+    text-align: left; /* Alinear el texto de los botones a la izquierda */
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    max-height: calc(90vh - 40px); /* Ajustar altura para pantallas pequeñas */
+  }
+
   .title h4 {
     font-size: 1em;
   }
 
   .title button {
     font-size: 0.8em;
-    padding: 0.5em;
+    padding: 0.4em;
     margin-top: 0.5em;
   }
 
-  table {
+  td {
     font-size: 0.9em;
   }
 
-  th, td {
-    padding: 0.4em;
+  td:before {
+    font-size: 0.9em; /* Reducir el tamaño de la fuente de las etiquetas */
   }
 
   td button {
-    margin-left: 0.2em;
-    font-size: 0.7em;
+    font-size: 0.8em;
+    padding: 0.3em 0.5em;
   }
 }
-.container {
-  
-  max-height: 700px; 
-  overflow-y: auto;
-}   
-@media (min-width: 768px) {
-  .container {
-    max-height: calc(80vh - 40px);
-  }
-}
-  
- 

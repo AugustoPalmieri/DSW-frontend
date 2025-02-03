@@ -1,15 +1,37 @@
-
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    overflow: hidden; 
+    overflow-x: hidden; /* Evitar desbordamiento horizontal */
+    overflow-y: auto; /* Habilitar scroll vertical */
 }
 
+/* Navbar */
+.navbar {
+    position: fixed; /* Fijar la navbar en la parte superior */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+    background-color: #fff; /* Color de fondo de la navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+    padding: 10px; /* Padding para evitar que el contenido se pegue a los bordes */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+/* Contenedor Principal */
+.container {
+    max-height: calc(100vh - 60px); /* Altura máxima menos la altura de la navbar */
+    overflow-y: auto; /* Habilitar scroll vertical */
+    padding-top: 60px; /* Espacio para la navbar */
+}
+
+/* Modal */
 .modal {
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,15 +44,17 @@ body {
     z-index: 1000;
 }
 
-
+/* Card */
 .card {
     background-color: #fff;
-    padding: 40px;
+    padding: 20px; /* Reducir el padding en móviles */
     border-radius: 15px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
-    width: 500px; 
+    width: 90%; /* Reducir el ancho en móviles */
+    max-width: 500px; /* Ancho máximo */
     text-align: center;
     animation: slideDown 0.3s ease-out;
+    margin: 20px auto; /* Centrar la tarjeta */
 }
 
 @keyframes slideDown {
@@ -44,39 +68,43 @@ body {
     }
 }
 
-
+/* Títulos */
 h2 {
     color: #333;
-    font-size: 2em;
-    margin-bottom: 25px;
+    font-size: 1.5em; /* Reducir el tamaño en móviles */
+    margin-bottom: 15px; /* Reducir el margen en móviles */
 }
 
-
-input[type="text"], textarea {
+/* Inputs y Textarea */
+input[type="text"],
+input[type="number"],
+textarea {
     width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
+    padding: 10px; /* Reducir el padding en móviles */
+    margin-bottom: 15px; /* Reducir el margen en móviles */
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 1.2em;
+    font-size: 1em; /* Reducir el tamaño de la fuente en móviles */
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
-input[type="text"]:focus, textarea:focus {
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
     border-color: #007bff;
 }
 
-
+/* Botones */
 button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 15px 30px;
+    padding: 10px 20px; /* Reducir el padding en móviles */
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1.2em;
+    font-size: 1em; /* Reducir el tamaño de la fuente en móviles */
     transition: background-color 0.3s ease;
 }
 
@@ -86,51 +114,79 @@ button:hover {
 
 button.cancel {
     background-color: #6c757d;
-    margin-right: 15px;
+    margin-right: 10px; /* Reducir el margen en móviles */
 }
 
 button.cancel:hover {
     background-color: #5a6268;
 }
 
+/* Mensajes de error */
 .error {
     color: #ff4d4f;
-    font-size: 1em;
+    font-size: 0.9em; /* Reducir el tamaño de la fuente en móviles */
     margin-bottom: 10px;
 }
-.container {
-    
-    max-height: 700px; 
-    overflow-y: auto;
-  }
-  input[type="number"] {
-    width: 100%;
-    padding: 15px;
+
+/* Imágenes */
+img.img-fluid {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1.2em;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.3s ease;
 }
 
-input[type="number"]::placeholder {
-    color: #888;
-}
-
-.card-body {
-    max-height: 500; 
-    overflow-x: auto; 
-  }
-  img.img-fluid {
-    max-width: 100%; 
-    max-height: 150px; 
-    object-fit: contain; 
-    margin-bottom: 20px; 
-  }
-  @media (min-width: 768px) {
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
     .card {
-      max-height: calc(80vh - 40px);
+        padding: 15px; /* Reducir el padding en móviles */
+        width: 95%; /* Aumentar el ancho en móviles */
     }
-  }
+
+    h2 {
+        font-size: 1.3em; /* Reducir el tamaño en móviles */
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        padding: 8px; /* Reducir el padding en móviles */
+        font-size: 0.9em; /* Reducir el tamaño de la fuente en móviles */
+    }
+
+    button {
+        padding: 8px 16px; /* Reducir el padding en móviles */
+        font-size: 0.9em; /* Reducir el tamaño de la fuente en móviles */
+    }
+
+    .error {
+        font-size: 0.8em; /* Reducir el tamaño de la fuente en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 10px; /* Reducir el padding en móviles */
+        width: 100%; /* Ocupar todo el ancho en móviles */
+    }
+
+    h2 {
+        font-size: 1.2em; /* Reducir el tamaño en móviles */
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        padding: 6px; /* Reducir el padding en móviles */
+        font-size: 0.8em; /* Reducir el tamaño de la fuente en móviles */
+    }
+
+    button {
+        padding: 6px 12px; /* Reducir el padding en móviles */
+        font-size: 0.8em; /* Reducir el tamaño de la fuente en móviles */
+    }
+
+    .error {
+        font-size: 0.7em; /* Reducir el tamaño de la fuente en móviles */
+    }
+}

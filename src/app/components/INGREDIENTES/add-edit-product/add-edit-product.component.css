@@ -1,0 +1,53 @@
+
+@media (max-width: 767.98px) {
+    
+    .row.mt-0 {
+      margin-top: 0 !important;
+    }
+  
+    
+    .card {
+      padding: 8px;
+    }
+  
+    
+    .card-header {
+      font-size: 16px;
+      padding: 8px;
+    }
+  
+    
+    .card-body {
+      padding: 8px;
+    }
+  
+    
+    .form-control {
+      font-size: 14px;
+      padding: 6px 10px;
+      margin-bottom: 8px; 
+    }
+  
+    
+    .btn {
+      font-size: 14px;
+      padding: 6px 10px;
+      margin-bottom: 8px; 
+    }
+  
+    
+    .row.mt-2 {
+      margin-top: 8px !important;
+    }
+  
+    
+    .text-danger {
+      font-size: 12px;
+    }
+  
+    
+    .card {
+      max-height: 90vh; 
+      overflow-y: auto; 
+    }
+  }

@@ -22,6 +22,6 @@ export class ConfirmacionPedidoComponent implements OnInit {
   }
 
   volverAPedir(): void {
-    this.router.navigate(['/menu']);
+    this.router.navigate(['/cliente']);
   }
 }

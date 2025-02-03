@@ -1,4 +1,3 @@
-
 body {
     position: relative;
     display: flex;
@@ -33,13 +32,13 @@ body {
     z-index: -1;
 }
 
-
 .login-container {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 90%; /* Cambiado a porcentaje para ser más flexible */
+    max-width: 300px; /* Máximo ancho para no estirarse demasiado en pantallas grandes */
     box-sizing: border-box;
     z-index: 1;
 }
@@ -64,7 +63,6 @@ body {
     box-sizing: border-box;
 }
 
-
 .login-container button {
     width: 100%;
     padding: 10px;
@@ -88,13 +86,11 @@ a .back-button {
     cursor: pointer;
     margin-top: 10px;
     font-size: 16px;
-
 }
 
 a .back-button:hover {
     background-color: darkred !important;  
 }
-
 
 .error-message {
     color: red;
@@ -102,4 +98,43 @@ a .back-button:hover {
     margin-top: -10px;
     margin-bottom: 10px;
     text-align: right;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 600px) {
+    .login-container {
+        width: 90%; /* Ajusta el ancho para pantallas pequeñas */
+        padding: 15px; /* Reduce el padding para pantallas pequeñas */
+    }
+
+    .login-container h2 {
+        font-size: 1.5em; /* Reduce el tamaño del título para pantallas pequeñas */
+    }
+
+    .login-container button {
+        padding: 8px; /* Reduce el padding de los botones para pantallas pequeñas */
+    }
+
+    a .back-button {
+        padding: 8px; /* Reduce el padding del botón de volver para pantallas pequeñas */
+    }
+}
+
+@media (max-width: 400px) {
+    .login-container {
+        width: 95%; /* Ajusta aún más el ancho para pantallas muy pequeñas */
+        padding: 10px; /* Reduce aún más el padding para pantallas muy pequeñas */
+    }
+
+    .login-container h2 {
+        font-size: 1.2em; /* Reduce aún más el tamaño del título para pantallas muy pequeñas */
+    }
+
+    .login-container button {
+        padding: 6px; /* Reduce aún más el padding de los botones para pantallas muy pequeñas */
+    }
+
+    a .back-button {
+        padding: 6px; /* Reduce aún más el padding del botón de volver para pantallas muy pequeñas */
+    }
 }

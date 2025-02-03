@@ -1,10 +1,8 @@
-<app-navbar-cliente></app-navbar-cliente> 
+<app-navbar-cliente></app-navbar-cliente>
 
 <div class="main-content">
   <div class="login-form">
     <h2>Iniciar Sesión</h2>
-    
-    
     <input 
       type="email" 
       id="emailCliente" 
@@ -14,8 +12,6 @@
       class="input-field" 
       [class.invalid]="!emailCliente.trim()"
     >
-  
-    
     <input 
       type="password" 
       id="passwordCliente" 
@@ -25,8 +21,6 @@
       class="input-field"
       [class.invalid]="!passwordCliente.trim()"
     >
-  
-  
     <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
     <div class="register-redirect">
       <p>¿No tienes una cuenta? 
@@ -34,14 +28,14 @@
       </p>
     </div>
   </div>
+
   <div *ngIf="clienteEncontrado" class="feedback-success">
     <p>Cliente autenticado exitosamente.</p>
-</div>
-<div *ngIf="!clienteEncontrado && emailCliente && passwordCliente" class="feedback-error">
+  </div>
+  <div *ngIf="!clienteEncontrado && emailCliente && passwordCliente" class="feedback-error">
     <p>Credenciales inválidas. Por favor, inténtelo nuevamente.</p>
-</div>
+  </div>
 
-  
   <div class="modalidad-selection">
     <label for="modalidad">Selecciona una modalidad:</label>
     <select [(ngModel)]="modalidad" id="modalidad" required>
@@ -67,5 +61,5 @@
   <button (click)="submitOrder()" type="button" class="btn-pedido">
     {{ isEditing ? 'EDITAR PEDIDO' : 'CREAR PEDIDO' }}
   </button>
-  <button  type="button" class="back-button"(click)="goBack()">VOLVER</button>
+  <button type="button" class="back-button" (click)="goBack()">VOLVER</button>
 </div>
