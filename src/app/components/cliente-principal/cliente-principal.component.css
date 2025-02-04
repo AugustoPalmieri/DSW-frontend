@@ -25,6 +25,7 @@ body {
     padding: 2vw; 
     border-radius: 3vw; 
     max-width: 70vw; 
+    width: 80%;
 }
 
 .text-box h1 {
@@ -64,3 +65,21 @@ body {
     }
 }
 
+.order-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px; /* Incrementa el tamaño del padding */
+    font-size: 2vw; /* Aumenta el tamaño de la fuente */
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    background-color: #0354eb; /* Color naranja */
+    border-radius: 10px; /* Botón con bordes más redondeados */
+    transition: all 0.3s ease-in-out;
+    width:100%; /* Opcional: establece un ancho fijo para hacerlo más prominente */
+}
+
+.order-button:hover {
+    background-color: #0727db;
+    transform: scale(1.05);
+}

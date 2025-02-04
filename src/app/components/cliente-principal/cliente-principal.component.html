@@ -1,19 +1,17 @@
-<app-navbar-cliente></app-navbar-cliente> 
-
+<app-navbar-cliente></app-navbar-cliente>
 
 <div class="content">
-  
   <div class="text-box">
-    <h1>Explorá nuestro menú y encontrá tu favorita </h1>
+    <h1>Explorá nuestro menú y encontrá tu favorita</h1>
+    <!-- Botón con routerLink -->
+    <a routerLink="/listpedidos/add" class="order-button">Realiza tu pedido</a>
   </div>
 
-  
   <div class="image-container">
     <img src="assets/images/hamb-cliente.png" alt="HAMBURGUESA" class="hamb-image">
   </div>
 </div>
 
-
 <div class="router-outlet">
-  <router-outlet></router-outlet> 
+  <router-outlet></router-outlet>
 </div>

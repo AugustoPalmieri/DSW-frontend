@@ -1,8 +1,35 @@
-.image-container {
-    position: relative;
-    text-align:center;
+.admin-links {
+    display: flex;
+    flex-direction: column; /* Los botones se apilan verticalmente */
+    gap: 15px; /* Espacio entre los botones */
+    margin: 20px auto;
+    align-items: center; /* Centra los botones */
 }
+
+.admin-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.5vw;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    background-color: #007BFF; /* Azul */
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    width: 60%; /* Hace los botones más grandes */
+}
+
+.admin-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
 .admin-image {
-    width: 35vw; 
+    width: 30vw;
     height: auto;
 }

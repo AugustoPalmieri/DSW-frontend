@@ -120,3 +120,8 @@ td button {
     max-height: calc(80vh - 40px);
   }
 }
+@media (max-width: 480px) {
+  .container {
+    max-height: calc(90vh - 40px); /* Ajustar altura para pantallas pequeñas */
+  }
+}

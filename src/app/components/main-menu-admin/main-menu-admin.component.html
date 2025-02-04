@@ -1,8 +1,18 @@
 <app-navbar></app-navbar>
+
 <div class="content">
-    <router-outlet></router-outlet>
-    <div class="image-container">
-      <img src="assets/images/admin-libr.png" alt="HAMBURGUESA" class="admin-image">
-    </div>
+  <div class="admin-links">
+    <a routerLink="/listhamburguesas" class="admin-button">Lista de Hamburguesas</a>
+    <a routerLink="/listingredients" class="admin-button">Lista de Ingredientes</a>
+    <a routerLink="/listclientes" class="admin-button">Lista de Clientes</a>
+    <a routerLink="/listpedidos" class="admin-button">Lista de Pedidos</a>
   </div>
-  
+
+  <div class="image-container">
+    <img src="assets/images/admin-libr.png" alt="Administrador" class="admin-image">
+  </div>
+</div>
+
+<div class="router-outlet">
+  <router-outlet></router-outlet>
+</div>

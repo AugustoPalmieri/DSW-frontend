@@ -3,8 +3,10 @@
 <div *ngIf="!loading" class="container">
   <div class="title">
     <h4>Listado de Hamburguesa</h4>
-    <button type="button" class="btn btn-dark" [routerLink]="['/listhamburguesas/add']">Agregar Hamburguesa</button>
-  </div>
+    <div class="button-group">
+      <button type="button" class="btn btn-dark" [routerLink]="['/listhamburguesas/add']">Agregar Hamburguesas</button>
+      <button type="button" class="btn btn-danger" [routerLink]="['/main-menu-admin']">VOLVER</button>
+    </div>  </div>
 
   <table *ngIf="listHamburguesa.length > 0" class="table table-hover">
     <thead>

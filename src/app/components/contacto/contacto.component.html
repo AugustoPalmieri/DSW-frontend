@@ -1,5 +1,6 @@
-<app-navbar-cliente></app-navbar-cliente>
-<div class="contact-container">
+<div class="scrollable-container">
+  <app-navbar-cliente></app-navbar-cliente>
+  <div class="contact-container">
     <h1>Contacto</h1>
     <p>¡Queremos saber de vos! Completa el formulario con tus consultas o ideas, y te responderemos en breve.</p>
 
@@ -7,6 +8,7 @@
       <div class="form-group">
         <label for="firstName">Nombre</label>
         <input type="text" id="firstName" placeholder="Nombre" required ngModel name="firstName">
+        <label for="lastName">Apellido</label>
         <input type="text" id="lastName" placeholder="Apellido" ngModel name="lastName">
       </div>
 
@@ -27,7 +29,7 @@
 
       <button type="submit">Enviar</button>
     </form>
-  
+
     <div class="locations">
       <div class="location">
         <h2>Rosario</h2>
@@ -36,4 +38,5 @@
         <p>Mail de contacto: <strong>hamburgueseriautn&#64;.com</strong></p>
       </div>
     </div>
+  </div>
 </div>
