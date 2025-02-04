@@ -1,21 +1,12 @@
 
-.app-container {
+
+.pedido{
+  max-height: 100vh; 
+  overflow-y: auto; 
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% del alto */
 }
 
-.main-content {
-  flex: 1; /* Ocupa el espacio restante */
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto; /* Habilita el scroll vertical */
-  max-width: 1200px; /* Limita el ancho máximo */
-  margin: 0 auto; /* Centra el contenido */
-  width: 100%; /* Asegura que ocupe todo el ancho disponible */
-  height: calc(100vh - 100px); /* Altura definida (ajusta según el tamaño del navbar) */
-}
-/* Estilos del formulario de login */
 .login-form {
   max-width: 400px;
   margin: 20px auto;
@@ -177,8 +168,6 @@
   background-color: #a51a1a;
 }
 
-
-/* Media Queries para dispositivos móviles */
 @media (max-width: 768px) {
   .main-content {
     padding: 10px;

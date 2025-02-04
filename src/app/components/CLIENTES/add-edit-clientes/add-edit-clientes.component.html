@@ -1,59 +1,63 @@
-<ng-container *ngIf="mostrarNavbarCliente; else adminNavbar">
-  <app-navbar-cliente></app-navbar-cliente>
-</ng-container>
-<ng-template #adminNavbar>
-  <app-navbar></app-navbar>
-</ng-template>
 
-<app-progress-bar *ngIf="loading"></app-progress-bar>
-<div *ngIf="!loading" class="row mt-1">
-  <div class="col-lg-4 offset-lg-4">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
-      <div class="card-header text-center">{{operacion}} Cliente</div>
-      <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="addCliente()">
-          <input formControlName="nombre" type="text" class="form-control mt-2" placeholder="Ingrese nombre">
-          <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
-            El campo nombre es <strong>requerido</strong>
-          </span>
 
-          <input formControlName="apellido" type="text" class="form-control mt-2" placeholder="Ingrese apellido">
-          <span *ngIf="form.get('apellido')?.hasError('required') && form.get('apellido')?.touched">
-            El campo apellido es <strong>requerido</strong>
-          </span>
-          <input formControlName="telefono" type="text" class="form-control mt-2" placeholder="Ingrese telefono">
-          <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">
-            El campo telefono es <strong>requerido</strong>
-          </span>
-          <input formControlName="email" type="text" class="form-control mt-2" placeholder="Ingrese email">
-          <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
-            El campo email es <strong>requerido</strong>
-          </span>
-          <input formControlName="direccion" type="text" class="form-control mt-2" placeholder="Ingrese direccion">
-          <span *ngIf="form.get('direccion')?.hasError('required') && form.get('direccion')?.touched">
-            El campo direccion es <strong>requerido</strong>
-          </span>
-          <input formControlName="password" type="password" class="form-control mt-2" placeholder="Ingrese contraseña">
-          <span *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
-          El campo contraseña es <strong>requerido</strong>
-          </span>
+<div class="addcliente">
+  <ng-container *ngIf="mostrarNavbarCliente; else adminNavbar">
+    <app-navbar-cliente></app-navbar-cliente>
+  </ng-container>
+  <ng-template #adminNavbar>
+    <app-navbar></app-navbar>
+  </ng-template>
 
-          <input formControlName="confirmPassword" type="password" class="form-control mt-2" placeholder="Confirmar contraseña">
-          <span *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
-          El campo confirmar contraseña es <strong>requerido</strong>
-          </span>
-          <span *ngIf="form.get('confirmPassword')?.hasError('mismatch') && form.get('confirmPassword')?.touched">
-          Las contraseñas no coinciden
-          </span>
-          <div class="row mt-2 text-center">
-            <div class="col-lg-6">
-              <button  type="button" class="btn btn-primary"(click)="goBack()">VOLVER</button>
+  <app-progress-bar *ngIf="loading"></app-progress-bar>
+  <div *ngIf="!loading" class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center">{{operacion}} Cliente</div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="addCliente()">
+            <input formControlName="nombre" type="text" class="form-control mt-2" placeholder="Ingrese nombre">
+            <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+              El campo nombre es <strong>requerido</strong>
+            </span>
+
+            <input formControlName="apellido" type="text" class="form-control mt-2" placeholder="Ingrese apellido">
+            <span *ngIf="form.get('apellido')?.hasError('required') && form.get('apellido')?.touched">
+              El campo apellido es <strong>requerido</strong>
+            </span>
+            <input formControlName="telefono" type="text" class="form-control mt-2" placeholder="Ingrese telefono">
+            <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">
+              El campo telefono es <strong>requerido</strong>
+            </span>
+            <input formControlName="email" type="text" class="form-control mt-2" placeholder="Ingrese email">
+            <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+              El campo email es <strong>requerido</strong>
+            </span>
+            <input formControlName="direccion" type="text" class="form-control mt-2" placeholder="Ingrese direccion">
+            <span *ngIf="form.get('direccion')?.hasError('required') && form.get('direccion')?.touched">
+              El campo direccion es <strong>requerido</strong>
+            </span>
+            <input formControlName="password" type="password" class="form-control mt-2" placeholder="Ingrese contraseña">
+            <span *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+            El campo contraseña es <strong>requerido</strong>
+            </span>
+
+            <input formControlName="confirmPassword" type="password" class="form-control mt-2" placeholder="Confirmar contraseña">
+            <span *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
+            El campo confirmar contraseña es <strong>requerido</strong>
+            </span>
+            <span *ngIf="form.get('confirmPassword')?.hasError('mismatch') && form.get('confirmPassword')?.touched">
+            Las contraseñas no coinciden
+            </span>
+            <div class="row mt-2 text-center">
+              <div class="col-lg-6">
+                <button  type="button" class="btn btn-primary"(click)="goBack()">VOLVER</button>
+              </div>
+              <div class="col-lg-6">
+                <button [disabled]="form.invalid" type="submit" class="btn btn-info" (click)="goBack()">ACEPTAR</button>
+              </div>
             </div>
-            <div class="col-lg-6">
-              <button [disabled]="form.invalid" type="submit" class="btn btn-info" (click)="goBack()">ACEPTAR</button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>

@@ -1,65 +1,66 @@
-<app-navbar-cliente></app-navbar-cliente>
-
-<div class="main-content">
-  <div class="login-form">
-    <h2>Iniciar Sesión</h2>
-    <input 
-      type="email" 
-      id="emailCliente" 
-      [(ngModel)]="emailCliente" 
-      placeholder="Ingrese su email" 
-      required
-      class="input-field" 
-      [class.invalid]="!emailCliente.trim()"
-    >
-    <input 
-      type="password" 
-      id="passwordCliente" 
-      [(ngModel)]="passwordCliente" 
-      placeholder="Ingrese su contraseña" 
-      required
-      class="input-field"
-      [class.invalid]="!passwordCliente.trim()"
-    >
-    <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
-    <div class="register-redirect">
-      <p>¿No tienes una cuenta? 
-        <a [routerLink]="['/listclientes/add']" class="register-link">Regístrate aquí</a>.
-      </p>
+<div class ="pedido">
+  <app-navbar-cliente></app-navbar-cliente>
+  <div class="main-content">
+    <div class="login-form">
+      <h2>Iniciar Sesión</h2>
+      <input 
+        type="email" 
+        id="emailCliente" 
+        [(ngModel)]="emailCliente" 
+        placeholder="Ingrese su email" 
+        required
+        class="input-field" 
+        [class.invalid]="!emailCliente.trim()"
+      >
+      <input 
+        type="password" 
+        id="passwordCliente" 
+        [(ngModel)]="passwordCliente" 
+        placeholder="Ingrese su contraseña" 
+        required
+        class="input-field"
+        [class.invalid]="!passwordCliente.trim()"
+      >
+      <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
+      <div class="register-redirect">
+        <p>¿No tienes una cuenta? 
+          <a [routerLink]="['/listclientes/add']" class="register-link">Regístrate aquí</a>.
+        </p>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="clienteEncontrado" class="feedback-success">
-    <p>Cliente autenticado exitosamente.</p>
-  </div>
-  <div *ngIf="!clienteEncontrado && emailCliente && passwordCliente" class="feedback-error">
-    <p>Credenciales inválidas. Por favor, inténtelo nuevamente.</p>
-  </div>
-
-  <div class="modalidad-selection">
-    <label for="modalidad">Selecciona una modalidad:</label>
-    <select [(ngModel)]="modalidad" id="modalidad" required>
-      <option value="TAKEAWAY">TAKEAWAY</option>
-      <option value="DELIVERY">DELIVERY</option>
-    </select>
-  </div>
-
-  <div class="hamburguesa-list">
-    <div *ngFor="let h of hamburguesas">
-      <h4>{{ h.nombre }}</h4>
-      <img *ngIf="h.imagen" [src]="'http://localhost:3000/uploads/' + h.imagen" alt="{{ h.nombre }}" style="width: 150px; height: auto;">
-      <p>{{ h.descripcion }}</p>
-      <p>Precio: {{ h.precio | currency }}</p>
-      <label for="cantidad-{{ h.idHamburguesa }}">Cantidad:</label>
-      <input type="number" id="cantidad-{{ h.idHamburguesa }}" [(ngModel)]="h.cantidad" (ngModelChange)="onQuantityChange(h, $event)" min="0">
+    <div *ngIf="clienteEncontrado" class="feedback-success">
+      <p>Cliente autenticado exitosamente.</p>
     </div>
-  </div>
+    <div *ngIf="!clienteEncontrado && emailCliente && passwordCliente" class="feedback-error">
+      <p>Credenciales inválidas. Por favor, inténtelo nuevamente.</p>
+    </div>
 
-  <div class="total">
-    <h3>Total: {{ montoTotal | currency }}</h3>
+    <div class="modalidad-selection">
+      <label for="modalidad">Selecciona una modalidad:</label>
+      <select [(ngModel)]="modalidad" id="modalidad" required>
+        <option value="TAKEAWAY">TAKEAWAY</option>
+        <option value="DELIVERY">DELIVERY</option>
+      </select>
+    </div>
+
+    <div class="hamburguesa-list">
+      <div *ngFor="let h of hamburguesas">
+        <h4>{{ h.nombre }}</h4>
+        <img *ngIf="h.imagen" [src]="'http://localhost:3000/uploads/' + h.imagen" alt="{{ h.nombre }}" style="width: 150px; height: auto;">
+        <p>{{ h.descripcion }}</p>
+        <p>Precio: {{ h.precio | currency }}</p>
+        <label for="cantidad-{{ h.idHamburguesa }}">Cantidad:</label>
+        <input type="number" id="cantidad-{{ h.idHamburguesa }}" [(ngModel)]="h.cantidad" (ngModelChange)="onQuantityChange(h, $event)" min="0">
+      </div>
+    </div>
+
+    <div class="total">
+      <h3>Total: {{ montoTotal | currency }}</h3>
+    </div>
+    <button (click)="submitOrder()" type="button" class="btn-pedido">
+      {{ isEditing ? 'EDITAR PEDIDO' : 'CREAR PEDIDO' }}
+    </button>
+    <button type="button" class="back-button" (click)="goBack()">VOLVER</button>
   </div>
-  <button (click)="submitOrder()" type="button" class="btn-pedido">
-    {{ isEditing ? 'EDITAR PEDIDO' : 'CREAR PEDIDO' }}
-  </button>
-  <button type="button" class="back-button" (click)="goBack()">VOLVER</button>
 </div>
