@@ -25,13 +25,13 @@ export class HamburguesaService {
   }
 
   saveHamburguesa(hamburguesa: Hamburguesa): Observable<void> {
-    // Usar FormData para enviar el archivo junto con los otros campos
+    
     const formData: FormData = new FormData();
     formData.append('nombre', hamburguesa.nombre);
     formData.append('descripcion', hamburguesa.descripcion);
     formData.append('precio', hamburguesa.precio?.toString() || '');
     if (hamburguesa.imagen) {
-      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name); // Aquí se adjunta el archivo
+      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name); 
     }
 
     return this.http.post<void>(this.myAppUrl + this.myApiUrl, formData);
@@ -42,15 +42,14 @@ export class HamburguesaService {
   }
 
   updateHamburguesa(idHamburguesa: number, hamburguesa: Hamburguesa): Observable<void> {
-    // Usar FormData para la actualización de hamburguesas con imagen
     const formData: FormData = new FormData();
     formData.append('nombre', hamburguesa.nombre);
     formData.append('descripcion', hamburguesa.descripcion);
     formData.append('precio', hamburguesa.precio?.toString() || '');
     if (hamburguesa.imagen) {
-      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name); // Aquí se adjunta el archivo
+      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name); // Solo adjunta la imagen si existe
     }
-
+  
     return this.http.put<void>(this.myAppUrl + this.myApiUrl + idHamburguesa, formData);
   }
 }

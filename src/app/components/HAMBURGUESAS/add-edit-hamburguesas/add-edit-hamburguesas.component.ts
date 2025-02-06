@@ -17,7 +17,7 @@ export class AddEditHamburguesaComponent implements OnInit {
   operacion: string = 'Agregar ';
   precioError: string = ''; 
   imagen: File | null = null;
-  imagenPreview: string | null = null;  // Variable para la vista previa
+  imagenPreview: string | null = null;  
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +39,11 @@ export class AddEditHamburguesaComponent implements OnInit {
     if (this.idHamburguesa) {
       this.operacion = 'Editar ';
       this.getHamburguesa(this.idHamburguesa);
+      this.form.get('imagen')?.clearValidators(); 
+      this.form.get('imagen')?.updateValueAndValidity(); 
+    } else {
+      this.form.get('imagen')?.setValidators(Validators.required); 
+      this.form.get('imagen')?.updateValueAndValidity(); 
     }
   }
 
@@ -66,7 +71,7 @@ export class AddEditHamburguesaComponent implements OnInit {
     if (file) {
       this.imagen = file;
 
-      // Vista previa de la imagen seleccionada
+      
       const reader = new FileReader();
       reader.onload = () => {
         this.imagenPreview = reader.result as string;
@@ -75,7 +80,7 @@ export class AddEditHamburguesaComponent implements OnInit {
 
       this.form.patchValue({ imagen: this.imagen });
     } else {
-      // Si no se selecciona una imagen, restablece el valor
+      
       this.imagen = null;
       this.imagenPreview = null;
       this.form.patchValue({ imagen: null });
@@ -92,10 +97,7 @@ export class AddEditHamburguesaComponent implements OnInit {
   }
 
   addHamburguesa(): void {
-    if (this.form.invalid || !this.imagen) {
-      if (!this.imagen) {
-        this.toastr.error('Debe cargar una imagen para la hamburguesa', 'Error');
-      }
+    if (this.form.invalid) {
       return;
     }
   
@@ -109,6 +111,10 @@ export class AddEditHamburguesaComponent implements OnInit {
     if (this.idHamburguesa) {
       this.updateHamburguesa(hamburguesa);
     } else {
+      if (!this.imagen) {
+        this.toastr.error('Debe cargar una imagen para la hamburguesa', 'Error');
+        return;
+      }
       this.saveHamburguesa(hamburguesa);
     }
   }
