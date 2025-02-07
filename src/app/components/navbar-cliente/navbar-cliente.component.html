@@ -1,21 +1,21 @@
 <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand btn-menu" href="#">
-            <img src="assets/images/imagenMenu.png" alt="Menu Principal" style="height: 80px;">
+        <a class="navbar-brand" href="#">
+            <img src="assets/images/imagenMenu.png" alt="Menu Principal">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarColor01">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav"> <!-- Agregamos ms-auto aquí -->
                 <li class="nav-item">
-                    <a class="navbar-brand btn-menu" routerLink="/listpedidos/add">REALIZAR PEDIDO</a>
+                    <a class="nav-link" routerLink="/listpedidos/add">REALIZAR PEDIDO</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand btn-menu" routerLink="/nosotros">NOSOTROS</a>
+                    <a class="nav-link" routerLink="/nosotros">NOSOTROS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand btn-menu" routerLink="/contacto">CONTACTO</a>
+                    <a class="nav-link" routerLink="/contacto">CONTACTO</a>
                 </li>
             </ul>
         </div>

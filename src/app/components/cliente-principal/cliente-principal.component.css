@@ -1,97 +1,98 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-}
-
 .content {
-    background-size: cover;
-    background-position: center;
-    height: 80vh;
     display: flex;
-    flex-direction: column; 
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    padding: 5vw; 
-}
-
-.text-box {
+    padding: 10vw;
+  }
+  
+  .image-container {
+    order: 1;
+  }
+  
+  .text-box {
+    order: 2;
+  }
+  
+  /* Estilos para móviles */
+  @media (max-width: 767px) {
+    .content {
+      flex-direction: column;
+    }
+  
+    .image-container {
+      order: 2;
+    }
+  
+    .text-box {
+      order: 1;
+    }
+  }
+  
+  .text-box {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 2vw;
     border-radius: 3vw;
     max-width: 90vw;
     width: 100%;
-    text-align: center; 
-}
-
-.text-box h1 {
+    text-align: center;
+  }
+  
+  .text-box h1 {
     color: white;
     font-size: 6vw;
     font-weight: bold;
     margin: 0;
     line-height: 1.2;
-}
-
-.image-container {
-    position: relative;
-    text-align: center; 
-    margin-top: 20px; 
-}
-
-.hamb-image {
-    width: 80vw; 
+  }
+  
+  .image-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .hamb-image {
+    width: 80vw;
     height: auto;
-}
-
-.order-button {
+  }
+  
+  .order-button {
     display: inline-block;
     margin-top: 20px;
-    padding: 2vw 4vw; 
-    font-size: 4vw; 
+    padding: 2vw 4vw;
+    font-size: 4vw;
     color: white;
     text-decoration: none;
     text-align: center;
     background-color: #0354eb;
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
-    width: 100%; 
-}
-
-.order-button:hover {
+    width: 100%;
+  }
+  
+  .order-button:hover {
     background-color: #212b61;
     transform: scale(1.05);
-}
-
-
-@media (min-width: 768px) {
-    .content {
-        flex-direction: row; 
-        justify-content: space-between;
-        padding: 10vw;
-    }
-
+  }
+  
+  /* Estilos para escritorio */
+  @media (min-width: 768px) {
     .text-box {
-        max-width: 70vw;
-        width: 80%;
-        text-align: left; 
+      max-width: 40vw;
+      text-align: left;
     }
-
+  
     .text-box h1 {
-        font-size: 4vw; 
+      font-size: 4vw;
     }
-
+  
     .hamb-image {
-        width: 40vw; 
+      width: 40vw;
     }
-
+  
     .order-button {
-        padding: 15px 30px;
-        font-size: 2vw;
-        width: auto; 
+      padding: 15px 30px;
+      font-size: 2vw;
+      width: auto;
     }
-}
+  }
