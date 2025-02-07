@@ -14,7 +14,6 @@
     order: 2;
   }
   
-  /* Estilos para móviles */
   @media (max-width: 767px) {
     .content {
       flex-direction: column;
@@ -75,7 +74,6 @@
     transform: scale(1.05);
   }
   
-  /* Estilos para escritorio */
   @media (min-width: 768px) {
     .text-box {
       max-width: 40vw;
