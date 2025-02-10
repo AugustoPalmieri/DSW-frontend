@@ -19,6 +19,10 @@ export class AddEditClientesComponent implements OnInit {
   operacion: string = 'Agregar ';
   mostrarNavbarCliente: boolean = false;
 
+  // Variables para controlar la visibilidad de la contraseña
+  hidePassword: boolean = true;
+  hideConfirmPassword: boolean = true;
+
   constructor(
     private fb: FormBuilder,
     private _productService: ClienteService,
@@ -34,8 +38,8 @@ export class AddEditClientesComponent implements OnInit {
       telefono: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       direccion: ['', Validators.required],
-      password: ['', Validators.required], 
-      confirmPassword: ['', Validators.required] 
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     }, {
       validator: this.passwordMatchValidator
     });
@@ -48,17 +52,25 @@ export class AddEditClientesComponent implements OnInit {
       this.getCliente(this.idCliente);
     }
 
-    // Verificar si la página anterior fue '/listpedidos/add'
     const previousUrl = this.navigationService.getPreviousUrl();
     if (previousUrl === '/listclientes') {
-      this.mostrarNavbarCliente = false; // Mostrar navbar de administrador
+      this.mostrarNavbarCliente = false;
     } else {
-      this.mostrarNavbarCliente = true; // Mostrar navbar de cliente
+      this.mostrarNavbarCliente = true;
     }
   }
 
+  
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
+  }
 
+  
+  toggleConfirmPasswordVisibility(): void {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
 
+  
   passwordMatchValidator(form: FormGroup): { mismatch: boolean } | null {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
@@ -76,7 +88,7 @@ export class AddEditClientesComponent implements OnInit {
           telefono: data.telefono,
           email: data.email,
           direccion: data.direccion,
-          password: '', 
+          password: '',
           confirmPassword: ''
         });
       },

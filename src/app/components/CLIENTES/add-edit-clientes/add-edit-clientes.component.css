@@ -2,10 +2,15 @@
 
 .addcliente{
   overflow-x:hidden;
-  max-height: 100vh;
+  height: 100vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  background-image: url('src/assets/images/fondoazul.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
 
 }
 
@@ -111,6 +116,23 @@ body {
 
 .col-lg-6 {
   flex: 1;
+}
+.password-container {
+  position: relative;
+}
+
+
+.password-container i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+.password-container i:hover {
+  color: #007BFF;
 }
 @media (max-width: 768px) {
   .card {

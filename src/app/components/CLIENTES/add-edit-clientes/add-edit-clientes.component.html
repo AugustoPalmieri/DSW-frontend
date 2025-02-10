@@ -1,5 +1,3 @@
-
-
 <div class="addcliente">
   <ng-container *ngIf="mostrarNavbarCliente; else adminNavbar">
     <app-navbar-cliente></app-navbar-cliente>
@@ -24,33 +22,47 @@
             <span *ngIf="form.get('apellido')?.hasError('required') && form.get('apellido')?.touched">
               El campo apellido es <strong>requerido</strong>
             </span>
+
             <input formControlName="telefono" type="text" class="form-control mt-2" placeholder="Ingrese telefono">
             <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">
               El campo telefono es <strong>requerido</strong>
             </span>
+
             <input formControlName="email" type="text" class="form-control mt-2" placeholder="Ingrese email">
             <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
               El campo email es <strong>requerido</strong>
             </span>
+
             <input formControlName="direccion" type="text" class="form-control mt-2" placeholder="Ingrese direccion">
             <span *ngIf="form.get('direccion')?.hasError('required') && form.get('direccion')?.touched">
               El campo direccion es <strong>requerido</strong>
             </span>
-            <input formControlName="password" type="password" class="form-control mt-2" placeholder="Ingrese contraseña">
+
+            
+            <div class="password-container">
+              <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" class="form-control mt-2" placeholder="Ingrese contraseña">
+              <i class="fa" [ngClass]="{'fa-eye-slash': hidePassword, 'fa-eye': !hidePassword}" (click)="togglePasswordVisibility()"></i>
+            </div>
             <span *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
-            El campo contraseña es <strong>requerido</strong>
+              El campo contraseña es <strong>requerido</strong>
             </span>
 
-            <input formControlName="confirmPassword" type="password" class="form-control mt-2" placeholder="Confirmar contraseña">
+            
+            <div class="password-container">
+              <input formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control mt-2" placeholder="Confirmar contraseña">
+              <i class="fa" [ngClass]="{'fa-eye-slash': hideConfirmPassword, 'fa-eye': !hideConfirmPassword}" (click)="toggleConfirmPasswordVisibility()"></i>
+            </div>
             <span *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
-            El campo confirmar contraseña es <strong>requerido</strong>
+              El campo confirmar contraseña es <strong>requerido</strong>
             </span>
             <span *ngIf="form.get('confirmPassword')?.hasError('mismatch') && form.get('confirmPassword')?.touched">
-            Las contraseñas no coinciden
+              Las contraseñas no coinciden
             </span>
+
+           
             <div class="row mt-2 text-center">
               <div class="col-lg-6">
-                <button  type="button" class="btn btn-primary"(click)="goBack()">VOLVER</button>
+                <button type="button" class="btn btn-primary" (click)="goBack()">VOLVER</button>
               </div>
               <div class="col-lg-6">
                 <button [disabled]="form.invalid" type="submit" class="btn btn-info" (click)="goBack()">ACEPTAR</button>

@@ -1,22 +1,69 @@
+
+.content {
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    background-image: url('src/assets/images/fondoazul.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px 20px 0; 
+    font-family: 'Poppins', sans-serif; 
+}
+
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px; 
+}
+
+
+.welcome-message {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome-message h1 {
+    font-size: 3.5rem; 
+    color: #fff;
+    font-weight: 600; 
+    letter-spacing: -1px; 
+    line-height: 1.2; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+}
+
+
 .admin-links {
     display: flex;
-    flex-direction: column; /* Los botones se apilan verticalmente */
-    gap: 15px; /* Espacio entre los botones */
-    margin: 20px auto;
-    align-items: center; /* Centra los botones */
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
 }
 
 .admin-button {
     display: inline-block;
     padding: 15px 30px;
-    font-size: 1.5vw;
+    font-size: 1.2rem; 
     color: white;
     text-decoration: none;
     text-align: center;
-    background-color: #007BFF; /* Azul */
+    background-color: #007BFF;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
-    width: 60%; /* Hace los botones más grandes */
+    width: 100%;
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 500; 
+    letter-spacing: 0.5px; 
 }
 
 .admin-button:hover {
@@ -24,12 +71,50 @@
     transform: scale(1.05);
 }
 
+
 .image-container {
     text-align: center;
     margin-top: 30px;
 }
 
 .admin-image {
-    width: 30vw;
+    width: 100%;
+    max-width: 300px;
     height: auto;
+}
+
+
+@media (min-width: 768px) {
+    .welcome-container {
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 50px;
+        margin-top: 20px; 
+    }
+
+    .welcome-message {
+        text-align: left; 
+        margin-bottom: 0;
+        flex: 1;
+    }
+
+    .welcome-message h1 {
+        font-size: 5.5rem; 
+        letter-spacing: -2px; 
+    }
+
+    .image-container {
+        flex: 1;
+        text-align: right; 
+        margin-top: 0;
+    }
+
+    .admin-image {
+        max-width: 400px; /* Tamaño más grande para computadoras */
+    }
+
+    .admin-links {
+        display: none; /* Ocultar los botones en computadoras */
+    }
 }
