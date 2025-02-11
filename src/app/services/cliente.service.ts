@@ -7,7 +7,7 @@ import { Cliente } from '../interfaces/cliente';
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {  //ClienteService
+export class ClienteService {  
   private myAppUrl: string;
   private myApiUrl: string;
 

@@ -1,129 +1,294 @@
+.scroll {
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  background-image: url('src/assets/images/fondoazul.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #001F3F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00BFFF;
+  border-radius: 4px;
+}
 
 .container {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5em;
-  background-color: #f9f9f9;
-  border-radius: 0.5em;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 1em;
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
-  overflow-y: auto;
-
+  backdrop-filter: blur(10px);
+   
 }
 
 
 .title {
-  margin-top: 1em;
+  margin-bottom: 1.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #333;
+  color: #202b35;
   flex-wrap: wrap;
 }
 
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1em;
+.title h4 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0;
 }
 
-th {
-  background-color: #37474f;
-  color: #ffffff;
-  font-weight: bold;
-  text-transform: uppercase;
+.button-group {
+  display: flex;
+  gap: 1em;
+}
+
+.button-group button {
+  font-size: 0.9em;
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+  transition: all 0.3s ease;
+}
+
+.button-group button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-dark {
+  background-color: #202b35;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #801916;
+  border: none;
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse; 
+  margin-top: 1.5em;
+  overflow: hidden;
+  border-radius: 0.5em;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
 }
 
 th, td {
-  padding: 0.8em;
+  padding: 1em;
   text-align: left;
-  font-size: 0.95em;
+}
+
+th {
+  background-color: #202b35;
+  color: white;
+  font-weight: 600;
+}
+
+tr {
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #e9ecef;
 }
 
 tr:hover {
-  background-color: #e0e0e0;
+  background-color: #dde2e6;
 }
+
+td:last-child {
+  text-align: right;
+}
+
+td button {
+  margin-left: 0.5em;
+  font-size: 0.9em;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  transition: all 0.3s ease;
+}
+
+td button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-info {
+  background-color: #5bc0de;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #801916;
+  border: none;
+}
+
+.btn-tick {
+  background-color: green;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: grey;
+  border: none;
+  cursor: not-allowed;
+}
+
 
 td ul {
   padding-left: 1.2em;
-  font-size: 0.9em;
-  list-style-type: none; 
+  list-style-type: none;
 }
 
 td ul li {
   padding: 0.2em 0;
   border-left: 3px solid #5bc0de;
   padding-left: 0.5em;
-  color: #eeeeee;
+  color: #ffffff; 
 }
 
-/* Botones */
-.button-container {
-  display: flex;
-  gap: 0.5em;
-  justify-content: flex-end;
-}
 
-.button-container .btn {
-  padding: 0.3em 0.8em;
-  border-radius: 5px;
-  font-size: 0.85em;
-}
-.btn-tick {
-  background-color:green ;
-  border: none;
-  color: #ffffff;
-  transition: background-color 0.3s ease;
-}
-.btn-info {
-  background-color: #5bc0de;
-  border: none;
-  color: #ffffff;
-  transition: background-color 0.3s ease;
-}
-
-.btn-danger {
-  background-color: #e53935;
-  border: none;
-  color: #ffffff;
-  transition: background-color 0.3s ease;
-}
-
-.btn-info:hover {
-  background-color: #468bb1;
-}
-
-.btn-danger:hover {
-  background-color: #c62828;
+h5 {
+  text-align: center;
+  color: #6c757d;
+  margin-top: 2em;
 }
 
 
 @media (max-width: 768px) {
+  .container {
+    padding: 1.5em;
+    margin: 1em auto;
+    overflow-x: hidden; 
+  }
+
+  .title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+  }
+
+  .title h4 {
+    font-size: 1.3em;
+  }
+
+  .button-group {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .button-group button {
+    width: 100%;
+    text-align: center;
+    padding: 0.75em;
+  }
+
+  .table {
+    font-size: 0.9em;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  th, td {
+    padding: 0.75em;
+    display: block;
+    width: 100%; 
+    box-sizing: border-box; 
+  }
+
+  td button {
+    font-size: 0.8em;
+    padding: 0.5em;
+    margin-left: 0;
+    margin-top: 0.5em;
+    display: block;
+    width: 100%; 
+  }
+
+  
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+    margin-bottom: 0.5em;
+    background-color: #fff; 
+    border-radius: 0.5em; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+
+  td {
+    border: none;
+    position: relative;
+    padding-left: 0;
+    text-align: left;
+  }
+
+  
+  td:before {
+    position: static;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.25em;
+    content: attr(data-label);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1em;
+    margin: 0.5em auto;
+  }
+
   .title h4 {
     font-size: 1.2em;
+  }
+
+  .button-group button {
+    font-size: 0.8em;
+    padding: 0.5em;
+  }
+
+  .table {
+    font-size: 0.8em;
   }
 
   th, td {
     padding: 0.5em;
   }
 
-  .button-container .btn {
-    font-size: 0.75em;
-    padding: 0.3em 0.6em;
+  td button {
+    font-size: 0.7em;
+    padding: 0.4em;
+    margin-left: 0.2em;
   }
-}
-@media (min-width: 768px) {
-  .container {
-    max-height: calc(80vh - 40px);
+
+  h5 {
+    font-size: 0.9em;
   }
-}
-.btn-secondary {
-  background-color: grey;
-  border-color: grey;
-  cursor: not-allowed;
 }

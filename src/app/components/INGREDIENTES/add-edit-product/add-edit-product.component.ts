@@ -64,7 +64,7 @@ export class AddEditProductComponent implements OnInit {
   }
 
   addIngrediente(): void {
-    if (this.form.invalid) return; // Asegúrate de que el formulario es válido
+    if (this.form.invalid) return; 
 
     const ingrediente: Ingrediente = {
       descripcion: this.form.value.descripcion,

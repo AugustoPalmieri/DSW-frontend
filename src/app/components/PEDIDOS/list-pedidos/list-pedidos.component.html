@@ -1,57 +1,70 @@
-<app-navbar></app-navbar>
-<app-progress-bar *ngIf="loading"></app-progress-bar>
-<div *ngIf="!loading" class="container">
-  <div class="title">
-    <h4>Listado de Pedidos</h4>
-    <div class="button-group">
-      <button type="button" class="btn btn-dark" [routerLink]="['/listpedidos/add']">Agregar Pedido</button>
-      <button type="button" class="btn btn-danger" [routerLink]="['/main-menu-admin']">VOLVER</button>
+<div class="scroll">
+  <app-navbar></app-navbar>
+  <app-progress-bar *ngIf="loading"></app-progress-bar>
+  <div *ngIf="!loading" class="container">
+    <div class="title">
+      <h4>Listado de Pedidos</h4>
+      <div class="button-group">
+        <button type="button" class="btn btn-dark" [routerLink]="['/listpedidos/add']">Agregar Pedido</button>
+        <button type="button" class="btn btn-danger" [routerLink]="['/main-menu-admin']">VOLVER</button>
+      </div>
     </div>
 
-
-  <table *ngIf="listPedido.length > 0" class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">idPedido</th>
-        <th scope="col">idCliente</th>
-        <th scope="col">modalidad</th>
-        <th scope="col">montoTotal</th>
-        <th scope="col">estado</th>
-        <th scope="col">Hamburguesas</th> 
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of listPedido" class="table-dark">
-        <td>{{ item.idPedido }}</td>
-        <td>{{ item.idCliente }}</td>
-        <td>{{ item.modalidad }}</td>
-        <td>{{ item.montoTotal }}</td>
-        <td>{{ item.estado }}</td>
-        <td>
-          <ul>
-            <li *ngFor="let hamburguesa of item.hamburguesas">
-              ID:{{ hamburguesa.idHamburguesa }} NOMBRE: {{ hamburguesa.nombre }} | CANTIDAD: {{ hamburguesa.cantidad }}
-            </li>
-          </ul>
-        </td>
-        <td>
-          <div class="button-container">
-            <button
-            (click)="actualizarEstado(item.idPedido!, 'ENTREGADO')"
-            type="button"
-            class="btn btn-tick btn-sm"
-            [disabled]="item.estado === 'ENTREGADO'"
-            [ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-tick': item.estado !== 'ENTREGADO' }">
-            ENTREGADO
-            </button>
-            <button
-            [routerLink]="['/listpedidos/edit/', item.idPedido]" type="button"class="btn btn-info btn-sm"[disabled]="item.estado === 'ENTREGADO'"[ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-info': item.estado !== 'ENTREGADO' }">EDITAR</button>
-            <button (click)="confirmDeletePedido(item.idPedido!)" type="button" class="btn btn-danger btn-sm">ELIMINAR</button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 *ngIf="listPedido.length == 0">No hay Pedidos disponibles en este momento</h5>
+    <table *ngIf="listPedido.length > 0" class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID Pedido</th>
+          <th scope="col">ID Cliente</th>
+          <th scope="col">Modalidad</th>
+          <th scope="col">Monto Total</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Hamburguesas</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listPedido" class="table-dark">
+          <td data-label="ID Pedido">{{ item.idPedido }}</td>
+          <td data-label="ID Cliente">{{ item.idCliente }}</td>
+          <td data-label="Modalidad">{{ item.modalidad }}</td>
+          <td data-label="Monto Total">{{ item.montoTotal }}</td>
+          <td data-label="Estado">{{ item.estado }}</td>
+          <td data-label="Hamburguesas">
+            <ul>
+              <li *ngFor="let hamburguesa of item.hamburguesas">
+                 NOMBRE: {{ hamburguesa.nombre }} | CANTIDAD: {{ hamburguesa.cantidad }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <div class="button-container">
+              <button
+                (click)="actualizarEstado(item.idPedido!, 'ENTREGADO')"
+                type="button"
+                class="btn btn-tick btn-sm"
+                [disabled]="item.estado === 'ENTREGADO'"
+                [ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-tick': item.estado !== 'ENTREGADO' }">
+                ENTREGADO
+              </button>
+              <button
+                [routerLink]="['/listpedidos/edit/', item.idPedido]"
+                type="button"
+                class="btn btn-info btn-sm"
+                [disabled]="item.estado === 'ENTREGADO'"
+                [ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-info': item.estado !== 'ENTREGADO' }">
+                EDITAR
+              </button>
+              <button
+                (click)="confirmDeletePedido(item.idPedido!)"
+                type="button"
+                class="btn btn-danger btn-sm">
+                ELIMINAR
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h5 *ngIf="listPedido.length == 0">No hay Pedidos disponibles en este momento</h5>
+  </div>
 </div>

@@ -1,37 +1,39 @@
-<app-navbar></app-navbar>
-<app-progress-bar *ngIf="loading"></app-progress-bar>
-<div *ngIf="!loading" class="row mt-1">
-  <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-    <div class="card text-white bg-secondary mb-3">
-      <div class="card-header text-center">{{operacion}} Ingrediente</div>
-      <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="addIngrediente()">
-          
-          <div class="form-group">
-            <input formControlName="descripcion" type="text" class="form-control mt-2" placeholder="Ingrese descripción">
-            <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched" class="text-danger">
-              El campo descripción es <strong>requerido</strong>
-            </span>
-          </div>
-
-          
-          <div class="form-group">
-            <input formControlName="stock" type="number" class="form-control mt-2" placeholder="Ingrese stock" (change)="checkStock()">
-            <span *ngIf="form.get('stock')?.hasError('required') && form.get('stock')?.touched" class="text-danger">
-              El campo stock es <strong>requerido</strong>
-            </span>
-          </div>
-
-          
-          <div class="row mt-3">
-            <div class="col-12 col-md-6 mb-2 mb-md-0">
-              <button routerLink="/listingredients" type="button" class="btn btn-primary w-100">VOLVER</button>
+<div class=" addingrediente">
+  <app-navbar></app-navbar>
+  <app-progress-bar *ngIf="loading"></app-progress-bar>
+  <div *ngIf="!loading" class="row mt-1">
+    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <div class="card text-white bg-secondary mb-3">
+        <div class="card-header text-center">{{operacion}} Ingrediente</div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="addIngrediente()">
+            
+            <div class="form-group">
+              <input formControlName="descripcion" type="text" class="form-control mt-2" placeholder="Ingrese descripción">
+              <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched" class="text-danger">
+                El campo descripción es <strong>requerido</strong>
+              </span>
             </div>
-            <div class="col-12 col-md-6">
-              <button [disabled]="form.invalid" type="submit" class="btn btn-info w-100">ACEPTAR</button>
+
+            
+            <div class="form-group">
+              <input formControlName="stock" type="number" class="form-control mt-2" placeholder="Ingrese stock" (change)="checkStock()">
+              <span *ngIf="form.get('stock')?.hasError('required') && form.get('stock')?.touched" class="text-danger">
+                El campo stock es <strong>requerido</strong>
+              </span>
             </div>
-          </div>
-        </form>
+
+            
+            <div class="row mt-3">
+              <div class="col-12 col-md-6 mb-2 mb-md-0">
+                <button routerLink="/listingredients" type="button" class="btn btn-primary w-100">VOLVER</button>
+              </div>
+              <div class="col-12 col-md-6">
+                <button [disabled]="form.invalid" type="submit" class="btn btn-info w-100">ACEPTAR</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

@@ -1,49 +1,51 @@
-<app-navbar></app-navbar>
-<app-progress-bar *ngIf="loading"></app-progress-bar>
-<div *ngIf="!loading" class="row mt-1">
-  <div class="col-lg-4 offset-lg-4">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
-      <div class="card-header text-center">{{operacion}} Hamburguesa</div>
-      <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="addHamburguesa()">
-          <input formControlName="nombre" type="text" class="form-control mt-2" placeholder="Ingrese nombre">
-          <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
-            El campo nombre es <strong>requerido</strong>
-          </span>
-
-          <input formControlName="descripcion" type="text" class="form-control mt-2" placeholder="Ingrese descripción">
-          <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">
-            El campo descripcion es <strong>requerido</strong>
-          </span>
-          
-          <input
-            formControlName="precio"
-            type="number"
-            class="form-control mt-2"
-            placeholder="Ingrese precio"
-            (input)="validatePrecio()"
-          >
-          <span *ngIf="precioError" class="error">{{ precioError }}</span>
-          <div class="form-group mt-2">
-
-            <label for="imagen">Imagen de la Hamburguesa</label>
-            <input formControlName="imagen" type="file" class="form-control" (change)="onFileSelected($event)">
-            <span *ngIf="form.get('imagen')?.hasError('required') && form.get('imagen')?.touched">
-              El campo imagen es <strong>requerido</strong>
+<div class="addhamburguesa">
+  <app-navbar></app-navbar>
+  <app-progress-bar *ngIf="loading"></app-progress-bar>
+  <div *ngIf="!loading" class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center">{{operacion}} Hamburguesa</div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="addHamburguesa()">
+            <input formControlName="nombre" type="text" class="form-control mt-2" placeholder="Ingrese nombre">
+            <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+              El campo nombre es <strong>requerido</strong>
             </span>
-            <div *ngIf="imagenPreview" class="mt-2">
-              <img [src]="imagenPreview" alt="Vista previa" class="img-fluid" style="max-width: 200px;">
+
+            <input formControlName="descripcion" type="text" class="form-control mt-2" placeholder="Ingrese descripción">
+            <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">
+              El campo descripcion es <strong>requerido</strong>
+            </span>
+            
+            <input
+              formControlName="precio"
+              type="number"
+              class="form-control mt-2"
+              placeholder="Ingrese precio"
+              (input)="validatePrecio()"
+            >
+            <span *ngIf="precioError" class="error">{{ precioError }}</span>
+            <div class="form-group mt-2">
+
+              <label for="imagen">Imagen de la Hamburguesa</label>
+              <input formControlName="imagen" type="file" class="form-control" (change)="onFileSelected($event)">
+              <span *ngIf="form.get('imagen')?.hasError('required') && form.get('imagen')?.touched">
+                El campo imagen es <strong>requerido</strong>
+              </span>
+              <div *ngIf="imagenPreview" class="mt-2">
+                <img [src]="imagenPreview" alt="Vista previa" class="img-fluid" style="max-width: 200px;">
+              </div>
             </div>
-          </div>
-          <div class="row mt-2 text-center">
-            <div class="col-lg-6">
-              <button routerLink="/listhamburguesas" type="button" class="btn btn-primary">VOLVER</button>
+            <div class="row mt-2 text-center">
+              <div class="col-lg-6">
+                <button routerLink="/listhamburguesas" type="button" class="btn btn-primary">VOLVER</button>
+              </div>
+              <div class="col-lg-6">
+                <button [disabled]="form.invalid" type="submit" class="btn btn-info">ACEPTAR</button>
+              </div>
             </div>
-            <div class="col-lg-6">
-              <button [disabled]="form.invalid" type="submit" class="btn btn-info">ACEPTAR</button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>

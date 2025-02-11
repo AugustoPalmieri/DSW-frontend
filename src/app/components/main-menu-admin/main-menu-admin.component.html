@@ -1,21 +1,22 @@
-
-<app-navbar></app-navbar>
-<div class="content">
-  <div class="welcome-container">
-    <div class="welcome-message">
-      <h1>Bienvenido Administrador!</h1>
+<div class="scroll">
+  <app-navbar></app-navbar>
+  <div class="content">
+    <div class="welcome-container">
+      <div class="welcome-message">
+        <h1>Bienvenido Administrador!</h1>
+      </div>
+      <div class="image-container">
+        <img src="assets/images/admin-libr.png" alt="Administrador" class="admin-image">
+      </div>
     </div>
-    <div class="image-container">
-      <img src="assets/images/admin-libr.png" alt="Administrador" class="admin-image">
+    <div class="admin-links">
+      <a routerLink="/listhamburguesas" class="admin-button">Lista de Hamburguesas</a>
+      <a routerLink="/listingredients" class="admin-button">Lista de Ingredientes</a>
+      <a routerLink="/listclientes" class="admin-button">Lista de Clientes</a>
+      <a routerLink="/listpedidos" class="admin-button">Lista de Pedidos</a>
     </div>
   </div>
-  <div class="admin-links">
-    <a routerLink="/listhamburguesas" class="admin-button">Lista de Hamburguesas</a>
-    <a routerLink="/listingredients" class="admin-button">Lista de Ingredientes</a>
-    <a routerLink="/listclientes" class="admin-button">Lista de Clientes</a>
-    <a routerLink="/listpedidos" class="admin-button">Lista de Pedidos</a>
+  <div class="router-outlet">
+    <router-outlet></router-outlet>
   </div>
-</div>
-<div class="router-outlet">
-  <router-outlet></router-outlet>
 </div>

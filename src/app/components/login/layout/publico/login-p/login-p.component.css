@@ -37,8 +37,8 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%; /* Cambiado a porcentaje para ser más flexible */
-    max-width: 300px; /* Máximo ancho para no estirarse demasiado en pantallas grandes */
+    width: 90%; 
+    max-width: 300px; 
     box-sizing: border-box;
     z-index: 1;
 }
@@ -100,41 +100,41 @@ a .back-button:hover {
     text-align: right;
 }
 
-/* Media Queries para dispositivos móviles */
+
 @media (max-width: 600px) {
     .login-container {
-        width: 90%; /* Ajusta el ancho para pantallas pequeñas */
-        padding: 15px; /* Reduce el padding para pantallas pequeñas */
+        width: 90%; 
+        padding: 15px;
     }
 
     .login-container h2 {
-        font-size: 1.5em; /* Reduce el tamaño del título para pantallas pequeñas */
+        font-size: 1.5em; 
     }
 
     .login-container button {
-        padding: 8px; /* Reduce el padding de los botones para pantallas pequeñas */
+        padding: 8px; 
     }
 
     a .back-button {
-        padding: 8px; /* Reduce el padding del botón de volver para pantallas pequeñas */
+        padding: 8px; 
     }
 }
 
 @media (max-width: 400px) {
     .login-container {
-        width: 95%; /* Ajusta aún más el ancho para pantallas muy pequeñas */
-        padding: 10px; /* Reduce aún más el padding para pantallas muy pequeñas */
+        width: 95%;
+        padding: 10px; 
     }
 
     .login-container h2 {
-        font-size: 1.2em; /* Reduce aún más el tamaño del título para pantallas muy pequeñas */
+        font-size: 1.2em; 
     }
 
     .login-container button {
-        padding: 6px; /* Reduce aún más el padding de los botones para pantallas muy pequeñas */
+        padding: 6px;
     }
 
     a .back-button {
-        padding: 6px; /* Reduce aún más el padding del botón de volver para pantallas muy pequeñas */
+        padding: 6px;
     }
 }

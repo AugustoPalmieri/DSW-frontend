@@ -69,7 +69,7 @@ deleteHamburguesas(idHamburguesa: number) {
           if (error.error.message === 'NO SE PUEDE ELIMINAR LA HAMBURGUESA PORQUE ESTÁ EN UN PEDIDO "EN PROCESO"') {
               this.toastr.error(error.error.message, 'Error');
           } else {
-              this.toastr.error('Ocurrió un error al eliminar la hamburguesa', 'Error');
+              this.toastr.error('NO SE PUEDE ELIMINAR LA HAMBURGUESA PORQUE ESTÁ EN UN PEDIDO "EN PROCESO"', 'Error');
           }
       }
   });

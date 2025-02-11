@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AutenticacionService {
-  private apiUrl = 'http://localhost:3000/api/admin'; // Cambia si usas otra URL base
+  private apiUrl = 'http://localhost:3000/api/admin'; 
 
   constructor(private http: HttpClient) {}
 

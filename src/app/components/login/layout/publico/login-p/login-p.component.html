@@ -11,10 +11,8 @@
     <div class="login-container">
         <h2>Admin Login</h2>
       
-        <!-- Botón para enviar el código al correo -->
         <button (click)="enviarCodigo()" class="send-code-button">Enviar Código</button>
       
-        <!-- Formulario para ingresar el código -->
         <form [formGroup]="myForm" (ngSubmit)="submitFormulario()">
           <label for="codigo">Introduce el código:</label>
           <input

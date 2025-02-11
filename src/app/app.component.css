@@ -1,20 +1,20 @@
-/* Asegura que html y body ocupen toda la altura del viewport */
+
 html, body {
-    height: 100%; /* Asegura que el body siempre use toda la altura disponible */
+    height: 100%; 
     margin: 0;
-    overflow-y: auto; /* Permite scroll vertical si el contenido es más alto */
+    overflow-y: auto; 
     font-family: Arial, sans-serif;
 }
 
-/* Aplica un contenedor principal para toda la web */
+
 .main-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Asegura que el contenedor abarque toda la altura del viewport */
-    overflow-y: auto; /* Permite el scroll vertical si es necesario */
+    min-height: 100vh;
+    overflow-y: auto; 
 }
 .background {
-    position: fixed; /* Se asegura de que el fondo se mantenga fijo */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -22,6 +22,6 @@ html, body {
     background-image: url("/assets/images/FondoHamburgueseria.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: -1; /* Envíalo detrás del contenido */
+    z-index: -1; 
     filter: blur(10px);
 }

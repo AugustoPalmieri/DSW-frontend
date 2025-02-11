@@ -1,11 +1,26 @@
 
 .scroll {
-  
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
   background-image: url('src/assets/images/fondoazul.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  flex-direction: column;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #001F3F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00BFFF;
+  border-radius: 4px;
 }
 .container {
   width: 100%;
@@ -17,7 +32,7 @@
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   max-height: 700px;
-  overflow-y: auto; 
+  
 }
 
 
@@ -136,6 +151,7 @@ h5 {
   .container {
     padding: 1.5em;
     margin: 1em auto;
+    overflow-x: hidden;
   }
 
   .title {
@@ -162,16 +178,25 @@ h5 {
 
   .table {
     font-size: 0.9em;
+    display: block;
+    width: 100%;
+    overflow-x: auto; 
   }
 
   th, td {
     padding: 0.75em;
+    display: block;
+    width: 100%; 
+    box-sizing: border-box; 
   }
 
   td button {
     font-size: 0.8em;
     padding: 0.5em;
-    margin-left: 0.3em;
+    margin-left: 0;
+    margin-top: 0.5em;
+    display: block;
+    width: 100%; 
   }
 
   
@@ -189,6 +214,9 @@ h5 {
   tr {
     border: 1px solid #ccc;
     margin-bottom: 0.5em;
+    background-color: #fff;
+    border-radius: 0.5em; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   }
 
   td {
@@ -205,14 +233,6 @@ h5 {
     font-weight: bold;
     margin-bottom: 0.25em;
     content: attr(data-label);
-  }
-
-  td button {
-    margin-left: 0;
-    margin-top: 0.5em;
-    display: block;
-    width: auto;
-    text-align: left;
   }
 }
 

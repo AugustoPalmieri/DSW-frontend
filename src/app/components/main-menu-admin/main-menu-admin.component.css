@@ -1,20 +1,38 @@
 
-.content {
+.scroll {
     height: 100vh;
     overflow-y: auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; 
     background-image: url('src/assets/images/fondoazul.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    padding: 20px 20px 0; 
-    font-family: 'Poppins', sans-serif; 
-}
+    flex-direction: column;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #001F3F;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #00BFFF;
+    border-radius: 4px;
+  }
+  .container {
+    width: 100%;
+    margin: 2em auto;
+    padding: 2em;
 
+    border-radius: 1em;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    max-height: 700px;
+    
+  }
 
 .welcome-container {
     display: flex;
@@ -30,17 +48,19 @@
 .welcome-message {
     text-align: center;
     margin-bottom: 30px;
+    width: 100%; 
 }
 
 .welcome-message h1 {
-    font-size: 3.5rem; 
     color: #fff;
     font-weight: 600; 
     letter-spacing: -1px; 
     line-height: 1.2; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+    margin: 0; 
+    padding: 0 20px;
+    font-size: 10vw; 
 }
-
 
 .admin-links {
     display: flex;
@@ -57,7 +77,7 @@
     color: white;
     text-decoration: none;
     text-align: center;
-    background-color: #007BFF;
+    background-color: #2b4868;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
     width: 100%;
@@ -70,7 +90,6 @@
     background-color: #0056b3;
     transform: scale(1.05);
 }
-
 
 .image-container {
     text-align: center;
@@ -88,7 +107,7 @@
     .welcome-container {
         flex-direction: row; 
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start; 
         padding: 0 50px;
         margin-top: 20px; 
     }
@@ -100,8 +119,7 @@
     }
 
     .welcome-message h1 {
-        font-size: 5.5rem; 
-        letter-spacing: -2px; 
+        font-size: 5.5rem;
     }
 
     .image-container {
@@ -111,10 +129,41 @@
     }
 
     .admin-image {
-        max-width: 400px; /* Tamaño más grande para computadoras */
+        max-width: 500px; 
+        width: 100%; 
     }
 
     .admin-links {
-        display: none; /* Ocultar los botones en computadoras */
+        display: none;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .welcome-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .welcome-message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .welcome-message h1 {
+        font-size: 10vw; 
+    }
+
+    .image-container {
+        display: none;
+    }
+
+    .admin-links {
+        display: flex; 
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+        margin-top: 20px;
     }
 }

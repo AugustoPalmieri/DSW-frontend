@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-p.component.css'],
 })
 export class LoginPComponent implements OnInit {
-  public myForm!: FormGroup; // Declaración del formulario reactivo
+  public myForm!: FormGroup; 
 
   constructor(
     private fb: FormBuilder,
@@ -18,13 +18,13 @@ export class LoginPComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Inicializar formulario reactivoSW
+    
     this.myForm = this.fb.group({
-      codigo: ['', [Validators.required]], // Campo para el código
+      codigo: ['', [Validators.required]], 
     });
   }
   public enviarCodigo(): void {
-    const email = 'hamburgueseriautn@gmail.com'; // Asegúrate de que este sea el correo registrado
+    const email = 'hamburgueseriautn@gmail.com'; 
     this.authService.enviarCodigo(email).subscribe(
       (response) => {
         alert('El código ha sido enviado a tu correo.');
@@ -35,21 +35,21 @@ export class LoginPComponent implements OnInit {
       }
     );
   }
-  // Método para manejar el envío del formulario
+  
   public submitFormulario(): void {
     if (this.myForm.invalid) {
-      this.myForm.markAllAsTouched(); // Marca todos los campos como "tocados"
+      this.myForm.markAllAsTouched(); 
       return;
     }
 
     const codigo = this.myForm.value.codigo;
 
-    // Llamar al servicio para verificar el código
+    
     this.authService.verificarCodigo({ email: 'hamburgueseriautn@gmail.com', codigo }).subscribe(
       (response) => {
         if (response.success) {
           alert('Acceso concedido');
-          this.router.navigate(['/main-menu-admin']); // Redirección al menú principal
+          this.router.navigate(['/main-menu-admin']); 
         } else {
           alert('Código incorrecto');
         }
@@ -61,10 +61,9 @@ export class LoginPComponent implements OnInit {
     );
   }
 
-  // Método para enviar el código al correo
+  
 
-
-  // Getter para facilitar el acceso a los controles del formulario
+  
   public get f(): any {
     return this.myForm.controls;
   }
