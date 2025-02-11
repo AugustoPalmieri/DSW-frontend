@@ -1,17 +1,26 @@
 <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand btn-menu" href="#">
-            <img src="assets/images/imagenMenu.png" alt="Menu Principal" style="height: 80px;">
+        <a class="navbar-brand" href="#">
+            <img src="assets/images/imagenMenu.png" alt="Menu Principal">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
-            <a class="navbar-brand btn-menu" routerLink="/listhamburguesas">HAMBURGUESAS</a>
-            <a class="navbar-brand btn-menu" routerLink="/listingredients">INGREDIENTES</a>
-            <a class="navbar-brand btn-menu" routerLink="/listclientes">CLIENTES</a>
-            <a class="navbar-brand btn-menu" routerLink="/listpedidos">PEDIDOS</a>
-           
+            <ul class="navbar-nav"> 
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/listhamburguesas">HAMBURGUESAS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/listingredients">INGREDIENTES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/listclientes">CLIENTES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/listpedidos">PEDIDOS</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

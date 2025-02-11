@@ -141,8 +141,8 @@ toggleRegisterForm(): void {
             console.log('Respuesta del servidor:', response);
 
             if (response && response.token && response.cliente?.idCliente) {
-                this.token = response.token; // Guardar el token
-                this.idCliente = response.cliente.idCliente; // Guardar el idCliente
+                this.token = response.token; 
+                this.idCliente = response.cliente.idCliente; 
                 this.clienteEncontrado = true;
                 this.toastr.success('Cliente autenticado exitosamente', 'Éxito');
             } else {
@@ -213,15 +213,15 @@ private actualizarPedido(pedido: Pedido) {
 private crearPedido(pedido: Pedido) {
   this.pedidoService.createPedido(pedido).subscribe(
       (response: any) => {
-          console.log('Respuesta completa del servidor:', response); // Depuración
-          if (response && response.data && response.data.idPedido) { // Acceder a response.data.idPedido
+          console.log('Respuesta completa del servidor:', response); 
+          if (response && response.data && response.data.idPedido) { 
               const pedidoId = response.data.idPedido;
-              console.log('ID del pedido obtenido:', pedidoId); // Depuración
+              console.log('ID del pedido obtenido:', pedidoId); 
               localStorage.setItem('pedidoId', pedidoId.toString());
               this.toastr.success('Pedido creado exitosamente', 'Éxito');
               this.router.navigate(['/confirmacionpedido']);
           } else {
-              console.error('No se encontró el ID del pedido en la respuesta:', response); // Depuración
+              console.error('No se encontró el ID del pedido en la respuesta:', response); 
               this.toastr.error('No se pudo obtener el ID del pedido del servidor', 'Error');
           }
       },

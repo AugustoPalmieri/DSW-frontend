@@ -1,40 +1,42 @@
-<app-navbar></app-navbar>
-<app-progress-bar *ngIf="loading"></app-progress-bar>
-<div *ngIf="!loading" class="container">
-  <div class="title">
-    <h4>Listado de Clientes</h4>
-    <div class="button-group">
-      <button type="button" class="btn btn-dark" [routerLink]="['/listclientes/add']">Agregar Cliente</button>
-      <button type="button" class="btn btn-danger" [routerLink]="['/main-menu-admin']">VOLVER</button>
+<div class="scroll">
+  <app-navbar></app-navbar>
+  <app-progress-bar *ngIf="loading"></app-progress-bar>
+  <div *ngIf="!loading" class="container">
+    <div class="title">
+      <h4>Listado de Clientes</h4>
+      <div class="button-group">
+        <button type="button" class="btn btn-dark" [routerLink]="['/listclientes/add']">Agregar Cliente</button>
+        <button type="button" class="btn btn-danger" [routerLink]="['/main-menu-admin']">VOLVER</button>
+      </div>
     </div>
-  </div>
 
-  <table *ngIf="listCliente.length > 0" class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">apellido</th>
-        <th scope="col">telefono</th>
-        <th scope="col">email</th>
-        <th scope="col">direccion</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of listCliente" class="table-dark">
-        <td>{{ item.idCliente }}</td>
-        <td>{{ item.nombre }}</td>
-        <td>{{ item.apellido }}</td>
-        <td>{{ item.telefono }}</td>
-        <td>{{ item.email }}</td>
-        <td>{{ item.direccion }}</td>
-        <td>
-          <button [routerLink]="['/listclientes/edit/', item.idCliente]" type="button" class="btn btn-info btn-sm">EDITAR</button>
-          <button (click)="confirmDeleteCliente(item.idCliente!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 *ngIf="listCliente.length == 0">No hay Clientes disponibles en este momento</h5>
+    <table *ngIf="listCliente.length > 0" class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">apellido</th>
+          <th scope="col">telefono</th>
+          <th scope="col">email</th>
+          <th scope="col">direccion</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listCliente" class="table-dark">
+          <td>{{ item.idCliente }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.apellido }}</td>
+          <td>{{ item.telefono }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.direccion }}</td>
+          <td>
+            <button [routerLink]="['/listclientes/edit/', item.idCliente]" type="button" class="btn btn-info btn-sm">EDITAR</button>
+            <button (click)="confirmDeleteCliente(item.idCliente!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h5 *ngIf="listCliente.length == 0">No hay Clientes disponibles en este momento</h5>
+  </div>
 </div>
