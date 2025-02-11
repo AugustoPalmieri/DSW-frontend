@@ -19,7 +19,7 @@ export class AddEditClientesComponent implements OnInit {
   operacion: string = 'Agregar ';
   mostrarNavbarCliente: boolean = false;
 
-  // Variables para controlar la visibilidad de la contraseña
+  
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
 

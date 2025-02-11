@@ -11,6 +11,19 @@
     background-attachment: fixed; 
     flex-direction: column;
 }
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #001F3F;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #00BFFF;
+    border-radius: 4px;
+  }
+  
 * {
     margin: 0;
     padding: 0;

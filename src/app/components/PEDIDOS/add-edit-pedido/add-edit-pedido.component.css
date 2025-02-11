@@ -10,6 +10,18 @@
   background-attachment: fixed; 
   font-family: 'Arial', sans-serif;
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #001F3F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00BFFF;
+  border-radius: 4px;
+}
 
 .main-content {
   padding: 20px;

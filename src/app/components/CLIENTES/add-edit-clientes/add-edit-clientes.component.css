@@ -14,6 +14,19 @@
 
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #001F3F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00BFFF;
+  border-radius: 4px;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f8f9fa;

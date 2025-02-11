@@ -15,7 +15,7 @@ export class ContactoComponent {
 
   enviarFormulario(form: any) {
     if (form.valid) {
-      // Enviar datos al servicio
+      
       this.contactoService.enviarFormulario(form.value).subscribe(
         (response) => {
           form.reset();

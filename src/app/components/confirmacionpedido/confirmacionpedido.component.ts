@@ -12,12 +12,12 @@ export class ConfirmacionPedidoComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const pedidoIdStr = localStorage.getItem('pedidoId'); // Recuperar del localStorage
+    const pedidoIdStr = localStorage.getItem('pedidoId'); 
     if (pedidoIdStr) {
-      this.pedidoId = Number(pedidoIdStr); // Convertir a número
-      console.log('ID del pedido recuperado:', this.pedidoId); // Depuración
+      this.pedidoId = Number(pedidoIdStr); 
+      console.log('ID del pedido recuperado:', this.pedidoId); 
     } else {
-      console.error('No se encontró el ID del pedido en el localStorage'); // Depuración
+      console.error('No se encontró el ID del pedido en el localStorage'); 
     }
   }
 
