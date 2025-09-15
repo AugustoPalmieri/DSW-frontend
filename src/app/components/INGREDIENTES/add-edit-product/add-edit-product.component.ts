@@ -64,14 +64,43 @@ export class AddEditProductComponent implements OnInit {
   }
 
   addIngrediente(): void {
-    if (this.form.invalid) return; 
+    if (this.form.invalid) return;
 
     const ingrediente: Ingrediente = {
       descripcion: this.form.value.descripcion,
       stock: this.form.value.stock
     };
 
-    if (this.codIngrediente) {
+    // Validar que la descripción no exista (solo en modo agregar)
+    if (!this.codIngrediente) {
+      this.loading = true;
+      this._productService.getListIngredientes().subscribe({
+        next: (resp) => {
+          const existe = resp.data.some(i => i.descripcion.trim().toLowerCase() === ingrediente.descripcion.trim().toLowerCase());
+          if (existe) {
+            this.loading = false;
+            this.toastr.error('Ya existe un ingrediente con esa descripción', 'Error');
+            return;
+          }
+          // Si no existe, guardar
+          this._productService.saveIngrediente(ingrediente).subscribe(
+            () => {
+              this.toastr.success(`El ingrediente ${ingrediente.descripcion} fue registrado con éxito`, 'Ingrediente Registrado');
+              this.loading = false;
+              this.router.navigate(['/listingredients']);
+            },
+            (error) => {
+              this.loading = false;
+              this.toastr.error('Error al registrar el ingrediente', 'Error');
+            }
+          );
+        },
+        error: () => {
+          this.loading = false;
+          this.toastr.error('Error al validar la descripción', 'Error');
+        }
+      });
+    } else {
       ingrediente.codIngrediente = this.codIngrediente;
       this.loading = true;
       this._productService.updateIngrediente(this.codIngrediente, ingrediente).subscribe(
@@ -83,19 +112,6 @@ export class AddEditProductComponent implements OnInit {
         (error) => {
           this.loading = false;
           this.toastr.error('Error al modificar el ingrediente', 'Error');
-        }
-      );
-    } else {
-      this.loading = true;
-      this._productService.saveIngrediente(ingrediente).subscribe(
-        () => {
-          this.toastr.success(`El ingrediente ${ingrediente.descripcion} fue registrado con éxito`, 'Ingrediente Registrado');
-          this.loading = false;
-          this.router.navigate(['/listingredients']);
-        },
-        (error) => {
-          this.loading = false;
-          this.toastr.error('Error al registrar el ingrediente', 'Error');
         }
       );
     }

@@ -10,7 +10,23 @@
       </div>
     </div>
 
-    <table *ngIf="listCliente.length > 0" class="table table-hover">
+    <!-- Filtros de búsqueda -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="filtroId" class="form-label">Buscar por ID</label>
+        <input id="filtroId" type="text" class="form-control" [(ngModel)]="filtroId" placeholder="Ingrese ID">
+      </div>
+      <div class="col-md-4">
+        <label for="filtroNombre" class="form-label">Buscar por Nombre</label>
+        <input id="filtroNombre" type="text" class="form-control" [(ngModel)]="filtroNombre" placeholder="Ingrese nombre">
+      </div>
+      <div class="col-md-4">
+        <label for="filtroDireccion" class="form-label">Buscar por Dirección</label>
+        <input id="filtroDireccion" type="text" class="form-control" [(ngModel)]="filtroDireccion" placeholder="Ingrese dirección">
+      </div>
+    </div>
+
+    <table *ngIf="clientesFiltrados.length > 0" class="table table-hover">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -23,7 +39,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of listCliente" class="table-dark">
+  <tr *ngFor="let item of clientesFiltrados" class="table-dark">
           <td>{{ item.idCliente }}</td>
           <td>{{ item.nombre }}</td>
           <td>{{ item.apellido }}</td>

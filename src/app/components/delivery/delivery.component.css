@@ -1,0 +1,37 @@
+.delivery {
+  overflow-x: hidden;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-image: url('src/assets/images/fondoazul.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #001F3F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00BFFF;
+  border-radius: 4px;
+}
+
+.alert-info {
+  font-size: 0.9rem;
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.alert-warning {
+  font-size: 0.9rem;
+  background-color: #fff3cd;
+  color: #856404;
+}

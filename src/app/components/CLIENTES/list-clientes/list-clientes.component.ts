@@ -8,10 +8,22 @@ import { ClienteService } from 'src/app/services/cliente.service';
   templateUrl: './list-clientes.component.html',
   styleUrls: ['./list-clientes.component.css']
 })
-export class ListClientesComponent implements OnInit { 
-
-  listCliente: Cliente[] = []; 
+export class ListClientesComponent implements OnInit {
+  listCliente: Cliente[] = [];
   loading: boolean = false;
+
+  filtroId: string = '';
+  filtroNombre: string = '';
+  filtroDireccion: string = '';
+
+  get clientesFiltrados(): Cliente[] {
+    return this.listCliente.filter(cliente => {
+      const coincideId = this.filtroId ? cliente.idCliente?.toString().includes(this.filtroId) : true;
+      const coincideNombre = this.filtroNombre ? cliente.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase()) : true;
+      const coincideDireccion = this.filtroDireccion ? cliente.direccion.toLowerCase().includes(this.filtroDireccion.toLowerCase()) : true;
+      return coincideId && coincideNombre && coincideDireccion;
+    });
+  }
 
   constructor(private _ClienteService: ClienteService, private toastr: ToastrService) {}
 
@@ -19,19 +31,18 @@ export class ListClientesComponent implements OnInit {
     this.getListCliente();
   }
 
-  
   getListCliente() {
     this.loading = true;
-    this._ClienteService.getListCliente().subscribe( (data) => { 
+    this._ClienteService.getListCliente().subscribe((data) => {
         console.log('Datos recibidos desde la API:', data);
-        this.listCliente = data.data || []; 
+        this.listCliente = data.data || [];
         console.log('Lista de clientes actualizada:', this.listCliente);
         this.loading = false;
       },
-      (error:any) => {
+      (error: any) => {
         console.error('Error al obtener los clientes', error);
-        this.toastr.error('Error al obtener los clientes', 'Error'); 
-        this.loading = false; 
+        this.toastr.error('Error al obtener los clientes', 'Error');
+        this.loading = false;
       }
     );
   }

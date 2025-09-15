@@ -67,4 +67,8 @@ export class LoginPComponent implements OnInit {
   public get f(): any {
     return this.myForm.controls;
   }
+
+  public goBack(): void {
+    this.router.navigate(['/menu']);
+  }
 }

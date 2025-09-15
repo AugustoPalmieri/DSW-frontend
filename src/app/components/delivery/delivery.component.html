@@ -1,0 +1,40 @@
+<div class="delivery">
+  <app-navbar></app-navbar>
+  <div class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
+        <div class="card-header text-center">Configurar Delivery</div>
+        <div class="card-body">
+          <div *ngIf="deliveryActual; else sinValor">
+            <div class="alert alert-info">
+              <strong>Valor:</strong> ${{ deliveryActual.valor }}<br>
+              <strong>Fecha:</strong> {{ deliveryActual.fecha | date:'dd/MM/yyyy HH:mm' }}
+            </div>
+          </div>
+          <ng-template #sinValor>
+            <div class="alert alert-warning">No hay valor cargado</div>
+          </ng-template>
+
+          <form [formGroup]="form" (ngSubmit)="actualizarDelivery()">
+            <input type="number" class="form-control mt-2" formControlName="valor" min="0" placeholder="Nuevo valor de delivery">
+            <span *ngIf="form.get('valor')?.hasError('required') && form.get('valor')?.touched" class="text-danger">
+              El valor es <strong>requerido</strong>
+            </span>
+            <span *ngIf="form.get('valor')?.hasError('min') && form.get('valor')?.touched" class="text-danger">
+              El valor debe ser mayor o igual a 0
+            </span>
+            
+            <div class="row mt-2 text-center">
+              <div class="col-lg-6">
+                <button type="button" class="btn btn-primary" (click)="goBack()">VOLVER</button>
+              </div>
+              <div class="col-lg-6">
+                <button type="submit" class="btn btn-info" [disabled]="form.invalid || loading">ACTUALIZAR</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

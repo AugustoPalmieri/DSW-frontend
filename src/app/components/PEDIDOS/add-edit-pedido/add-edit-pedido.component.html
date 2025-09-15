@@ -25,7 +25,16 @@
       <div class="register-redirect">
         <p>¿No tienes una cuenta? 
           <a [routerLink]="['/listclientes/add']" class="register-link">Regístrate aquí</a>.
-        </p>
+          <!-- Enlace para restablecer contraseña -->
+        <div class="forgot-password">
+          <a routerLink="/reset-password">¿Olvidaste tu contraseña?</a>
+        </div>
+        
+        <!-- Botón para volver al menú -->
+        <a routerLink="/menu">
+          <button class="back-button">Volver</button>
+        </a>
+      
       </div>
     </div>
 
@@ -56,7 +65,9 @@
     </div>
 
     <div class="total">
-      
+      <div *ngIf="modalidad === 'DELIVERY'" class="delivery-info">
+        <p>Delivery: {{ deliveryValor | currency }}</p>
+      </div>
       <h3>Total: {{ montoTotal | currency }}</h3>
     </div>
     <button (click)="submitOrder()" type="button" class="btn-pedido">

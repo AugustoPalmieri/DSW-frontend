@@ -162,11 +162,20 @@
   border-radius: 12px;
   border: 1px solid #ddd;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   max-width: 400px;
   margin: 0 auto;
+}
+
+.delivery-info {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.delivery-info p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
 }
 
 .back-button {
@@ -206,6 +215,10 @@
 
   .total {
     padding: 15px;
+  }
+
+  .delivery-info p {
+    font-size: 14px;
   }
 
   .btn-pedido, .back-button {

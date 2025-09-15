@@ -10,10 +10,38 @@
       </div>
     </div>
 
-    <table *ngIf="listPedido.length > 0" class="table table-hover">
+    <!-- Filtros -->
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <label for="filtroFecha" class="form-label">Filtrar por Fecha</label>
+        <input id="filtroFecha" type="date" class="form-control" [(ngModel)]="filtroFecha">
+      </div>
+      <div class="col-md-3">
+        <label for="filtroModalidad" class="form-label">Filtrar por Modalidad</label>
+        <select id="filtroModalidad" class="form-control" [(ngModel)]="filtroModalidad">
+          <option value="">Todas</option>
+          <option value="DELIVERY">Delivery</option>
+          <option value="TAKEAWAY">Take away</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="filtroEstado" class="form-label">Filtrar por Estado</label>
+        <select id="filtroEstado" class="form-control" [(ngModel)]="filtroEstado">
+          <option value="">Todos</option>
+          <option value="ENTREGADO">Entregado</option>
+          <option value="EN PROCESO">En Proceso</option>
+        </select>
+      </div>
+      <div class="col-md-3 d-flex align-items-end">
+        <button class="btn btn-secondary me-2" (click)="limpiarFiltros()">Limpiar Filtros</button>
+      </div>
+    </div>
+
+    <table *ngIf="pedidosFiltrados.length > 0" class="table table-hover">
       <thead>
         <tr>
           <th scope="col">ID Pedido</th>
+          <th scope="col">fecha</th>
           <th scope="col">ID Cliente</th>
           <th scope="col">Modalidad</th>
           <th scope="col">Monto Total</th>
@@ -23,8 +51,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of listPedido" class="table-dark">
+  <tr *ngFor="let item of pedidosFiltrados" class="table-dark">
           <td data-label="ID Pedido">{{ item.idPedido }}</td>
+          <td data-label="FECHA">{{ item.fechaPedido | date:'dd/MM/yyyy HH:mm' }}</td>
           <td data-label="ID Cliente">{{ item.idCliente }}</td>
           <td data-label="Modalidad">{{ item.modalidad }}</td>
           <td data-label="Monto Total">{{ item.montoTotal }}</td>

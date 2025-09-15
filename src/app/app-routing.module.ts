@@ -17,11 +17,16 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { AddEditPedidoComponent } from './components/PEDIDOS/add-edit-pedido/add-edit-pedido.component';
 import { ConfirmacionPedidoComponent } from './components/confirmacionpedido/confirmacionpedido.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
 
 const routes: Routes = [
+  { path: 'admin-delivery', component: DeliveryComponent },
   { path: 'menu', component: SelectUserComponent },
   {path:'cliente',component:ClientePrincipalComponent },
   {path:'admin-login',component:LoginPComponent},
+  {path:'reset-password',component:ResetPasswordComponent},
   {path:'main-menu-admin',component:MainMenuAdminComponent},
   { path: 'contacto', component: ContactoComponent },
   { path: 'nosotros', component: NosotrosComponent},
@@ -42,7 +47,8 @@ const routes: Routes = [
    {path: 'listpedidos/add',component:AddEditPedidoComponent},
    { path: 'listpedidos/edit/:idPedido', component: AddEditPedidoComponent },
     {path:'confirmacionpedido',component: ConfirmacionPedidoComponent},
-
+  //delivery
+  // { path: 'admin-delivery', component: DeliveryComponent },
   // Ruta comodín
   { path: '**', redirectTo: 'menu', pathMatch: 'full' },
 

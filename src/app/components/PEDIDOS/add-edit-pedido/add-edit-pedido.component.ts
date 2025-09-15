@@ -7,6 +7,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from 'src/app/interfaces/cliente';
 import { Pedido } from 'src/app/interfaces/pedido';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DeliveryService } from 'src/app/services/delivery.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 
@@ -39,31 +40,40 @@ export class AddEditPedidoComponent implements OnInit {
   buscado: boolean = false;
   isEditing: boolean = false;
 
+  deliveryValor: number = 0;
+
   constructor(
     private hamburguesaService: HamburguesaService,
     private precioService: PrecioService,
     private pedidoService: PedidoService,
     private clienteService: ClienteService,
+    private deliveryService: DeliveryService,
     private router: Router,
     private toastr: ToastrService,
     private aRouter: ActivatedRoute,
     private location: Location
-
   ) {}
 
   ngOnInit() {
-    
     this.pedidoId = this.aRouter.snapshot.paramMap.get('idPedido');
-    
     this.isEditing = this.pedidoId !== null;
     console.log('Modo edición:', this.isEditing, 'ID del pedido:', this.pedidoId);
-
     this.loadHamburguesas();
-
-    
+    this.obtenerValorDelivery();
     if (this.isEditing && this.pedidoId) {
       this.loadPedido(parseInt(this.pedidoId, 10));
     }
+  }
+
+  obtenerValorDelivery() {
+    this.deliveryService.getDelivery().subscribe({
+      next: (data) => {
+        this.deliveryValor = data && data.valor ? data.valor : 0;
+      },
+      error: () => {
+        this.deliveryValor = 0;
+      }
+    });
   }
   showRegisterForm: boolean = false;
 
@@ -127,7 +137,11 @@ toggleRegisterForm(): void {
   }
 
   calculateMontoTotal() {
-    this.montoTotal = this.selectedHamburgers.reduce((total, h) => total + h.precio * h.cantidad, 0);
+    let total = this.selectedHamburgers.reduce((sum, h) => sum + h.precio * h.cantidad, 0);
+    if (this.modalidad === 'DELIVERY') {
+      total += this.deliveryValor;
+    }
+    this.montoTotal = total;
   }
   
   loginCliente() {

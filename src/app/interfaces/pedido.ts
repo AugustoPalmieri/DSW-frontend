@@ -1,5 +1,6 @@
 export interface Pedido {
-   idPedido?: number; //puede ser ?
+   fechaPedido?: Date; 
+   idPedido?: number; 
    idCliente: number;
    modalidad: string;
    montoTotal: number;

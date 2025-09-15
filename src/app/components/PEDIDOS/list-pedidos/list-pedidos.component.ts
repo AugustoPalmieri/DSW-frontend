@@ -13,9 +13,41 @@ import { tap, catchError, finalize } from 'rxjs/operators';
   styleUrls: ['./list-pedidos.component.css']
 })
 export class ListPedidosComponent implements OnInit {
-  listPedido: Pedido[] = []; 
+  listPedido: Pedido[] = [];
   loading: boolean = false;
-  
+
+  filtroFecha: string = '';
+  filtroModalidad: string = '';
+  filtroEstado: string = '';
+
+  get pedidosFiltrados(): Pedido[] {
+    return this.listPedido.filter(pedido => {
+      let coincideFecha = true;
+      let coincideModalidad = true;
+      let coincideEstado = true;
+      if (this.filtroFecha) {
+        if (pedido.fechaPedido) {
+          const fechaPedido = new Date(pedido.fechaPedido);
+          const fechaFormateada = fechaPedido.toISOString().slice(0, 10);
+          coincideFecha = fechaFormateada === this.filtroFecha;
+        } else {
+          coincideFecha = false;
+        }
+      }
+      if (this.filtroModalidad) {
+        coincideModalidad = pedido.modalidad === this.filtroModalidad;
+      }
+      if (this.filtroEstado) {
+        coincideEstado = pedido.estado === this.filtroEstado;
+      }
+      return coincideFecha && coincideModalidad && coincideEstado;
+    });
+  }
+
+  limpiarFiltros() {
+    this.filtroFecha = '';
+    this.filtroModalidad = '';
+  }
 
   constructor(private _PedidoService: PedidoService, private toastr: ToastrService, private router: Router) {}
 
@@ -28,7 +60,7 @@ export class ListPedidosComponent implements OnInit {
     this._PedidoService.getListPedido().subscribe(
       (data) => {
         this.listPedido = data.data || [];
-        this.listPedido.sort((a, b) => b.idPedido! - a.idPedido!); 
+        this.listPedido.sort((a, b) => b.idPedido! - a.idPedido!);
         this.loading = false;
       },
       (error: any) => {
