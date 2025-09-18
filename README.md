@@ -1,8 +1,9 @@
 
 # 🍔 Sistema de Gestión Integral de Hamburguesería
-**Universidad Tecnologica Nacional**
-**Desarrollo de Software**
+## **Universidad Tecnologica Nacional**
+## **Desarrollo de Software**
 
+## Participantes
  Nombre | Legajo |
 |--------|--------|
 | Diaz, Iñaki Enrique | 48944 |
@@ -26,6 +27,12 @@
 - Node.js (v14 o superior)
 - npm (incluido con Node.js)
 - Angular CLI
+ ### Instalación
+# Instalar Angular CLI globalmente
+npm install -g @angular/cli
+
+# Instalar dependencias del proyecto
+npm install
 
  #### Comandos de ejecución
  - ng serve "Servidor de desarrollo" (http://localhost:4200/)
