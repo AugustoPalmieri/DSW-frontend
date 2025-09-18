@@ -1,22 +1,45 @@
-Proyecto de DSW: Gestión de integral de hamburgueseria
-Universidad Tecnologica Nacional 
-Alumnos: Diaz, Iñaki Enrique legajo: 48944 
-         Palmieri, Augusto   legajo: 51705
 
-<img src="./src\assets\images\admin.png" alt="imagen presentacion" width="600"/>
-# FrontEnd
-Stack tecnico: Angular 13, TypeScript,HTML5&CSS3,Bootstrap,Angular Reactive Formsm RxJS, Toastr, Font Awesome
+# 🍔 Sistema de Gestión Integral de Hamburguesería
+**Universidad Tecnologica Nacional**
+**Desarrollo de Software**
 
-Instalación: Node.js, npm,Angular CLI
+ Nombre | Legajo |
+|--------|--------|
+| Diaz, Iñaki Enrique | 48944 |
+| Palmieri, Augusto | 51705 |
 
-                 npm install
+## <img src="./src\assets\images\admin.png" alt="imagen presentacion" width="600"/>
+----
+## Especificaciones 
+### FrontEnd
+- **Angular 13** - Framework principal
+- **TypeScript** - Lenguaje de programación
+- **HTML5 & CSS3** - Estructura y estilos
+- **Bootstrap** - Framework CSS responsive
+- **Angular Reactive Forms** - Manejo de formularios
+- **RxJS** - Programación reactiva
+- **Toastr** - Sistema de notificaciones
+- **Font Awesome** - Iconografía
+---
+## Instalación y configuración
+### Prerrequisitos
+- Node.js (v14 o superior)
+- npm (incluido con Node.js)
+- Angular CLI
 
-    comandos de ejecución: desarrollo:ng serve (navega a `http://localhost:4200/`)
-                           build: ng build
-                           test: ng test
+ #### Comandos de ejecución
+ - ng serve "Servidor de desarrollo" (http://localhost:4200/)
+ - ng build  "Compilar para producción"
+ - ng test   "ejecutar pruebas"      
 
- URL del backend: (http://localhost:3000/)                           
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.11.
+ ### EndPoint del Backend
+  -URL Base: http://localhost:3000/
 
+#### Principales rutas:
+/api/clientes/ - Gestión de clientes
 
+/api/hamburguesas/ - Gestión de hamburguesas
 
+/api/ingredientes/ - Gestión de ingredientes
+
+/api/pedidos/ - Gestión de pedidos
