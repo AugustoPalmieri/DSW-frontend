@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AutenticacionService {
   private apiUrl = 'http://localhost:3000/api/admin'; 
+  private isAuthenticated = false;
 
   constructor(private http: HttpClient) {}
 
@@ -16,5 +17,17 @@ export class AutenticacionService {
 
   verificarCodigo(data: { email: string; codigo: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/verificar-codigo`, data);
+  }
+
+  setAuthenticated(status: boolean): void {
+    this.isAuthenticated = status;
+  }
+
+  getAuthenticated(): boolean {
+    return this.isAuthenticated;
+  }
+
+  logout(): void {
+    this.isAuthenticated = false;
   }
 }

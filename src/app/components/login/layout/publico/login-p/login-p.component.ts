@@ -48,6 +48,7 @@ export class LoginPComponent implements OnInit {
     this.authService.verificarCodigo({ email: 'hamburgueseriautn@gmail.com', codigo }).subscribe(
       (response) => {
         if (response.success) {
+          this.authService.setAuthenticated(true);
           alert('Acceso concedido');
           this.router.navigate(['/main-menu-admin']); 
         } else {
