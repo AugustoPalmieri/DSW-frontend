@@ -20,7 +20,7 @@
       <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
       <div class="register-redirect">
         <p>¿No tienes una cuenta?
-          <a [routerLink]="['/listclientes/add']" class="register-link">Regístrate aquí</a>.
+          <a [routerLink]="['/registro-cliente']" class="register-link">Regístrate aquí</a>.
         </p>
         <div class="forgot-password">
           <a routerLink="/reset-password">¿Olvidaste tu contraseña?</a>
@@ -46,7 +46,7 @@
         >
         <button *ngIf="clienteSeleccionado" class="btn-limpiar" (click)="limpiarSeleccion()">✕</button>
 
-        <!-- Dropdown de resultados -->
+        
         <div class="dropdown-clientes" *ngIf="mostrarDropdown && clientesFiltrados.length > 0">
           <div
             class="dropdown-item"
@@ -59,22 +59,53 @@
           </div>
         </div>
 
-        <div class="dropdown-clientes" *ngIf="mostrarDropdown && clientesFiltrados.length === 0">
+        <div class="dropdown-clientes" *ngIf="mostrarDropdown && clientesFiltrados.length === 0 && busquedaCliente">
           <div class="dropdown-item sin-resultados">Sin resultados</div>
         </div>
       </div>
 
+      
       <div *ngIf="clienteSeleccionado" class="feedback-success">
         <p>✔ Cliente seleccionado: <strong>{{ clienteSeleccionado.nombre }} {{ clienteSeleccionado.apellido }}</strong></p>
       </div>
+
+      
+      <button type="button" class="btn-registro-rapido" (click)="toggleFormRapido()">
+        {{ mostrarFormRapido ? '✕ Cancelar' : '+ Registrar nuevo cliente' }}
+      </button>
+
+      
+      <div *ngIf="mostrarFormRapido" class="form-rapido">
+        <h3>Registro rápido</h3>
+        <input
+          type="text"
+          [(ngModel)]="nombreRapido"
+          placeholder="Nombre *"
+          class="input-field"
+        >
+        <input
+          type="text"
+          [(ngModel)]="apellidoRapido"
+          placeholder="Apellido *"
+          class="input-field"
+        >
+        <input
+          type="text"
+          [(ngModel)]="telefonoRapido"
+          placeholder="Teléfono *"
+          class="input-field"
+        >
+        <small class="hint">* El cliente podrá completar email y contraseña luego desde su perfil.</small>
+        <button type="button" class="btn-pedido" (click)="registrarClienteRapido()">
+          Registrar y seleccionar
+        </button>
+      </div>
     </div>
 
-    <!-- Feedback cliente normal -->
     <div *ngIf="!isAdmin && clienteEncontrado" class="feedback-success">
       <p>Cliente autenticado exitosamente.</p>
     </div>
 
-    <!-- ── MODALIDAD ── -->
     <div class="modalidad-selection">
       <label for="modalidad">Selecciona una modalidad:</label>
       <select [(ngModel)]="modalidad" id="modalidad" (ngModelChange)="calculateMontoTotal()" required>
@@ -83,7 +114,6 @@
       </select>
     </div>
 
-    <!-- ── LISTA DE HAMBURGUESAS ── -->
     <div class="hamburguesa-list">
       <div *ngFor="let h of hamburguesas">
         <h4>{{ h.nombre }}</h4>
@@ -95,7 +125,7 @@
       </div>
     </div>
 
-    <!-- ── TOTAL ── -->
+    
     <div class="total">
       <div *ngIf="modalidad === 'DELIVERY'" class="delivery-info">
         <p>Delivery: {{ deliveryValor | currency }}</p>

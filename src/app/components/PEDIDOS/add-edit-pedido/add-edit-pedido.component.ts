@@ -50,6 +50,12 @@ export class AddEditPedidoComponent implements OnInit {
   clienteSeleccionado: Cliente | null = null;
   mostrarDropdown: boolean = false;
 
+  // Registro rápido
+  mostrarFormRapido: boolean = false;
+  nombreRapido: string = '';
+  apellidoRapido: string = '';
+  telefonoRapido: string = '';
+
   constructor(
     private hamburguesaService: HamburguesaService,
     private precioService: PrecioService,
@@ -69,10 +75,9 @@ export class AddEditPedidoComponent implements OnInit {
     this.loadHamburguesas();
     this.obtenerValorDelivery();
 
-    // Detectar si es admin
     if (this.authService.getAuthenticated()) {
       this.isAdmin = true;
-      this.clienteEncontrado = false; // El admin debe seleccionar un cliente
+      this.clienteEncontrado = false;
       this.cargarClientes();
     }
 
@@ -81,7 +86,7 @@ export class AddEditPedidoComponent implements OnInit {
     }
   }
 
-  // ── ADMIN: cargar y filtrar clientes ──────────────────────────────────────
+  // ── ADMIN: cargar y filtrar clientes ─────────────────────────────────────
 
   cargarClientes() {
     this.clienteService.getListCliente().subscribe({
@@ -99,7 +104,7 @@ export class AddEditPedidoComponent implements OnInit {
       this.clientesFiltrados = this.clientes;
     } else {
       this.clientesFiltrados = this.clientes.filter(c =>
-        c.email.toLowerCase().includes(termino) ||
+        (c.email ?? '').toLowerCase().includes(termino) ||
         c.idCliente?.toString().includes(termino) ||
         c.nombre.toLowerCase().includes(termino) ||
         c.apellido.toLowerCase().includes(termino)
@@ -111,9 +116,10 @@ export class AddEditPedidoComponent implements OnInit {
   seleccionarCliente(cliente: Cliente) {
     this.clienteSeleccionado = cliente;
     this.idCliente = cliente.idCliente ?? null;
-    this.busquedaCliente = `#${cliente.idCliente} — ${cliente.nombre} ${cliente.apellido} (${cliente.email})`;
+    this.busquedaCliente = `#${cliente.idCliente} — ${cliente.nombre} ${cliente.apellido}${cliente.email ? ' (' + cliente.email + ')' : ''}`;
     this.clienteEncontrado = true;
     this.mostrarDropdown = false;
+    this.mostrarFormRapido = false;
   }
 
   limpiarSeleccion() {
@@ -122,6 +128,37 @@ export class AddEditPedidoComponent implements OnInit {
     this.busquedaCliente = '';
     this.clienteEncontrado = false;
     this.clientesFiltrados = this.clientes;
+  }
+
+  // ── ADMIN: registro rápido ────────────────────────────────────────────────
+
+  toggleFormRapido() {
+    this.mostrarFormRapido = !this.mostrarFormRapido;
+    this.nombreRapido = '';
+    this.apellidoRapido = '';
+    this.telefonoRapido = '';
+  }
+
+  registrarClienteRapido() {
+    if (!this.nombreRapido.trim() || !this.apellidoRapido.trim() || !this.telefonoRapido.trim()) {
+      this.toastr.error('Nombre, apellido y teléfono son obligatorios', 'Error');
+      return;
+    }
+
+    this.clienteService.registroRapido({
+      nombre: this.nombreRapido,
+      apellido: this.apellidoRapido,
+      telefono: this.telefonoRapido
+    }).subscribe({
+      next: (response) => {
+        const cliente = response.data;
+        this.toastr.success(`Cliente ${cliente.nombre} ${cliente.apellido} registrado`, 'Éxito');
+        this.seleccionarCliente(cliente);
+        this.mostrarFormRapido = false;
+        this.cargarClientes();
+      },
+      error: () => this.toastr.error('Error al registrar el cliente', 'Error')
+    });
   }
 
   // ── CLIENTE: login normal ─────────────────────────────────────────────────
@@ -268,7 +305,6 @@ export class AddEditPedidoComponent implements OnInit {
         if (response && response.data && response.data.idPedido) {
           localStorage.setItem('pedidoId', response.data.idPedido.toString());
           this.toastr.success('Pedido creado exitosamente', 'Éxito');
-          // Admin vuelve a listado, cliente va a confirmación
           this.isAdmin
             ? this.router.navigate(['/listpedidos'])
             : this.router.navigate(['/confirmacionpedido']);

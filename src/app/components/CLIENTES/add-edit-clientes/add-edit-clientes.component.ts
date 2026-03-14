@@ -19,7 +19,6 @@ export class AddEditClientesComponent implements OnInit {
   operacion: string = 'Agregar ';
   mostrarNavbarCliente: boolean = false;
 
-  
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
 
@@ -52,25 +51,30 @@ export class AddEditClientesComponent implements OnInit {
       this.getCliente(this.idCliente);
     }
 
+    // Determinar navbar según ruta actual y URL anterior
+    const rutaActual = this.router.url;
     const previousUrl = this.navigationService.getPreviousUrl();
-    if (previousUrl === '/listclientes') {
+
+    if (rutaActual === '/registro-cliente' || previousUrl === '/listpedidos/add') {
+      // Venimos de cliente entonces navbar cliente
+      this.mostrarNavbarCliente = true;
+    } else if (previousUrl === '/listclientes' || previousUrl?.startsWith('/listclientes/edit')) {
+      // Venimos de admin entonces navbar adming
       this.mostrarNavbarCliente = false;
     } else {
+      // Si no hay sesion de admin, mostrar navbar cliente
       this.mostrarNavbarCliente = true;
     }
   }
 
-  
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
   }
 
-  
   toggleConfirmPasswordVisibility(): void {
     this.hideConfirmPassword = !this.hideConfirmPassword;
   }
 
-  
   passwordMatchValidator(form: FormGroup): { mismatch: boolean } | null {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
@@ -86,13 +90,13 @@ export class AddEditClientesComponent implements OnInit {
           nombre: data.nombre,
           apellido: data.apellido,
           telefono: data.telefono,
-          email: data.email,
-          direccion: data.direccion,
+          email: data.email ?? '',
+          direccion: data.direccion ?? '',
           password: '',
           confirmPassword: ''
         });
       },
-      (error) => {
+      () => {
         this.loading = false;
         this.toastr.error('Error al cargar el Cliente', 'Error');
       }
@@ -120,7 +124,7 @@ export class AddEditClientesComponent implements OnInit {
           this.loading = false;
           this.router.navigate(['/listclientes']);
         },
-        (error) => {
+        () => {
           this.loading = false;
           this.toastr.error('Error al modificar el cliente', 'Error');
         }
@@ -131,8 +135,15 @@ export class AddEditClientesComponent implements OnInit {
         () => {
           this.toastr.success(`El cliente ${cliente.nombre} ${cliente.apellido} fue registrado con éxito`, 'Cliente Registrado');
           this.loading = false;
+          //Redirigimos para que no se nos modifique la navbar
+          const rutaActual = this.router.url;
+          if (rutaActual === '/registro-cliente') {
+            this.router.navigate(['/listpedidos/add']);
+          } else {
+            this.router.navigate(['/listclientes']);
+          }
         },
-        (error) => {
+        () => {
           this.loading = false;
           this.toastr.error('Error al registrar el cliente', 'Error');
         }

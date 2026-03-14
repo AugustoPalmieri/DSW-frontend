@@ -41,5 +41,8 @@ export class ClienteService {
     const body = { email, password };
     return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}login`, body);
   }
+  registroRapido(cliente: { nombre: string; apellido: string; telefono: string }): Observable<any> {
+    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}registro-rapido`, cliente);
+}
   
 }

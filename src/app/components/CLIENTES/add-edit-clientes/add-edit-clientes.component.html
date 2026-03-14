@@ -13,6 +13,7 @@
         <div class="card-header text-center">{{operacion}} Cliente</div>
         <div class="card-body">
           <form [formGroup]="form" (ngSubmit)="addCliente()">
+
             <input formControlName="nombre" type="text" class="form-control mt-2" placeholder="Ingrese nombre">
             <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
               El campo nombre es <strong>requerido</strong>
@@ -38,7 +39,6 @@
               El campo direccion es <strong>requerido</strong>
             </span>
 
-            
             <div class="password-container">
               <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" class="form-control mt-2" placeholder="Ingrese contraseña">
               <i class="fa" [ngClass]="{'fa-eye-slash': hidePassword, 'fa-eye': !hidePassword}" (click)="togglePasswordVisibility()"></i>
@@ -47,7 +47,6 @@
               El campo contraseña es <strong>requerido</strong>
             </span>
 
-            
             <div class="password-container">
               <input formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control mt-2" placeholder="Confirmar contraseña">
               <i class="fa" [ngClass]="{'fa-eye-slash': hideConfirmPassword, 'fa-eye': !hideConfirmPassword}" (click)="toggleConfirmPasswordVisibility()"></i>
@@ -55,19 +54,19 @@
             <span *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
               El campo confirmar contraseña es <strong>requerido</strong>
             </span>
-            <span *ngIf="form.get('confirmPassword')?.hasError('mismatch') && form.get('confirmPassword')?.touched">
+            <span *ngIf="form.hasError('mismatch') && form.get('confirmPassword')?.touched">
               Las contraseñas no coinciden
             </span>
 
-           
             <div class="row mt-2 text-center">
               <div class="col-lg-6">
                 <button type="button" class="btn btn-primary" (click)="goBack()">VOLVER</button>
               </div>
               <div class="col-lg-6">
-                <button [disabled]="form.invalid" type="submit" class="btn btn-info" (click)="goBack()">ACEPTAR</button>
+                <button [disabled]="form.invalid" type="submit" class="btn btn-info">ACEPTAR</button>
               </div>
             </div>
+
           </form>
         </div>
       </div>

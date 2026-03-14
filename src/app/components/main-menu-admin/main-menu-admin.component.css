@@ -1,169 +1,212 @@
-
+/* ── Base ── */
 .scroll {
-    height: 100vh;
-    overflow-y: auto;
-    display: flex;
-    background-image: url('src/assets/images/fondoazul.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    flex-direction: column;
-  }
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #001F3F;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #00BFFF;
-    border-radius: 4px;
-  }
-  .container {
-    width: 100%;
-    margin: 2em auto;
-    padding: 2em;
-
-    border-radius: 1em;
-    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(10px);
-    max-height: 700px;
-    
-  }
-
-.welcome-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 20px; 
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-image: url('src/assets/images/fondoazul.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Poppins', 'Arial', sans-serif;
 }
 
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #001F3F; }
+::-webkit-scrollbar-thumb { background: #00BFFF; border-radius: 4px; }
 
-.welcome-message {
-    text-align: center;
-    margin-bottom: 30px;
-    width: 100%; 
+/* ── Hero ── */
+.hero-section {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  gap: 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.welcome-message h1 {
-    color: #fff;
-    font-weight: 600; 
-    letter-spacing: -1px; 
-    line-height: 1.2; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
-    margin: 0; 
-    padding: 0 20px;
-    font-size: 10vw; 
+/* ── Lado izquierdo ── */
+.hero-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.admin-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 400px;
+.badge-admin {
+  display: inline-block;
+  background: rgba(0, 191, 255, 0.25);
+  border: 1.5px solid #00BFFF;
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: fit-content;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 12px rgba(0, 191, 255, 0.3);
 }
 
-.admin-button {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.2rem; 
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    background-color: #2b4868;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-    width: 100%;
-    font-family: 'Poppins', sans-serif; 
-    font-weight: 500; 
-    letter-spacing: 0.5px; 
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin: 0;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
-.admin-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+.hero-title .highlight {
+  color: #00BFFF;
 }
 
-.image-container {
-    text-align: center;
-    margin-top: 30px;
+.hero-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ── Tarjetas de acceso rápido ── */
+.quick-access {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.quick-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  min-width: 60px;
+  max-width: 70px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.quick-card:hover {
+  background: rgba(0, 191, 255, 0.2);
+  border-color: #00BFFF;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 191, 255, 0.2);
+  color: #ffffff;
+}
+
+.quick-icon {
+  font-size: 1.6rem;
+}
+
+/* ── Lado derecho ── */
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .admin-image {
-    width: 100%;
+  width: 100%;
+  max-width: 380px;
+  max-height: calc(100vh - 140px);
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero-section {
+    padding: 20px 40px;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .admin-image {
     max-width: 300px;
-    height: auto;
+  }
 }
 
-
-@media (min-width: 768px) {
-    .welcome-container {
-        flex-direction: row; 
-        justify-content: space-between;
-        align-items: flex-start; 
-        padding: 0 50px;
-        margin-top: 20px; 
-    }
-
-    .welcome-message {
-        text-align: left; 
-        margin-bottom: 0;
-        flex: 1;
-    }
-
-    .welcome-message h1 {
-        font-size: 5.5rem;
-    }
-
-    .image-container {
-        flex: 1;
-        text-align: right; 
-        margin-top: 0;
-    }
-
-    .admin-image {
-        max-width: 500px; 
-        width: 100%; 
-    }
-
-    .admin-links {
-        display: none;
-    }
+@media (max-width: 768px) {
+  .scroll {
+    overflow-y: auto;
+  }
+  .hero-section {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .badge-admin {
+    margin: 0 auto;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .quick-access {
+    justify-content: center;
+  }
+  .hero-right {
+    display: none;
+  }
 }
 
-
-@media (max-width: 767px) {
-    .welcome-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .welcome-message {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .welcome-message h1 {
-        font-size: 10vw; 
-    }
-
-    .image-container {
-        display: none;
-    }
-
-    .admin-links {
-        display: flex; 
-        flex-direction: column;
-        gap: 15px;
-        width: 100%;
-        max-width: 400px;
-        margin-top: 20px;
-    }
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .quick-card {
+    min-width: 55px;
+    max-width: 65px;
+    padding: 8px 10px;
+  }
+  .quick-icon {
+    font-size: 1.4rem;
+  }
 }

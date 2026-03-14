@@ -43,6 +43,7 @@ const routes: Routes = [
    { path: 'listclientes', component: ListClientesComponent, canActivate: [AuthGuard] },
    { path: 'listclientes/add', component: AddEditClientesComponent, canActivate: [AuthGuard] },
    { path: 'listclientes/edit/:idCliente', component: AddEditClientesComponent, canActivate: [AuthGuard] },
+   { path: 'registro-cliente', component: AddEditClientesComponent },
    //Pedidos
    {path: 'listpedidos',component:ListPedidosComponent, canActivate: [AuthGuard]},
    {path: 'listpedidos/add',component:AddEditPedidoComponent},

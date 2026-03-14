@@ -1,22 +1,43 @@
 <div class="scroll">
   <app-navbar></app-navbar>
-  <div class="content">
-    <div class="welcome-container">
-      <div class="welcome-message">
-        <h1>Bienvenido Administrador!</h1>
+
+  <div class="hero-section">
+    <!-- Lado izquierdo: bienvenida -->
+    <div class="hero-left">
+      <div class="badge-admin">Panel de Administración</div>
+      <h1 class="hero-title">
+        Bienvenido,<br>
+        <span class="highlight">Administrador</span>
+      </h1>
+      <p class="hero-subtitle">Gestioná tu hamburguesería desde un solo lugar.</p>
+
+      <!-- Tarjetas de acceso rápido -->
+      <div class="quick-access">
+        <a routerLink="/listhamburguesas" class="quick-card" title="Hamburguesas">
+          <span class="quick-icon">🍔</span>
+        </a>
+        <a routerLink="/listingredients" class="quick-card" title="Ingredientes">
+          <span class="quick-icon">🥬</span>
+        </a>
+        <a routerLink="/listclientes" class="quick-card" title="Clientes">
+          <span class="quick-icon">👥</span>
+        </a>
+        <a routerLink="/listpedidos" class="quick-card" title="Pedidos">
+          <span class="quick-icon">📋</span>
+        </a>
+        <a routerLink="/admin-delivery" class="quick-card" title="Delivery">
+          <span class="quick-icon">🛵</span>
+        </a>
       </div>
-      <div class="image-container">
+    </div>
+
+    <!-- Lado derecho: imagen -->
+    <div class="hero-right">
+      <div class="image-wrapper">
         <img src="assets/images/admin-libr.png" alt="Administrador" class="admin-image">
       </div>
     </div>
-    <div class="admin-links">
-      <a routerLink="/listhamburguesas" class="admin-button">Lista de Hamburguesas</a>
-      <a routerLink="/listingredients" class="admin-button">Lista de Ingredientes</a>
-      <a routerLink="/listclientes" class="admin-button">Lista de Clientes</a>
-      <a routerLink="/listpedidos" class="admin-button">Lista de Pedidos</a>
-    </div>
   </div>
-  <div class="router-outlet">
-    <router-outlet></router-outlet>
-  </div>
+
+  <router-outlet></router-outlet>
 </div>
