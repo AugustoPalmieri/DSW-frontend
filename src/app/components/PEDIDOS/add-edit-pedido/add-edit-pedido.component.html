@@ -1,58 +1,89 @@
 <div class="pedido">
   <app-navbar-cliente></app-navbar-cliente>
   <div class="main-content">
-    <div class="login-form">
+
+    <!-- ── LOGIN CLIENTE (solo si NO es admin) ── -->
+    <div class="login-form" *ngIf="!isAdmin">
       <h2>Iniciar Sesión</h2>
-      <input 
-        type="email" 
-        id="emailCliente" 
-        [(ngModel)]="emailCliente" 
-        placeholder="Ingrese su email" 
-        required
-        class="input-field" 
-        [class.invalid]="!emailCliente.trim()"
-      >
-      <input 
-        type="password" 
-        id="passwordCliente" 
-        [(ngModel)]="passwordCliente" 
-        placeholder="Ingrese su contraseña" 
-        required
+      <input
+        type="email"
+        [(ngModel)]="emailCliente"
+        placeholder="Ingrese su email"
         class="input-field"
-        [class.invalid]="!passwordCliente.trim()"
+      >
+      <input
+        type="password"
+        [(ngModel)]="passwordCliente"
+        placeholder="Ingrese su contraseña"
+        class="input-field"
       >
       <button class="btn-pedido" (click)="loginCliente()">Iniciar Sesión</button>
       <div class="register-redirect">
-        <p>¿No tienes una cuenta? 
+        <p>¿No tienes una cuenta?
           <a [routerLink]="['/listclientes/add']" class="register-link">Regístrate aquí</a>.
-          <!-- Enlace para restablecer contraseña -->
+        </p>
         <div class="forgot-password">
           <a routerLink="/reset-password">¿Olvidaste tu contraseña?</a>
         </div>
-        
-        <!-- Botón para volver al menú -->
         <a routerLink="/menu">
           <button class="back-button">Volver</button>
         </a>
-      
       </div>
     </div>
 
-    <div *ngIf="clienteEncontrado" class="feedback-success">
-      <p>Cliente autenticado exitosamente.</p>
-    </div>
-    <div *ngIf="!clienteEncontrado && emailCliente && passwordCliente" class="feedback-error">
-      <p>Credenciales inválidas. Por favor, inténtelo nuevamente.</p>
+    <!-- ── BUSCADOR DE CLIENTES (solo si es admin) ── -->
+    <div class="login-form" *ngIf="isAdmin">
+      <h2>Buscar Cliente</h2>
+      <div class="buscador-wrapper">
+        <input
+          type="text"
+          [(ngModel)]="busquedaCliente"
+          (ngModelChange)="filtrarClientes()"
+          (focus)="mostrarDropdown = true"
+          placeholder="Buscar por ID, nombre o email..."
+          class="input-field"
+          autocomplete="off"
+        >
+        <button *ngIf="clienteSeleccionado" class="btn-limpiar" (click)="limpiarSeleccion()">✕</button>
+
+        <!-- Dropdown de resultados -->
+        <div class="dropdown-clientes" *ngIf="mostrarDropdown && clientesFiltrados.length > 0">
+          <div
+            class="dropdown-item"
+            *ngFor="let c of clientesFiltrados"
+            (click)="seleccionarCliente(c)"
+          >
+            <span class="cliente-id">#{{ c.idCliente }}</span>
+            <span class="cliente-nombre">{{ c.nombre }} {{ c.apellido }}</span>
+            <span class="cliente-email">{{ c.email }}</span>
+          </div>
+        </div>
+
+        <div class="dropdown-clientes" *ngIf="mostrarDropdown && clientesFiltrados.length === 0">
+          <div class="dropdown-item sin-resultados">Sin resultados</div>
+        </div>
+      </div>
+
+      <div *ngIf="clienteSeleccionado" class="feedback-success">
+        <p>✔ Cliente seleccionado: <strong>{{ clienteSeleccionado.nombre }} {{ clienteSeleccionado.apellido }}</strong></p>
+      </div>
     </div>
 
+    <!-- Feedback cliente normal -->
+    <div *ngIf="!isAdmin && clienteEncontrado" class="feedback-success">
+      <p>Cliente autenticado exitosamente.</p>
+    </div>
+
+    <!-- ── MODALIDAD ── -->
     <div class="modalidad-selection">
       <label for="modalidad">Selecciona una modalidad:</label>
-      <select [(ngModel)]="modalidad" id="modalidad" required>
+      <select [(ngModel)]="modalidad" id="modalidad" (ngModelChange)="calculateMontoTotal()" required>
         <option value="TAKEAWAY">TAKEAWAY</option>
         <option value="DELIVERY">DELIVERY</option>
       </select>
     </div>
 
+    <!-- ── LISTA DE HAMBURGUESAS ── -->
     <div class="hamburguesa-list">
       <div *ngFor="let h of hamburguesas">
         <h4>{{ h.nombre }}</h4>
@@ -64,15 +95,18 @@
       </div>
     </div>
 
+    <!-- ── TOTAL ── -->
     <div class="total">
       <div *ngIf="modalidad === 'DELIVERY'" class="delivery-info">
         <p>Delivery: {{ deliveryValor | currency }}</p>
       </div>
       <h3>Total: {{ montoTotal | currency }}</h3>
     </div>
+
     <button (click)="submitOrder()" type="button" class="btn-pedido">
       {{ isEditing ? 'EDITAR PEDIDO' : 'CREAR PEDIDO' }}
     </button>
     <button type="button" class="back-button" (click)="goBack()">VOLVER</button>
+
   </div>
 </div>
