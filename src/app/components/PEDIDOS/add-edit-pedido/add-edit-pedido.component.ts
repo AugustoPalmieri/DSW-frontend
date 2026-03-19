@@ -300,21 +300,32 @@ export class AddEditPedidoComponent implements OnInit {
   }
 
   private crearPedido(pedido: Pedido) {
-    this.pedidoService.createPedido(pedido).subscribe({
-      next: (response: any) => {
-        if (response && response.data && response.data.idPedido) {
-          localStorage.setItem('pedidoId', response.data.idPedido.toString());
-          this.toastr.success('Pedido creado exitosamente', 'Éxito');
-          this.isAdmin
-            ? this.router.navigate(['/listpedidos'])
-            : this.router.navigate(['/confirmacionpedido']);
-        } else {
-          this.toastr.error('No se pudo obtener el ID del pedido', 'Error');
-        }
-      },
-      error: () => this.toastr.error('Hubo un problema al crear el pedido', 'Error')
-    });
-  }
+  this.pedidoService.createPedido(pedido).subscribe({
+    next: (response: any) => {
+      if (response && response.data && response.data.idPedido) {
+        localStorage.setItem('pedidoId', response.data.idPedido.toString());
+        this.toastr.success('Pedido creado exitosamente', 'Éxito');
+        this.isAdmin
+          ? this.router.navigate(['/listpedidos'])
+          : this.router.navigate(['/confirmacionpedido']);
+      } else {
+        this.toastr.error('No se pudo obtener el ID del pedido', 'Error');
+      }
+    },
+    error: (err) => {
+      const mensajeBackend = err?.error?.message || '';
+      if (mensajeBackend.toLowerCase().includes('stock insuficiente')) {
+        this.toastr.error(
+          mensajeBackend,
+          'El pedido no se puede realizar',
+          { timeOut: 8000 }
+        );
+      } else {
+        this.toastr.error('Hubo un problema al crear el pedido', 'Error');
+      }
+    }
+  });
+}
 
   isOrderValid(): boolean {
     return this.selectedHamburgers.length > 0;

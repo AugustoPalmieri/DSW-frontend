@@ -2,11 +2,12 @@
   <app-navbar></app-navbar>
   <app-progress-bar *ngIf="loading"></app-progress-bar>
   <div *ngIf="!loading" class="row mt-1">
-    <div class="col-lg-4 offset-lg-4">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card text-white bg-secondary mb-3">
         <div class="card-header text-center">{{operacion}} Hamburguesa</div>
         <div class="card-body">
           <form [formGroup]="form" (ngSubmit)="addHamburguesa()">
+
             <input formControlName="nombre" type="text" class="form-control mt-2" placeholder="Ingrese nombre">
             <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
               El campo nombre es <strong>requerido</strong>
@@ -16,17 +17,12 @@
             <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">
               El campo descripcion es <strong>requerido</strong>
             </span>
-            
-            <input
-              formControlName="precio"
-              type="number"
-              class="form-control mt-2"
-              placeholder="Ingrese precio"
-              (input)="validatePrecio()"
-            >
-            <span *ngIf="precioError" class="error">{{ precioError }}</span>
-            <div class="form-group mt-2">
 
+            <input formControlName="precio" type="number" class="form-control mt-2"
+              placeholder="Ingrese precio" (input)="validatePrecio()">
+            <span *ngIf="precioError" class="error">{{ precioError }}</span>
+
+            <div class="form-group mt-2">
               <label for="imagen">Imagen de la Hamburguesa</label>
               <input formControlName="imagen" type="file" class="form-control" (change)="onFileSelected($event)">
               <span *ngIf="form.get('imagen')?.hasError('required') && form.get('imagen')?.touched">
@@ -36,7 +32,57 @@
                 <img [src]="imagenPreview" alt="Vista previa" class="img-fluid" style="max-width: 200px;">
               </div>
             </div>
-            <div class="row mt-2 text-center">
+
+            <!-- ── Sección ingredientes ── -->
+            <hr class="mt-3">
+            <h6 class="text-white mt-2">Composición de ingredientes</h6>
+
+            <!-- Selector para agregar -->
+            <div class="d-flex gap-2 mt-2 align-items-center">
+              <select class="form-control" [(ngModel)]="ingredienteAgregadoId" [ngModelOptions]="{standalone: true}">
+                <option [ngValue]="null" disabled>Seleccionar ingrediente...</option>
+                <option *ngFor="let i of getIngredientesNoSeleccionados()" [value]="i.codIngrediente">
+                  {{ i.descripcion }} (stock: {{ i.stock }})
+                </option>
+              </select>
+              <input type="number" class="form-control" style="max-width: 80px;"
+                [(ngModel)]="cantidadAgregar" [ngModelOptions]="{standalone: true}" min="1" placeholder="Cant.">
+              <button type="button" class="btn btn-success btn-sm" (click)="agregarIngrediente()">+</button>
+            </div>
+
+            <!-- Lista de ingredientes seleccionados -->
+            <div *ngIf="ingredientesSeleccionados.length > 0" class="mt-3">
+              <table class="table table-sm table-dark mt-2">
+                <thead>
+                  <tr>
+                    <th>Ingrediente</th>
+                    <th>Cantidad</th>
+                    <th>Stock</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ing of ingredientesSeleccionados">
+                    <td>{{ ing.descripcion }}</td>
+                    <td>
+                      <input type="number" class="form-control form-control-sm" style="max-width: 70px;"
+                        [(ngModel)]="ing.cantidad" [ngModelOptions]="{standalone: true}" min="1">
+                    </td>
+                    <td>{{ ing.stock }}</td>
+                    <td>
+                      <button type="button" class="btn btn-danger btn-sm"
+                        (click)="quitarIngrediente(ing.codIngrediente)">✕</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div *ngIf="ingredientesSeleccionados.length === 0" class="text-muted mt-2">
+              <small>No hay ingredientes asignados a esta hamburguesa.</small>
+            </div>
+
+            <div class="row mt-3 text-center">
               <div class="col-lg-6">
                 <button routerLink="/listhamburguesas" type="button" class="btn btn-primary">VOLVER</button>
               </div>
@@ -44,6 +90,7 @@
                 <button [disabled]="form.invalid" type="submit" class="btn btn-info">ACEPTAR</button>
               </div>
             </div>
+
           </form>
         </div>
       </div>

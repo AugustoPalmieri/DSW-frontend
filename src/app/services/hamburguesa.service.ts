@@ -7,7 +7,7 @@ import { Hamburguesa } from '../interfaces/hamburguesa';
 @Injectable({
   providedIn: 'root'
 })
-export class HamburguesaService {  
+export class HamburguesaService {
   private myAppUrl: string;
   private myApiUrl: string;
 
@@ -24,16 +24,15 @@ export class HamburguesaService {
     return this.http.delete<void>(this.myAppUrl + this.myApiUrl + idHamburguesa);
   }
 
-  saveHamburguesa(hamburguesa: Hamburguesa): Observable<void> {
-    
+  saveHamburguesa(hamburguesa: Hamburguesa, ingredientes: { codIngrediente: number, cantidad: number }[]): Observable<void> {
     const formData: FormData = new FormData();
     formData.append('nombre', hamburguesa.nombre);
     formData.append('descripcion', hamburguesa.descripcion);
     formData.append('precio', hamburguesa.precio?.toString() || '');
+    formData.append('ingredientes', JSON.stringify(ingredientes));
     if (hamburguesa.imagen) {
-      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name); 
+      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name);
     }
-
     return this.http.post<void>(this.myAppUrl + this.myApiUrl, formData);
   }
 
@@ -41,15 +40,19 @@ export class HamburguesaService {
     return this.http.get<Hamburguesa>(this.myAppUrl + this.myApiUrl + idHamburguesa);
   }
 
-  updateHamburguesa(idHamburguesa: number, hamburguesa: Hamburguesa): Observable<void> {
+  getIngredientesHamburguesa(idHamburguesa: number): Observable<{ data: any[] }> {
+    return this.http.get<{ data: any[] }>(`${this.myAppUrl}${this.myApiUrl}${idHamburguesa}/ingredientes`);
+  }
+
+  updateHamburguesa(idHamburguesa: number, hamburguesa: Hamburguesa, ingredientes: { codIngrediente: number, cantidad: number }[]): Observable<void> {
     const formData: FormData = new FormData();
     formData.append('nombre', hamburguesa.nombre);
     formData.append('descripcion', hamburguesa.descripcion);
     formData.append('precio', hamburguesa.precio?.toString() || '');
+    formData.append('ingredientes', JSON.stringify(ingredientes));
     if (hamburguesa.imagen) {
-      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name); // Solo adjunta la imagen si existe
+      formData.append('imagen', hamburguesa.imagen, hamburguesa.imagen.name);
     }
-  
     return this.http.put<void>(this.myAppUrl + this.myApiUrl + idHamburguesa, formData);
   }
 }
