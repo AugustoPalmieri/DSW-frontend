@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-p.component.css'],
 })
 export class LoginPComponent implements OnInit {
-  public myForm!: FormGroup; 
+  public myForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -18,39 +18,42 @@ export class LoginPComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+    if (this.authService.getAuthenticated()) {
+      this.router.navigate(['/main-menu-admin']);
+      return;
+    }
+
     this.myForm = this.fb.group({
-      codigo: ['', [Validators.required]], 
+      codigo: ['', [Validators.required]],
     });
   }
+
   public enviarCodigo(): void {
-    const email = 'hamburgueseriautn@gmail.com'; 
+    const email = 'hamburgueseriautn@gmail.com';
     this.authService.enviarCodigo(email).subscribe(
-      (response) => {
-        alert('El código ha sido enviado a tu correo.');
-      },
+      () => alert('El código ha sido enviado a tu correo.'),
       (error) => {
         console.error('Error al enviar el código:', error);
         alert('No se pudo enviar el código. Inténtalo más tarde.');
       }
     );
   }
-  
+
   public submitFormulario(): void {
     if (this.myForm.invalid) {
-      this.myForm.markAllAsTouched(); 
+      this.myForm.markAllAsTouched();
       return;
     }
 
     const codigo = this.myForm.value.codigo;
 
-    
     this.authService.verificarCodigo({ email: 'hamburgueseriautn@gmail.com', codigo }).subscribe(
       (response) => {
         if (response.success) {
           this.authService.setAuthenticated(true);
+          this.authService.setAdminToken(response.token);
           alert('Acceso concedido');
-          this.router.navigate(['/main-menu-admin']); 
+          this.router.navigate(['/main-menu-admin']);
         } else {
           alert('Código incorrecto');
         }
@@ -62,9 +65,6 @@ export class LoginPComponent implements OnInit {
     );
   }
 
-  
-
-  
   public get f(): any {
     return this.myForm.controls;
   }

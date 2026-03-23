@@ -175,6 +175,7 @@ export class AddEditPedidoComponent implements OnInit {
           this.token = response.token;
           this.idCliente = response.cliente.idCliente;
           this.clienteEncontrado = true;
+          localStorage.setItem('token', response.token);
           this.toastr.success('Cliente autenticado exitosamente', 'Éxito');
         } else {
           this.clienteEncontrado = false;

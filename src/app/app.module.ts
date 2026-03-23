@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 //Modules
@@ -78,7 +79,14 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [],
+  providers: [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }
+]
+,
   bootstrap: [AppComponent]
 })
 export class AppModule { }
