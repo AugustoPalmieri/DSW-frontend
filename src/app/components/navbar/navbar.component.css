@@ -1,85 +1,119 @@
-
 .navbar {
-    font-family: 'Roboto', sans-serif; 
-    font-weight: 500; 
-    padding: 10px 20px; 
-    background-color: #2c3e50; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 .navbar-brand {
-    color: #ecf0f1; 
+    color: #ecf0f1;
     font-size: 1.4rem;
-    text-transform: uppercase; 
-    text-align: center; 
-    padding-left: 20px; 
-    transition: color 0.3s ease; 
+    text-transform: uppercase;
+    text-align: center;
+    padding-left: 20px;
+    transition: color 0.3s ease;
 }
-
 
 .navbar-brand img {
-    height: 80px; 
-    width: auto; 
+    height: 80px;
+    width: auto;
 }
-
 
 .navbar-brand:hover {
-    color: #3498db; 
-    text-decoration: none; 
+    color: #3498db;
+    text-decoration: none;
 }
-
 
 .navbar-toggler {
     border: none;
 }
 
-
 .navbar-toggler-icon {
-    background-color: #ecf0f1; 
+    background-color: #ecf0f1;
 }
-
 
 .navbar-nav {
     gap: 40px;
-    margin-left: auto; 
 }
-
 
 .nav-item {
     transition: transform 0.3s ease;
 }
 
-
 .nav-item a {
-    color: #ecf0f1; 
-    text-decoration: none; 
-    font-size: 1rem; 
-    padding: 5px 0; 
-    border-bottom: 2px solid transparent; 
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-
 .nav-item a:hover {
     color: #3498db;
-    border-bottom: 2px solid #3498db; 
+    border-bottom: 2px solid #3498db;
 }
 
-  
 .btn-menu {
     display: inline-block;
-    padding: 0; 
-    background-color: transparent; 
-    color: inherit; 
-    border-radius: 0; 
-    text-decoration: none; 
-    font-weight: 500; 
-    transition: color 0.3s ease, border-color 0.3s ease; 
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-menu:hover {
     background-color: transparent;
-    color: #3498db; 
-    text-decoration: none; 
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* ── Botón cerrar sesión ── */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #c0392b;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.logout-btn:hover {
+    background-color: #e74c3c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.logout-icon {
+    font-size: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+    .navbar-nav {
+        gap: 10px;
+    }
+
+    .logout-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
 }

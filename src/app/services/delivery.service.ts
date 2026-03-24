@@ -15,7 +15,6 @@ export class DeliveryService {
 
   getDelivery(): Observable<{ valor: number; fecha: string } | null> {
     return this.http.get<any>(`${this.myAppUrl}${this.myApiUrl}`).pipe(
-      // Adaptar la respuesta del backend al formato esperado por el frontend
       map(resp => {
         if (resp && resp.data) {
           return {

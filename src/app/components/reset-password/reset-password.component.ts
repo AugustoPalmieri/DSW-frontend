@@ -14,9 +14,10 @@ export class ResetPasswordComponent implements OnInit {
   codeForm: FormGroup;
   passwordForm: FormGroup;
   loading: boolean = false;
-  step: number = 1; // 1: email, 2: código, 3: nueva contraseña
+  step: number = 1;
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
+  mensajeCarga: string = 'Procesando...'; // ← mensaje dinámico
 
   constructor(
     private fb: FormBuilder,
@@ -56,7 +57,7 @@ export class ResetPasswordComponent implements OnInit {
 
   sendCode(): void {
     if (this.emailForm.invalid) return;
-    
+    this.mensajeCarga = 'Enviando código a tu email, aguardá un momento...';
     this.loading = true;
     this.resetService.sendResetCode(this.emailForm.value.email).subscribe(
       () => {
@@ -66,7 +67,7 @@ export class ResetPasswordComponent implements OnInit {
       },
       (error) => {
         this.loading = false;
-        const message = error.message || 'Error al enviar el código';
+        const message = error.error?.message || 'Error al enviar el código';
         this.toastr.error(message, 'Error');
       }
     );
@@ -74,7 +75,7 @@ export class ResetPasswordComponent implements OnInit {
 
   verifyCode(): void {
     if (this.codeForm.invalid) return;
-    
+    this.mensajeCarga = 'Verificando código...';
     this.loading = true;
     this.resetService.verifyCode(this.emailForm.value.email, this.codeForm.value.code).subscribe(
       () => {
@@ -84,7 +85,7 @@ export class ResetPasswordComponent implements OnInit {
       },
       (error) => {
         this.loading = false;
-        const message = error.message || 'Código incorrecto';
+        const message = error.error?.message || 'Código incorrecto';
         this.toastr.error(message, 'Error');
       }
     );
@@ -92,7 +93,7 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPassword(): void {
     if (this.passwordForm.invalid) return;
-    
+    this.mensajeCarga = 'Actualizando contraseña...';
     this.loading = true;
     this.resetService.resetPassword(
       this.emailForm.value.email,
@@ -102,11 +103,11 @@ export class ResetPasswordComponent implements OnInit {
       () => {
         this.loading = false;
         this.toastr.success('Contraseña actualizada correctamente', 'Éxito');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/listpedidos/add']);
       },
       (error) => {
         this.loading = false;
-        const message = error.message || 'Error al actualizar la contraseña';
+        const message = error.error?.message || 'Error al actualizar la contraseña';
         this.toastr.error(message, 'Error');
       }
     );
@@ -116,7 +117,7 @@ export class ResetPasswordComponent implements OnInit {
     if (this.step > 1) {
       this.step--;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/listpedidos/add']);
     }
   }
 }

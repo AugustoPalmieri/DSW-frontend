@@ -1,36 +1,42 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-  <link rel="stylesheet" href="login-p.component.css" />
-</head>
-<body>
-  <div class="background-container">
-    <div class="login-container">
-        <h2>Admin Login</h2>
-      
-        <button (click)="enviarCodigo()" class="send-code-button">Enviar Código</button>
-      
-        <form [formGroup]="myForm" (ngSubmit)="submitFormulario()">
-          <label for="codigo">Introduce el código:</label>
-          <input
-            formControlName="codigo"
-            type="text"
-            id="codigo"
-            placeholder="Código de acceso"
-            required
-          />
-          <div *ngIf="f.codigo.touched && f.codigo.invalid" class="error-message">
-            El código es requerido.
-          </div>
-          <button type="submit">Validar Código</button>
-        </form>
+<div class="background-container">
 
-        <button (click)="goBack()" class="back-button">Volver</button>
-    
-      </div>
+  <div *ngIf="loading" class="loading-container">
+    <app-progress-bar [mensaje]="mensajeCarga"></app-progress-bar>
+    <p class="loading-text">{{ mensajeCarga }}</p>
   </div>
-</body>
-</html>
+
+
+  <div *ngIf="!loading" class="login-container">
+    <h2>Admin Login</h2>
+
+    <div *ngIf="!codigoEnviado">
+      <p class="instruccion">Solicitá el código de acceso para continuar.</p>
+      <button (click)="enviarCodigo()" class="send-code-button">Enviar Código</button>
+    </div>
+
+    <div *ngIf="codigoEnviado">
+      <p class="instruccion">Ingresá el código enviado al correo del administrador.</p>
+      <form [formGroup]="myForm" (ngSubmit)="submitFormulario()">
+        <label for="codigo">Código de acceso:</label>
+        <input
+          formControlName="codigo"
+          type="text"
+          id="codigo"
+          placeholder="Ingresá el código"
+          maxlength="6"
+        />
+        <div *ngIf="f.codigo.touched && f.codigo.invalid" class="error-message">
+          El código es requerido.
+        </div>
+        <button type="submit" [disabled]="myForm.invalid">Validar Código</button>
+      </form>
+
+      <button type="button" class="resend-button" (click)="enviarCodigo()">
+        Reenviar código
+      </button>
+    </div>
+
+    <button (click)="goBack()" class="back-button">Volver</button>
+  </div>
+
+</div>

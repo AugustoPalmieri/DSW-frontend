@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-p',
@@ -10,11 +11,15 @@ import { Router } from '@angular/router';
 })
 export class LoginPComponent implements OnInit {
   public myForm!: FormGroup;
+  public loading: boolean = false;
+  public mensajeCarga: string = 'Procesando...';
+  public codigoEnviado: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AutenticacionService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -29,12 +34,19 @@ export class LoginPComponent implements OnInit {
   }
 
   public enviarCodigo(): void {
+    this.mensajeCarga = 'Enviando código al correo del administrador...';
+    this.loading = true;
     const email = 'hamburgueseriautn@gmail.com';
     this.authService.enviarCodigo(email).subscribe(
-      () => alert('El código ha sido enviado a tu correo.'),
+      () => {
+        this.loading = false;
+        this.codigoEnviado = true;
+        this.toastr.success('Código enviado al correo del administrador', 'Éxito');
+      },
       (error) => {
+        this.loading = false;
         console.error('Error al enviar el código:', error);
-        alert('No se pudo enviar el código. Inténtalo más tarde.');
+        this.toastr.error('No se pudo enviar el código. Inténtalo más tarde.', 'Error');
       }
     );
   }
@@ -45,6 +57,8 @@ export class LoginPComponent implements OnInit {
       return;
     }
 
+    this.mensajeCarga = 'Verificando código...';
+    this.loading = true;
     const codigo = this.myForm.value.codigo;
 
     this.authService.verificarCodigo({ email: 'hamburgueseriautn@gmail.com', codigo }).subscribe(
@@ -52,15 +66,18 @@ export class LoginPComponent implements OnInit {
         if (response.success) {
           this.authService.setAuthenticated(true);
           this.authService.setAdminToken(response.token);
-          alert('Acceso concedido');
+          this.loading = false;
+          this.toastr.success('Acceso concedido', 'Bienvenido');
           this.router.navigate(['/main-menu-admin']);
         } else {
-          alert('Código incorrecto');
+          this.loading = false;
+          this.toastr.error('Código incorrecto', 'Error');
         }
       },
       (error) => {
+        this.loading = false;
         console.error('Error al verificar el código:', error);
-        alert('Ocurrió un error. Intenta de nuevo más tarde.');
+        this.toastr.error('Ocurrió un error. Intenta de nuevo más tarde.', 'Error');
       }
     );
   }

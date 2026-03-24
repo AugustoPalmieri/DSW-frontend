@@ -1,5 +1,10 @@
 <div class="pedido">
+  <ng-container *ngIf="isAdmin; else navbarCliente">
+  <app-navbar></app-navbar>
+</ng-container>
+<ng-template #navbarCliente>
   <app-navbar-cliente></app-navbar-cliente>
+</ng-template>
   <div class="main-content">
 
     <!-- ── LOGIN CLIENTE (solo si NO es admin) ── -->
