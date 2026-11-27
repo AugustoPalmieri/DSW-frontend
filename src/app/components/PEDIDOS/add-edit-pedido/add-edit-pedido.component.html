@@ -122,7 +122,7 @@
     <div class="hamburguesa-list">
       <div *ngFor="let h of hamburguesas">
         <h4>{{ h.nombre }}</h4>
-        <img *ngIf="h.imagen" [src]="'http://localhost:3000/uploads/' + h.imagen" alt="{{ h.nombre }}" style="width: 100%; height: auto; border-radius: 8px;">
+        <img *ngIf="h.imagen" [src]="uploadsUrl + h.imagen" alt="{{ h.nombre }}" style="width: 100%; height: auto; border-radius: 8px;">
         <p>{{ h.descripcion }}</p>
         <p>Precio: {{ h.precio | currency }}</p>
         <label for="cantidad-{{ h.idHamburguesa }}">Cantidad:</label>

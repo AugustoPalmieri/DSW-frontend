@@ -11,6 +11,7 @@ import { DeliveryService } from 'src/app/services/delivery.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { environment } from 'src/environments/environment';
 
 interface HamburguesaPedido {
   idHamburguesa: number;
@@ -27,6 +28,7 @@ interface HamburguesaPedido {
   styleUrls: ['./add-edit-pedido.component.css']
 })
 export class AddEditPedidoComponent implements OnInit {
+  readonly uploadsUrl = `${environment.endpoint}uploads/`;
   hamburguesas: HamburguesaPedido[] = [];
   selectedHamburgers: HamburguesaPedido[] = [];
   montoTotal: number = 0;
@@ -67,7 +69,7 @@ export class AddEditPedidoComponent implements OnInit {
     private toastr: ToastrService,
     private aRouter: ActivatedRoute,
     private location: Location
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.pedidoId = this.aRouter.snapshot.paramMap.get('idPedido');
@@ -86,7 +88,7 @@ export class AddEditPedidoComponent implements OnInit {
     }
   }
 
-  // ── ADMIN: cargar y filtrar clientes ─────────────────────────────────────
+  // ADMIN: cargar y filtrar clientes 
 
   cargarClientes() {
     this.clienteService.getListCliente().subscribe({
@@ -130,7 +132,7 @@ export class AddEditPedidoComponent implements OnInit {
     this.clientesFiltrados = this.clientes;
   }
 
-  // ── ADMIN: registro rápido ────────────────────────────────────────────────
+  // ADMIN: registro rápido 
 
   toggleFormRapido() {
     this.mostrarFormRapido = !this.mostrarFormRapido;
@@ -161,7 +163,7 @@ export class AddEditPedidoComponent implements OnInit {
     });
   }
 
-  // ── CLIENTE: login normal ─────────────────────────────────────────────────
+  //  CLIENTE: login normal 
 
   loginCliente() {
     if (!this.emailCliente.trim() || !this.passwordCliente.trim()) {
@@ -193,7 +195,7 @@ export class AddEditPedidoComponent implements OnInit {
     this.showRegisterForm = !this.showRegisterForm;
   }
 
-  // ── Pedido ────────────────────────────────────────────────────────────────
+  // Pedido 
 
   obtenerValorDelivery() {
     this.deliveryService.getDelivery().subscribe({
@@ -301,32 +303,32 @@ export class AddEditPedidoComponent implements OnInit {
   }
 
   private crearPedido(pedido: Pedido) {
-  this.pedidoService.createPedido(pedido).subscribe({
-    next: (response: any) => {
-      if (response && response.data && response.data.idPedido) {
-        localStorage.setItem('pedidoId', response.data.idPedido.toString());
-        this.toastr.success('Pedido creado exitosamente', 'Éxito');
-        this.isAdmin
-          ? this.router.navigate(['/listpedidos'])
-          : this.router.navigate(['/confirmacionpedido']);
-      } else {
-        this.toastr.error('No se pudo obtener el ID del pedido', 'Error');
+    this.pedidoService.createPedido(pedido).subscribe({
+      next: (response: any) => {
+        if (response && response.data && response.data.idPedido) {
+          localStorage.setItem('pedidoId', response.data.idPedido.toString());
+          this.toastr.success('Pedido creado exitosamente', 'Éxito');
+          this.isAdmin
+            ? this.router.navigate(['/listpedidos'])
+            : this.router.navigate(['/confirmacionpedido']);
+        } else {
+          this.toastr.error('No se pudo obtener el ID del pedido', 'Error');
+        }
+      },
+      error: (err) => {
+        const mensajeBackend = err?.error?.message || '';
+        if (mensajeBackend.toLowerCase().includes('stock insuficiente')) {
+          this.toastr.error(
+            mensajeBackend,
+            'El pedido no se puede realizar',
+            { timeOut: 8000 }
+          );
+        } else {
+          this.toastr.error('Hubo un problema al crear el pedido', 'Error');
+        }
       }
-    },
-    error: (err) => {
-      const mensajeBackend = err?.error?.message || '';
-      if (mensajeBackend.toLowerCase().includes('stock insuficiente')) {
-        this.toastr.error(
-          mensajeBackend,
-          'El pedido no se puede realizar',
-          { timeOut: 8000 }
-        );
-      } else {
-        this.toastr.error('Hubo un problema al crear el pedido', 'Error');
-      }
-    }
-  });
-}
+    });
+  }
 
   isOrderValid(): boolean {
     return this.selectedHamburgers.length > 0;
