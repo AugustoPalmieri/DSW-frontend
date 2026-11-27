@@ -41,19 +41,19 @@
       <thead>
         <tr>
           <th scope="col">ID Pedido</th>
-          <th scope="col">fecha</th>
+          <th scope="col">Fecha</th>
           <th scope="col">ID Cliente</th>
           <th scope="col">Modalidad</th>
           <th scope="col">Monto Total</th>
           <th scope="col">Estado</th>
           <th scope="col">Hamburguesas</th>
-          <th scope="col"></th>
+          <th scope="col" class="actions-col">Acciones</th>
         </tr>
       </thead>
       <tbody>
   <tr *ngFor="let item of pedidosFiltrados" class="table-dark">
           <td data-label="ID Pedido">{{ item.idPedido }}</td>
-          <td data-label="FECHA">{{ item.fechaPedido | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td data-label="Fecha">{{ item.fechaPedido | date:'dd/MM/yyyy HH:mm' }}</td>
           <td data-label="ID Cliente">{{ item.idCliente }}</td>
           <td data-label="Modalidad">{{ item.modalidad }}</td>
           <td data-label="Monto Total">{{ item.montoTotal }}</td>
@@ -65,29 +65,27 @@
               </li>
             </ul>
           </td>
-          <td>
+          <td data-label="Acciones" class="actions-cell">
             <div class="button-container">
               <button
                 (click)="actualizarEstado(item.idPedido!, 'ENTREGADO')"
                 type="button"
-                class="btn btn-tick btn-sm"
-                [disabled]="item.estado === 'ENTREGADO'"
-                [ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-tick': item.estado !== 'ENTREGADO' }">
-                ENTREGADO
+                class="btn btn-action btn-tick"
+                [disabled]="item.estado === 'ENTREGADO'">
+                <i class="fas fa-check"></i> Entregado
               </button>
               <button
                 [routerLink]="['/listpedidos/edit/', item.idPedido]"
                 type="button"
-                class="btn btn-info btn-sm"
-                [disabled]="item.estado === 'ENTREGADO'"
-                [ngClass]="{ 'btn-secondary': item.estado === 'ENTREGADO', 'btn-info': item.estado !== 'ENTREGADO' }">
-                EDITAR
+                class="btn btn-action btn-info"
+                [disabled]="item.estado === 'ENTREGADO'">
+                <i class="fas fa-pen"></i> Editar
               </button>
               <button
                 (click)="confirmDeletePedido(item.idPedido!)"
                 type="button"
-                class="btn btn-danger btn-sm">
-                ELIMINAR
+                class="btn btn-action btn-danger">
+                <i class="fas fa-trash"></i> Eliminar
               </button>
             </div>
           </td>

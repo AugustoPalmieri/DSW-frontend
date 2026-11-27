@@ -26,11 +26,11 @@
 }
 
 .navbar-toggler {
-    border: none;
+    border: 1px solid rgba(236, 240, 241, 0.3);
 }
 
-.navbar-toggler-icon {
-    background-color: #ecf0f1; 
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 191, 255, 0.35);
 }
 
 .navbar-nav {
@@ -72,4 +72,29 @@
     background-color: transparent; 
     color: #3498db; 
     text-decoration: none; 
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        padding: 8px 14px;
+    }
+
+    .navbar-brand {
+        padding-left: 4px;
+    }
+
+    .navbar-brand img {
+        height: 54px;
+    }
+
+    .navbar-nav {
+        gap: 12px;
+        padding: 12px 0 6px;
+        margin-left: 0;
+        align-items: center;
+    }
+
+    .nav-item a {
+        padding: 6px 8px;
+    }
 }

@@ -1,10 +1,16 @@
 <div class="background-container">
 
-  <div *ngIf="loading" class="loading-container">
-    <app-progress-bar [mensaje]="mensajeCarga"></app-progress-bar>
-    <p class="loading-text">{{ mensajeCarga }}</p>
+  <div *ngIf="loading" class="loading-card" role="status" aria-live="polite">
+    <div class="spinner-wrapper">
+      <div class="spinner-ring"></div>
+      <i class="fas fa-envelope-open-text spinner-icon"></i>
+    </div>
+    <h3 class="loading-title">{{ mensajeCarga }}</h3>
+    <p class="loading-subtitle">Por favor aguardá unos segundos...</p>
+    <div class="loading-bar">
+      <div class="loading-bar-fill"></div>
+    </div>
   </div>
-
 
   <div *ngIf="!loading" class="login-container">
     <h2>Admin Login</h2>

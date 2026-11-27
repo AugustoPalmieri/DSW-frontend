@@ -1,9 +1,8 @@
 <div class="addhamburguesa">
   <app-navbar></app-navbar>
   <app-progress-bar *ngIf="loading"></app-progress-bar>
-  <div *ngIf="!loading" class="row mt-1">
-    <div class="col-lg-6 offset-lg-3">
-      <div class="card text-white bg-secondary mb-3">
+  <div *ngIf="!loading" class="form-wrapper">
+    <div class="card text-white bg-secondary mb-3">
         <div class="card-header text-center">{{operacion}} Hamburguesa</div>
         <div class="card-body">
           <form [formGroup]="form" (ngSubmit)="addHamburguesa()">
@@ -82,18 +81,13 @@
               <small>No hay ingredientes asignados a esta hamburguesa.</small>
             </div>
 
-            <div class="row mt-3 text-center">
-              <div class="col-lg-6">
-                <button routerLink="/listhamburguesas" type="button" class="btn btn-primary">VOLVER</button>
-              </div>
-              <div class="col-lg-6">
-                <button [disabled]="form.invalid" type="submit" class="btn btn-info">ACEPTAR</button>
-              </div>
+            <div class="form-actions">
+              <button routerLink="/listhamburguesas" type="button" class="btn btn-primary">VOLVER</button>
+              <button [disabled]="form.invalid" type="submit" class="btn btn-info">ACEPTAR</button>
             </div>
 
           </form>
         </div>
       </div>
-    </div>
   </div>
 </div>

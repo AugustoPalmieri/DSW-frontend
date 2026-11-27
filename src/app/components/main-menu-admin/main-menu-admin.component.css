@@ -1,7 +1,9 @@
 /* ── Base ── */
 .scroll {
   height: 100vh;
-  overflow: hidden;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   background-image: url('src/assets/images/fondoazul.jpg');

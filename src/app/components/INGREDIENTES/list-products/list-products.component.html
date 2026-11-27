@@ -15,16 +15,22 @@
         <tr>
           <th scope="col">Descripción</th>
           <th scope="col">Stock</th>
-          <th scope="col"></th>
+          <th scope="col" class="actions-col">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of listProducts" class="table-dark">
           <td data-label="Descripción">{{ item.descripcion }}</td>
           <td data-label="Stock">{{ item.stock }}</td>
-          <td>
-            <button [routerLink]="['/listingredients/edit/', item.codIngrediente]" type="button" class="btn btn-info btn-sm">EDITAR</button>
-            <button (click)="confirmDeleteIngrediente(item.codIngrediente!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
+          <td data-label="Acciones" class="actions-cell">
+            <div class="button-container">
+              <button [routerLink]="['/listingredients/edit/', item.codIngrediente]" type="button" class="btn btn-action btn-info">
+                <i class="fas fa-pen"></i> Editar
+              </button>
+              <button (click)="confirmDeleteIngrediente(item.codIngrediente!)" type="button" class="btn btn-action btn-danger">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
