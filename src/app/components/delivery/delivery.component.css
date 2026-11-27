@@ -1,6 +1,7 @@
 .delivery {
   overflow-x: hidden;
   height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -9,6 +10,30 @@
   background-position: center; 
   background-repeat: no-repeat; 
   background-attachment: fixed; 
+}
+
+.delivery-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.delivery-card {
+  width: 100%;
+  max-width: 460px;
+}
+
+.delivery-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.delivery-actions .btn {
+  flex: 1;
 }
 
 ::-webkit-scrollbar {
@@ -34,4 +59,10 @@
   font-size: 0.9rem;
   background-color: #fff3cd;
   color: #856404;
+}
+
+@media (max-width: 480px) {
+  .delivery-actions {
+    flex-direction: column;
+  }
 }

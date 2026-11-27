@@ -17,10 +17,14 @@ export class ListClientesComponent implements OnInit {
   filtroDireccion: string = '';
 
   get clientesFiltrados(): Cliente[] {
+    const idTerm = this.filtroId.trim();
+    const nombreTerm = this.filtroNombre.trim().toLowerCase();
+    const direccionTerm = this.filtroDireccion.trim().toLowerCase();
+
     return this.listCliente.filter(cliente => {
-      const coincideId = this.filtroId ? cliente.idCliente?.toString().includes(this.filtroId) : true;
-      const coincideNombre = this.filtroNombre ? cliente.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase()) : true;
-      const coincideDireccion = this.filtroDireccion ? cliente.direccion.toLowerCase().includes(this.filtroDireccion.toLowerCase()) : true;
+      const coincideId = idTerm ? (cliente.idCliente?.toString() ?? '').includes(idTerm) : true;
+      const coincideNombre = nombreTerm ? (cliente.nombre ?? '').toLowerCase().includes(nombreTerm) : true;
+      const coincideDireccion = direccionTerm ? (cliente.direccion ?? '').toLowerCase().includes(direccionTerm) : true;
       return coincideId && coincideNombre && coincideDireccion;
     });
   }

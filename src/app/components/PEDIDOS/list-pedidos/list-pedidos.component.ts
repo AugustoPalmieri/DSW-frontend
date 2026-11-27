@@ -28,8 +28,14 @@ export class ListPedidosComponent implements OnInit {
       if (this.filtroFecha) {
         if (pedido.fechaPedido) {
           const fechaPedido = new Date(pedido.fechaPedido);
-          const fechaFormateada = fechaPedido.toISOString().slice(0, 10);
-          coincideFecha = fechaFormateada === this.filtroFecha;
+          if (!isNaN(fechaPedido.getTime())) {
+            const year = fechaPedido.getFullYear();
+            const month = String(fechaPedido.getMonth() + 1).padStart(2, '0');
+            const day = String(fechaPedido.getDate()).padStart(2, '0');
+            coincideFecha = `${year}-${month}-${day}` === this.filtroFecha;
+          } else {
+            coincideFecha = false;
+          }
         } else {
           coincideFecha = false;
         }
@@ -47,6 +53,7 @@ export class ListPedidosComponent implements OnInit {
   limpiarFiltros() {
     this.filtroFecha = '';
     this.filtroModalidad = '';
+    this.filtroEstado = '';
   }
 
   constructor(private _PedidoService: PedidoService, private toastr: ToastrService, private router: Router) {}

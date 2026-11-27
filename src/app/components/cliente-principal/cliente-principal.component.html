@@ -1,15 +1,32 @@
 <div class="scrollable-container">
   <app-navbar-cliente></app-navbar-cliente>
-  <div class="content">
-    <div class="text-box">
-      <h1>Explorá nuestro menú y encontrá tu favorita</h1>
-      <a routerLink="/listpedidos/add" class="order-button">Realiza tu pedido</a>
-    </div>
-    <div class="image-container">
-      <img src="assets/images/hamb-cliente.png" alt="HAMBURGUESA" class="hamb-image">
-    </div>
-  </div>
-  <div class="router-outlet">
-    <router-outlet></router-outlet>
-  </div>
+
+  <main class="hero-section">
+    <section class="hero-card">
+      <div class="hero-text">
+        <span class="hero-badge">Hamburguesas artesanales</span>
+        <h1>Explorá nuestro menú y encontrá <span>tu favorita</span></h1>
+        <p class="hero-subtitle">
+          Hechas al momento con ingredientes frescos y carne seleccionada. Pedí online para retirar o recibir por delivery.
+        </p>
+
+        <div class="hero-actions">
+          <a routerLink="/listpedidos/add" class="order-button">
+            Realizar pedido
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a routerLink="/nosotros" class="secondary-button">Conocenos</a>
+        </div>
+
+        <div class="hero-highlights">
+          <span><i class="fas fa-fire"></i> Hechas al momento</span>
+          <span><i class="fas fa-motorcycle"></i> Takeaway y Delivery</span>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <img src="assets/images/hamb-hero.jpg" alt="Hamburguesa artesanal con queso cheddar" class="hamb-image">
+      </div>
+    </section>
+  </main>
 </div>

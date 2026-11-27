@@ -31,24 +31,30 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Nombre</th>
-          <th scope="col">apellido</th>
-          <th scope="col">telefono</th>
-          <th scope="col">email</th>
-          <th scope="col">direccion</th>
-          <th></th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Email</th>
+          <th scope="col">Dirección</th>
+          <th scope="col" class="actions-col">Acciones</th>
         </tr>
       </thead>
       <tbody>
   <tr *ngFor="let item of clientesFiltrados" class="table-dark">
-          <td>{{ item.idCliente }}</td>
-          <td>{{ item.nombre }}</td>
-          <td>{{ item.apellido }}</td>
-          <td>{{ item.telefono }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.direccion }}</td>
-          <td>
-            <button [routerLink]="['/listclientes/edit/', item.idCliente]" type="button" class="btn btn-info btn-sm">EDITAR</button>
-            <button (click)="confirmDeleteCliente(item.idCliente!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
+          <td data-label="ID">{{ item.idCliente }}</td>
+          <td data-label="Nombre">{{ item.nombre }}</td>
+          <td data-label="Apellido">{{ item.apellido }}</td>
+          <td data-label="Teléfono">{{ item.telefono }}</td>
+          <td data-label="Email">{{ item.email }}</td>
+          <td data-label="Dirección">{{ item.direccion }}</td>
+          <td data-label="Acciones" class="actions-cell">
+            <div class="button-container">
+              <button [routerLink]="['/listclientes/edit/', item.idCliente]" type="button" class="btn btn-action btn-info">
+                <i class="fas fa-pen"></i> Editar
+              </button>
+              <button (click)="confirmDeleteCliente(item.idCliente!)" type="button" class="btn btn-action btn-danger">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

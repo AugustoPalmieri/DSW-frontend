@@ -1,17 +1,17 @@
 
 
-.addcliente{
-  overflow-x:hidden;
+.addcliente {
+  overflow-x: hidden;
   height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background-image: url('src/assets/images/fondoazul.jpg'); 
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-  background-attachment: fixed; 
-
+  background-image: url('src/assets/images/fondoazul.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 ::-webkit-scrollbar {
@@ -27,31 +27,22 @@
   border-radius: 4px;
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa;
-  margin: 0;
-  padding: 0;
-  
-}
-
-
-.row.mt-1 {
+.form-wrapper {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 10vh;
-  padding: 20px;
+  padding: 24px 16px;
 }
-
 
 .card {
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
+  margin: 0 auto;
   background-color: #ffffff;
   border: none;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -122,18 +113,19 @@ body {
   background-color: #138496;
 }
 
-.row.mt-2 {
+.form-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
-.col-lg-6 {
+.form-actions .btn {
   flex: 1;
 }
+
 .password-container {
   position: relative;
 }
-
 
 .password-container i {
   position: absolute;
@@ -147,22 +139,14 @@ body {
 .password-container i:hover {
   color: #007BFF;
 }
+
 @media (max-width: 768px) {
   .card {
     max-width: 100%;
-    margin: 0 15px;
   }
 
-  .row.mt-2 {
+  .form-actions {
     flex-direction: column;
-  }
-
-  .col-lg-6 {
-    width: 100%;
-  }
-
-  .btn {
-    margin-bottom: 10px;
   }
 }
 

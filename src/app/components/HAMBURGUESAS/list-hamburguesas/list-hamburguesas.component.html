@@ -16,7 +16,7 @@
           <th scope="col">ID</th>
           <th scope="col">Nombre</th>
           <th scope="col">Descripción</th>
-          <th scope="col"></th>
+          <th scope="col" class="actions-col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -24,9 +24,15 @@
           <td data-label="ID">{{ item.idHamburguesa }}</td>
           <td data-label="Nombre">{{ item.nombre }}</td>
           <td data-label="Descripción">{{ item.descripcion }}</td>
-          <td>
-            <button [routerLink]="['/listhamburguesas/edit/', item.idHamburguesa]" type="button" class="btn btn-info btn-sm">EDITAR</button>
-            <button (click)="confirmDeleteHamburguesa(item.idHamburguesa!)" type="button" class="btn btn-danger btn-sm me-sm-2">ELIMINAR</button>
+          <td data-label="Acciones" class="actions-cell">
+            <div class="button-container">
+              <button [routerLink]="['/listhamburguesas/edit/', item.idHamburguesa]" type="button" class="btn btn-action btn-info">
+                <i class="fas fa-pen"></i> Editar
+              </button>
+              <button (click)="confirmDeleteHamburguesa(item.idHamburguesa!)" type="button" class="btn btn-action btn-danger">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
